@@ -1,34 +1,55 @@
-# Ejercicios y evaluaciones · 3er grado
+<p align="center"><img src="icon-192.png" width="96" alt=""></p>
 
-Ejercicios autocorregibles para practicar en casa, pensados para que el chico o la chica responda solo y un adulto revise después.
+# Ejercicios y evaluaciones
 
-## Materias
+Ejercicios de práctica para la escuela primaria, armados a partir de los programas oficiales de cada grado. Están pensados para que el chico o la chica responda solo en el celular, la tablet o la computadora, y un adulto revise después.
 
-| Materia | Módulos | Ejercicios |
-|---|---|---|
-| Inglés | 12 | 142 |
-| Matemática | 6 | 44 |
-| Lengua | 11 | 86 |
+**Usar la página:** https://xsantosr.github.io/Ejercicios-Evaluaciones/
+
+No hace falta instalar nada ni crear una cuenta. En el celular se puede agregar a la pantalla de inicio como si fuera una app.
+
+## Qué hay
+
+| Grado | Inglés | Matemática | Lengua |
+|---|---|---|---|
+| Ingreso a 2º | 146 | 37 | 38 |
+| Ingreso a 3º | 142 | 54 | 86 |
+| Ingreso a 4º a 7º | Próximamente | Próximamente | Próximamente |
+
+- **Inglés:** cubre el programa del grado anterior y el del grado al que se ingresa.
+- **Matemática y Lengua:** siguen los contenidos de ingreso de la escuela.
+- Cada materia está dividida en módulos cortos, y cada módulo termina con un simulacro de examen.
 
 ## Cómo funciona
 
-- **Un solo intento por ejercicio.** Si se equivoca, la respuesta queda en rojo y no se puede volver a contestar. Nunca se muestra la respuesta correcta mientras resuelve.
-- **Revisión del adulto** al terminar cada módulo: muestra qué respondió, cuál era la correcta y una explicación.
-- La **revisión** y el **reinicio** piden resolver una cuenta, para que solo los pueda abrir un adulto.
-- Las respuestas se guardan **en el navegador del dispositivo** donde se contestan. No hay cuentas ni sincronización entre dispositivos.
-- Tema claro y oscuro.
+- **Un solo intento por ejercicio.** Si la respuesta es incorrecta queda marcada en rojo y no se puede volver a contestar. Mientras resuelve, nunca se muestra la respuesta correcta.
+- **Explicación antes de cada módulo.** El recuadro «Cómo se usa» explica el tema con ejemplos distintos a los de los ejercicios, para entender la regla y no copiar la respuesta.
+- **Revisión del adulto.** Se habilita al terminar el módulo y muestra qué respondió, cuál era la correcta y una explicación.
+- **Control de adulto.** Para abrir la revisión o reiniciar un módulo hay que resolver una cuenta. Así no se puede ver la respuesta y volver a empezar.
+- **Consignas abiertas.** Las de escritura o las que se responden con un libro no se corrigen solas: las revisa el adulto con la guía que trae la revisión.
+- **Guardado local.** Las respuestas quedan en el navegador del dispositivo donde se contestan. No se comparten entre dispositivos.
+- **Tema claro y oscuro.** El oscuro imita un pizarrón, para cansar menos la vista.
 
-## Usar la página
+> Las respuestas correctas están en los archivos de este repositorio. Es una herramienta de práctica, no un examen formal.
 
-Abrí el link de GitHub Pages del repo. No hace falta instalar nada.
+## Libros de lectura
 
-## Archivos
+Las consignas sobre libros (*Vida de perros*, *Secreto de familia* y *Petit, el monstruo*, de Isol, entre otros) no reproducen los textos: se responden con el libro al lado.
 
-- `index.html` — la página y el motor de ejercicios.
-- `data.js` — todo el contenido: ejercicios, respuestas y explicaciones.
+## Para quien quiera colaborar
 
-> Las respuestas correctas están en `data.js`, así que cualquiera puede leerlas desde el repo. Es una herramienta de práctica, no un examen formal.
+```
+index.html        la página y el motor de ejercicios
+config.js         qué grados están disponibles
+grados/gN.js      el contenido de cada grado (se genera, no editar a mano)
+src/              el contenido fuente: ejercicios, respuestas y explicaciones
+scripts/build.js  arma grados/gN.js a partir de src/
+```
 
-## Nota sobre los libros
+Para cambiar o agregar contenido, editá los archivos de `src/` y corré:
 
-Las consignas sobre los libros de Isol (*Vida de perros*, *Secreto de familia*, *Petit, el monstruo*) no reproducen los textos: se responden con el libro al lado y las revisa el adulto.
+```
+node scripts/build.js
+```
+
+Tipos de ejercicio: opción múltiple (`choice`), unir con flechas (`match`), completar (`fill`), ordenar (`order`) y respuesta abierta (`open`).

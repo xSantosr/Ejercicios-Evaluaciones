@@ -23,6 +23,16 @@ const RULE_COL_MULT2 = RULE_COL_MULT + `
 <div class="rrow"><span class="rl">después, por las decenas</span><span class="ra">fila 2, corrida un lugar</span></div>
 <div class="warn"><b>&#9888; El error más común</b> es olvidarse de correr la segunda fila un lugar a la izquierda. En esta página ese lugar ya viene marcado.</div></div>`;
 
+const RULE_DIV_NUEVO = `
+<div class="rsec"><h4>Una forma nueva de anotar el reparto</h4>
+<p class="exline">Hasta ahora repartías contando o dibujando. Esta es la manera de <b>escribirlo</b>, y se usa toda la primaria.</p>
+<div class="rrow"><span class="rl">el número que se reparte</span><span class="ra">va adentro</span></div>
+<div class="rrow"><span class="rl">entre cuántos se reparte</span><span class="ra">va afuera, a la derecha</span></div>
+<div class="rrow"><span class="rl">cuánto le toca a cada uno</span><span class="ra">debajo del divisor</span></div>
+<div class="rrow"><span class="rl">lo que sobra</span><span class="ra">el resto</span></div>
+<div class="warn"><b>Un truco que ya sabés:</b> para repartir 46 entre 2, preguntate <b>qué número por 2 da 46</b>. Si no te sale de memoria, probá: 20 × 2 = 40, te faltan 6, y 3 × 2 = 6. Entonces son 23.<br>
+<b>Para controlar:</b> multiplicá lo que le tocó a cada uno por la cantidad de chicos y sumale el resto. Tiene que darte el número de adentro.</div></div>`;
+
 const RULE_DIV = `
 <div class="rsec"><h4>La casita</h4>
 <p class="exline">El número que se reparte va adentro; el que reparte, afuera a la derecha. El <b>cociente</b> se escribe debajo del divisor y el <b>resto</b> es lo que queda sin repartir.</p>
@@ -57,7 +67,7 @@ const RULE_FRAC = `
 <div class="warn">Se acepta el resultado con el denominador común <b>o</b> ya simplificado: las dos formas valen.</div></div>`;
 
 const CUENTAS = {
-"2": {id:"mc",dot:"✏️",name:"Cuentas paradas",title:"Cuentas paradas",sub:"Sumar y restar como en el cuaderno",rules:RULE_COL_RESTA,ex:[
+"2": {id:"mc",dot:"✏️",name:"Cuentas paradas",title:"Cuentas paradas",sub:"Sumar, restar y multiplicar como en el cuaderno",rules:RULE_COL_RESTA+RULE_COL_MULT,ex:[
  {t:"col",op:"+",n:[23,45],h:"Sin llevarte nada"},
  {t:"col",op:"+",n:[36,27],h:"Acá te vas a llevar 1"},
  {t:"col",op:"+",n:[58,34]},
@@ -65,9 +75,20 @@ const CUENTAS = {
  {t:"col",op:"−",n:[47,23],h:"Sin pedir prestado"},
  {t:"col",op:"−",n:[62,28],h:"Acá hay que pedir prestado"},
  {t:"col",op:"−",n:[90,47]},
- {t:"col",op:"+",n:[12,24,31],h:"Tres números, de a una columna por vez"}
+ {t:"col",op:"+",n:[12,24,31],h:"Tres números, de a una columna por vez"},
+ {t:"col",op:"×",n:[13,3],h:"Multiplicar también se escribe así"},
+ {t:"col",op:"×",n:[22,4]},
+ {t:"col",op:"×",n:[26,3],h:"Acá te vas a llevar algo"}
 ]},
-"3": {id:"mc",dot:"✏️",name:"Cuentas paradas",title:"Cuentas paradas",sub:"Sumar y restar de tres cifras",rules:RULE_COL_RESTA,ex:[
+"2b":{id:"mcd",dot:"🏠",name:"La casita",title:"La casita",sub:"Repartir, escrito como en el cuaderno",rules:RULE_DIV_NUEVO,ex:[
+ {t:"div",D:46,d:2,h:"Repartí 46 entre 2"},
+ {t:"div",D:68,d:2},
+ {t:"div",D:90,d:3},
+ {t:"div",D:55,d:5},
+ {t:"div",D:27,d:2,h:"Acá va a sobrar algo"},
+ {t:"div",D:38,d:3}
+]},
+"3": {id:"mc",dot:"✏️",name:"Cuentas paradas",title:"Cuentas paradas",sub:"Sumar, restar y multiplicar de tres cifras",rules:RULE_COL_RESTA+RULE_COL_MULT,ex:[
  {t:"col",op:"+",n:[247,136]},
  {t:"col",op:"+",n:[358,275]},
  {t:"col",op:"+",n:[125,48,230],h:"Tres sumandos"},
@@ -75,7 +96,18 @@ const CUENTAS = {
  {t:"col",op:"−",n:[704,356],h:"Ojo con el cero del medio"},
  {t:"col",op:"−",n:[500,164]},
  {t:"col",op:"+",n:[1204,397]},
- {t:"col",op:"−",n:[1000,625]}
+ {t:"col",op:"−",n:[1000,625]},
+ {t:"col",op:"×",n:[123,2],h:"Multiplicá cada cifra, empezando por la derecha"},
+ {t:"col",op:"×",n:[214,3]},
+ {t:"col",op:"×",n:[136,4],h:"Acá hay que llevarse varias veces"}
+]},
+"3b":{id:"mcd",dot:"🏠",name:"La casita",title:"La casita",sub:"Repartir, escrito como en el cuaderno",rules:RULE_DIV_NUEVO,ex:[
+ {t:"div",D:96,d:3},
+ {t:"div",D:148,d:4},
+ {t:"div",D:175,d:5},
+ {t:"div",D:243,d:9},
+ {t:"div",D:137,d:6,h:"Acá va a sobrar algo"},
+ {t:"div",D:250,d:8}
 ]},
 "4": {id:"mc",dot:"✏️",name:"Cuentas paradas",title:"Cuentas paradas",sub:"Sumar, restar y multiplicar por una cifra",rules:RULE_COL_RESTA+RULE_COL_MULT,ex:[
  {t:"col",op:"+",n:[1245,678]},

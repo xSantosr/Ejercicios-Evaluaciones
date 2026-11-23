@@ -193,6 +193,9 @@ nav{position:sticky;top:0;z-index:20;background:var(--paper);padding:10px 0 9px;
 .casita{--cw:1.9em;display:flex;align-items:flex-start;background:var(--field);border:1px solid var(--line);
   border-radius:12px;padding:12px 14px;width:max-content;min-width:min(100%,max-content)}
 .cleft{display:block}
+.casita .crow{grid-template-columns:2.9em repeat(var(--w),var(--cw))}
+.casita .cright .crow{grid-template-columns:repeat(var(--w),var(--cw))}
+.dg.lbl{font-size:11px;font-weight:400;color:var(--dim);letter-spacing:.02em}
 .cright{border-left:3px solid var(--ink);padding-left:9px;margin-left:5px}
 .cqline{height:3px;background:var(--ink);border-radius:2px;margin:5px 0 6px}
 .bajada{color:var(--muted);opacity:.85}
@@ -594,10 +597,17 @@ function reviewPanel(s,u){
          ex.f.map(p=>p[0]+"/"+p[1]).join(" "+ex.op+" ")+' → respondió <span>'+m+'</span></div>';
       if(!sv.ok) h+='<div class="rline rright">✔ Correcta: <span>'+ex.ans.map(p=>p[0]+"/"+p[1]).join(" o ")+'</span></div>';
     }else if(ex.t==="div"){
-      const mq=((sv.v&&sv.v.q)||[]).join("")||"—", mr=(sv.v&&sv.v.resto)||"";
+      const mq=((sv.v&&sv.v.q)||[]).join("")||"—", mr=((sv.v&&sv.v.rest)||[]).join("").replace(/^0+(?=\d)/,"");
       h+='<div class="rline '+(sv.ok?"rright":"rwrong")+'">'+(sv.ok?"✅":"❌")+' '+ex.D+' ÷ '+ex.d+
          ' → cociente <span>'+mq+'</span>'+(ex.steps?'':' · resto <span>'+(mr||"—")+'</span>')+'</div>';
       if(!sv.ok) h+='<div class="rline rright">✔ Correcta: cociente <span>'+ex.co+'</span> · resto <span>'+ex.r+'</span></div>';
+      const r=Number(ex.r);
+      h+='<div class="rexp">💡 <b>Qué significa:</b> se reparten '+ex.D+' entre '+ex.d+'. '+
+         'A cada uno le tocan <b>'+ex.co+'</b> (el cociente) y '+
+         (r===0 ? 'no sobra nada: el <b>resto es 0</b>, así que el reparto es exacto.'
+                : 'sobran <b>'+ex.r+'</b>: ese es el <b>resto</b>, lo que ya no alcanza para dar uno más a cada uno.')+
+         '<br><b>Comprobación:</b> '+ex.d+' × '+ex.co+(r===0?'':' + '+ex.r)+' = '+ex.D+'. '+
+         'Y el resto siempre tiene que ser <b>menor que '+ex.d+'</b>.</div>';
     }else if(ex.t==="order"){
       h+='<div class="rline '+(sv.ok?"rright":"rwrong")+'">'+(sv.ok?"✅":"❌")+' Ordenó: <span>'+((sv.v||[]).join(" · ")||"—")+'</span></div>';
       if(!sv.ok) h+='<div class="rline rright">✔ Orden correcto: <span>'+ex.a.join(" · ")+'</span></div>';
@@ -1042,7 +1052,7 @@ function bDiv(ctx){
   const left=document.createElement("div"); left.className="cleft";
   const right=document.createElement("div"); right.className="cright";
   box.appendChild(left); box.appendChild(right);
-  const seq=[], qIn=[], stepIn=[]; let restoIn=null;
+  const seq=[], qIn=[], stepIn=[];
 
   const grid=(p,cols)=>{ const d=document.createElement("div"); d.className="crow"; d.style.setProperty("--w",cols); p.appendChild(d); return d; };
   const cell=(p,t,c)=>{ const s=document.createElement("span"); s.className="dg"+(c?" "+c:""); s.textContent=t==null?"":t; p.appendChild(s); };
@@ -1050,6 +1060,9 @@ function bDiv(ctx){
   /* izquierda: el dividendo y los pasos */
   const r0=grid(left,W); cell(r0,"","sign");
   for(let j=0;j<W;j++) cell(r0, String(ex.D)[j]);
+
+  const rw=String(ex.d-1).length;            /* el resto nunca pasa de esto */
+  const lastStep=(ex.steps||[]).length-1;
 
   (ex.steps||[]).forEach((st,k)=>{
     const pr=grid(left,W); cell(pr,"−","sign");
@@ -1062,7 +1075,7 @@ function bDiv(ctx){
       arrP.push(i); seq.push(i);
     }
     const lr=grid(left,W); const l=document.createElement("i"); l.className="cline"; lr.appendChild(l);
-    const rr=grid(left,W); cell(rr,"","sign");
+    const rr=grid(left,W); cell(rr, k===lastStep?"resto":"", k===lastStep?"lbl":"sign");
     const rs=st.rem.padStart(st.col+1," ").padEnd(W," ");
     const arrR=[];
     for(let j=0;j<W;j++){
@@ -1074,6 +1087,20 @@ function bDiv(ctx){
     }
     stepIn.push({p:arrP,r:arrR,ps:ps.replace(/ /g,""),rs:st.rem});
   });
+
+  /* sin pasos: una raya y el resto justo debajo del dividendo */
+  const restIn=[]; const rstr=ex.r.padStart(rw," ");
+  if(!ex.steps){
+    const lr=grid(left,W); const l=document.createElement("i"); l.className="cline"; lr.appendChild(l);
+    const rr=grid(left,W); cell(rr,"resto","lbl");
+    const sv0=(saved.rest&&saved.rest.length===rw)?saved.rest:[];
+    for(let j=0;j<W;j++){
+      if(j<W-rw){ cell(rr,""); continue; }
+      const i=digitField(rr,"dgi",sv0[j-(W-rw)],locked);
+      if(answered) i.classList.add(cellOK(i.value,rstr[j-(W-rw)])?"ok":"bad");
+      restIn.push(i); seq.push(i);
+    }
+  }
 
   /* derecha: divisor arriba, cociente abajo */
   const Wq=Math.max(String(ex.d).length, ex.co.length);
@@ -1093,17 +1120,6 @@ function bDiv(ctx){
   wireRightToLeft(seq);
   const sc=document.createElement("div"); sc.className="divwrap"; sc.appendChild(box); wrap.appendChild(sc);
 
-  if(!ex.steps){
-    const rb=document.createElement("div"); rb.className="resto";
-    rb.appendChild(document.createTextNode("Resto"));
-    restoIn=document.createElement("input");
-    restoIn.className="fin"; restoIn.type="text"; restoIn.inputMode="numeric";
-    restoIn.autocomplete="off"; restoIn.style.maxWidth="5em";
-    restoIn.value=saved.resto||""; if(locked) restoIn.disabled=true;
-    if(answered) restoIn.classList.add(restoIn.value.trim()===ex.r?"ok":"bad");
-    rb.appendChild(restoIn); wrap.appendChild(rb);
-  }
-
   const btn=document.createElement("button"); btn.className="go"; btn.style.display="block";
   btn.textContent=answered?"Respondido":"Responder"; btn.disabled=locked;
   btn.onclick=()=>{
@@ -1117,11 +1133,10 @@ function bDiv(ctx){
       const r=s.r.map((i,j)=>{ const g=i.value===s.rs[j]; if(!g) all=false; i.disabled=true; i.classList.add(g?"ok":"bad"); return i.value; });
       return {p,r};
     });
-    let vr="";
-    if(restoIn){ vr=restoIn.value.trim(); const g=vr===ex.r; if(!g) all=false;
-      restoIn.disabled=true; restoIn.classList.add(g?"ok":"bad"); }
+    const vrest=restIn.map((i,j)=>{ const g=cellOK(i.value,rstr[j]); if(!g) all=false;
+      i.disabled=true; i.classList.add(g?"ok":"bad"); return i.value; });
     btn.disabled=true; btn.textContent="Respondido";
-    put(ctx.s,ctx.u,ctx.i,{answered:true,ok:all,v:{q:vq,steps:vs,resto:vr}});
+    put(ctx.s,ctx.u,ctx.i,{answered:true,ok:all,v:{q:vq,steps:vs,rest:vrest}});
     refreshScore();
   };
   wrap.appendChild(btn);

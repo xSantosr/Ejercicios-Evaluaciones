@@ -12,21 +12,21 @@ No hace falta instalar nada ni crear una cuenta. En el celular se puede agregar 
 
 | Para entrar a | Inglés | Matemática | Lengua |
 |---|---|---|---|
-| 2º grado | 146 | 45 | 38 |
-| 3º grado | 142 | 62 | 86 |
+| 2º grado | 146 | 54 | 38 |
+| 3º grado | 142 | 71 | 86 |
 | 4º grado | 78 | 55 | 41 |
 | 5º grado | 77 | 54 | 41 |
 | 6º grado | 76 | 63 | 39 |
 | 7º grado | 80 | 62 | 47 |
 
-En total, 1.232 ejercicios.
+En total, 1.250 ejercicios.
 
 - **Inglés:** cubre el programa del grado anterior y el del grado al que se ingresa.
 - **Matemática y Lengua:** siguen los contenidos de ingreso de la escuela, es decir, lo que hay que saber del grado anterior.
 - Cada materia está dividida en módulos cortos, y cada módulo termina con un simulacro de examen.
 - **Operaciones escritas:** Matemática tiene módulos para resolver como en el cuaderno, con un casillero por cifra:
   - **Cuentas paradas** (todos los grados): sumas, restas y multiplicaciones en columna, con espacio para anotar las llevadas y, desde 5º, productos parciales.
-  - **La casita** (desde 4º): divisiones. En 4º y 5º se completan el cociente y el resto; en 6º y 7º, también la multiplicación y la resta de cada paso, con la cifra que se baja marcada en gris.
+  - **La casita** (todos los grados): divisiones, con el cociente debajo del divisor y el resto debajo del dividendo. De 2º a 5º se completan cociente y resto; en 6º y 7º, también la multiplicación y la resta de cada paso, con la cifra que se baja marcada en gris. La revisión explica qué significa el resto y muestra la comprobación.
   - **Cuentas con coma** (6º y 7º): decimales alineados por la coma, y fracciones escritas con raya horizontal.
 - **Ilustraciones:** los ejercicios usan dibujos cuando ayudan a entender — bloques de valor posicional, rectas numéricas, cuadros de números, grupos de objetos, fracciones, relojes y triángulos.
 

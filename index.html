@@ -190,6 +190,8 @@ nav{position:sticky;top:0;z-index:20;background:var(--paper);padding:10px 0 9px;
 .fr input.bad{background:var(--bdbg);border-color:var(--bdbd);color:var(--bdtx)}
 .frop{font-size:23px;font-weight:700;color:var(--muted)}
 .divwrap{overflow-x:auto;margin:6px 0 2px}
+.horiz{font-size:22px;font-weight:700;color:var(--ink);margin:1px 0 2px;font-variant-numeric:tabular-nums}
+.dosformas{border-left:3px solid var(--tab,var(--ink));padding-left:11px;margin:4px 0 2px}
 .casita{--cw:1.9em;display:flex;align-items:flex-start;background:var(--field);border:1px solid var(--line);
   border-radius:12px;padding:12px 14px;width:max-content;min-width:min(100%,max-content)}
 .cleft{display:block}
@@ -932,6 +934,15 @@ function wireRightToLeft(seq){
 }
 function cellOK(v,c){ return c===" " ? (v===""||v==="0") : v===c; }
 
+/* la misma cuenta, en línea y en columna */
+function dosFormas(wrap,partes,op,comoAbajo){
+  const d=document.createElement("div"); d.className="dosformas";
+  d.innerHTML='<p class="carrylab">Así se escribe en línea:</p>'+
+    '<div class="horiz">'+partes.join(" "+op+" ")+' =</div>'+
+    '<p class="carrylab" style="margin-top:9px">Y así, '+comoAbajo+':</p>';
+  wrap.appendChild(d);
+}
+
 function bCol(ctx){
   const ex=ctx.ex, sv=ctx.saved, answered=!!(sv&&sv.answered);
   const W=ex.w, saved=(sv&&sv.v)||{}, locked=answered||ctx.locked;
@@ -980,6 +991,7 @@ function bCol(ctx){
   wireRightToLeft(seq);
   carryIn.forEach(i=>{ if(i) i.addEventListener("input",()=>{ i.value=i.value.replace(/[^0-9]/g,"").slice(-1); }); });
 
+  if(ex.both) dosFormas(wrap,ex.n.map(String),ex.op,"en columna");
   wrap.appendChild(box);
   const btn=document.createElement("button"); btn.className="go"; btn.style.display="block";
   btn.textContent=answered?"Respondido":"Responder"; btn.disabled=locked;
@@ -1118,6 +1130,7 @@ function bDiv(ctx){
   }
 
   wireRightToLeft(seq);
+  if(ex.both) dosFormas(wrap,[String(ex.D),String(ex.d)],"÷","en la casita");
   const sc=document.createElement("div"); sc.className="divwrap"; sc.appendChild(box); wrap.appendChild(sc);
 
   const btn=document.createElement("button"); btn.className="go"; btn.style.display="block";

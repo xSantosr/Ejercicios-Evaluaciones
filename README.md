@@ -24,7 +24,7 @@ En total, 1.244 ejercicios.
 - **Inglés:** cubre el programa del grado anterior y el del grado al que se ingresa.
 - **Matemática y Lengua:** siguen los contenidos de ingreso de la escuela, es decir, lo que hay que saber del grado anterior.
 - Cada materia está dividida en módulos cortos, y cada módulo termina con un simulacro de examen.
-- **Operaciones escritas (hasta 4º):** se resuelven como en el cuaderno, con un casillero por cifra.
+- **Operaciones escritas (hasta 4º):** se resuelven como en el cuaderno, con un casillero por cifra. En **2º y 3º**, cada cuenta se muestra **de las dos formas**: primero en línea (`23 + 45 =`) y debajo en columna, para que se vea que son la misma.
   - **Cuentas paradas:** sumas, restas y multiplicaciones en columna, con espacio para anotar las llevadas.
   - **La casita:** divisiones, con el cociente debajo del divisor y el resto debajo del dividendo. La revisión explica qué significa el resto y muestra la comprobación.
 - **Cálculo mental (desde 5º):** en lugar de escribir la cuenta se practican las estrategias que piden los programas: descomponer, redondear y ajustar, dobles y mitades, apoyarse en un cálculo conocido y estimar. Las fracciones se escriben con raya horizontal.
@@ -58,6 +58,7 @@ libros.js         las fichas (se genera, no editar a mano)
 grados/gN.js      el contenido de cada grado (se genera, no editar a mano)
 src/              el contenido fuente: ejercicios, respuestas y explicaciones
 scripts/build.js  arma grados/gN.js a partir de src/
+scripts/leaks.js  avisa si una explicación contiene la respuesta de su propio ejercicio
 ```
 
 Para cambiar o agregar contenido, editá los archivos de `src/` y corré:

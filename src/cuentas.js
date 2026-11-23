@@ -24,7 +24,7 @@ const RULE_DIV_NUEVO = `
 <div class="rrow"><span class="rl">entre cuántos se reparte</span><span class="ra">va afuera, a la derecha</span></div>
 <div class="rrow"><span class="rl">cuánto le toca a cada uno</span><span class="ra">debajo del divisor</span></div>
 <div class="rrow"><span class="rl">lo que sobra</span><span class="ra">el resto</span></div>
-<div class="warn"><b>Un truco que ya sabés:</b> para repartir 46 entre 2, preguntate <b>qué número por 2 da 46</b>. Si no te sale de memoria, probá: 20 × 2 = 40, te faltan 6, y 3 × 2 = 6. Entonces son 23.<br>
+<div class="warn"><b>Un truco que ya sabés:</b> para repartir 62 entre 2, preguntate <b>qué número por 2 da 62</b>. Si no te sale de memoria, probá de a partes: 30 × 2 = 60, te faltan 2, y 1 × 2 = 2. Entonces son 31.<br>
 <b>Para controlar:</b> multiplicá lo que le tocó a cada uno por la cantidad de chicos y sumale el resto. Tiene que darte el número de adentro.</div></div>`;
 
 const RULE_DIV = `

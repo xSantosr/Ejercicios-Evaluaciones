@@ -155,6 +155,14 @@ for (const g in GRADES) {
   m.units.splice(i < 0 ? m.units.length : i, 0, ...mods);
 }
 
+/* 2º y 3º ven la misma cuenta escrita de las dos formas */
+for (const g of ['2', '3']) GRADES[g].forEach(s => s.units.forEach(u => u.ex.forEach(e => {
+  if (e.t !== 'col' && e.t !== 'div') return;
+  e.both = true;
+  const plano = e.t === 'col' ? e.n.join(' ' + e.op + ' ') : e.D + ' ÷ ' + e.d;
+  if (e.q === plano) e.q = 'Resolvé la cuenta';
+})));
+
 /* vínculos a las fichas de libros */
 const bookById = Object.fromEntries(L.BOOKS.map(b => [b.id, b]));
 for (const g in GRADES) GRADES[g].forEach(s => s.units.forEach(u => {

@@ -1,0 +1,116 @@
+/* Fichas de libros. Resúmenes escritos con palabras propias: no se reproduce ningún texto ni ilustración. */
+const BOOKS = [
+{
+  id: "vida-de-perros", title: "Vida de perros", author: "Isol", illus: "Isol (texto e ilustraciones)",
+  grade: "3", genre: "Libro álbum", emo: "🐕", color: "#E2643E",
+  summary: "Un chico y su perro Clovis son inseparables: pasan las tardes jugando, corriendo y ensuciándose juntos. Un día el chico le pregunta a su mamá cómo sabe que él no es un perro, y ella le da sus razones. Pero las aventuras de cada tarde con Clovis parecen decir otra cosa.",
+  ending: "Después de un día de juegos, el chico vuelve a casa hecho un desastre y la mamá lo manda al jardín. Él lo toma como una señal de que su «plan» está funcionando, y el libro termina con los dos amigos juntos afuera, de noche.",
+  characters: ["El chico, que cuenta la historia", "Clovis, su perro y mejor amigo", "La mamá"],
+  themes: ["La amistad", "Quiénes somos y a quién nos parecemos", "El juego y la imaginación", "El humor"],
+  talk: [
+    "¿Por qué te parece que el chico quiere parecerse a Clovis?",
+    "Buscá una página donde el dibujo muestre algo que las palabras no dicen.",
+    "Si pudieras ser tu mascota (o la de un amigo) por un día, ¿qué harías?"
+  ],
+  fact: "Isol es una autora e ilustradora argentina. En 2013 ganó el Premio Astrid Lindgren, uno de los más importantes del mundo en literatura infantil."
+},
+{
+  id: "secreto-de-familia", title: "Secreto de familia", author: "Isol", illus: "Isol (texto e ilustraciones)",
+  grade: "3", genre: "Libro álbum", emo: "🦔", color: "#E2643E",
+  summary: "Una mañana, una nena se levanta temprano y encuentra a su mamá en la cocina, recién despierta… y le parece que es un puercoespín. Convencida de que descubrió un secreto de su familia, empieza a preocuparse por lo que eso significa para ella.",
+  ending: "El final es una sorpresa que conviene descubrir leyendo. Después de leerlo, conversen sobre si la nena tenía razón en preocuparse.",
+  characters: ["La nena, que cuenta la historia", "Su mamá"],
+  themes: ["La familia", "Cómo nos vemos y cómo nos ven", "Los secretos", "El humor"],
+  talk: [
+    "¿Cómo se siente la nena cuando cree descubrir el secreto?",
+    "¿Qué tiene de gracioso esta historia?",
+    "¿Hay algo de tu familia que te parezca raro o divertido y que nadie más sepa?"
+  ],
+  fact: "Isol escribe y dibuja sus propios libros. En sus libros álbum, las ilustraciones son tan importantes como las palabras."
+},
+{
+  id: "petit", title: "Petit, el monstruo", author: "Isol", illus: "Isol (texto e ilustraciones)",
+  grade: "3", genre: "Libro álbum", emo: "👹", color: "#E2643E",
+  summary: "Petit es un chico que a veces hace cosas buenas y a veces cosas malas, muchas veces sin proponérselo. Su mamá le pregunta cómo puede ser que un chico tan bueno haga cosas tan malas, y Petit no sabe qué contestar. A lo largo del libro, piensa en todo lo que hace para entender si es bueno o malo.",
+  ending: "Petit se da cuenta de que su mamá también tiene un lado bueno y uno no tanto, y se pregunta si eso vendrá de familia.",
+  characters: ["Petit", "Su mamá"],
+  themes: ["Lo bueno y lo malo", "Conocerse a uno mismo", "La familia", "El humor"],
+  talk: [
+    "¿Petit es bueno o malo? ¿Se puede ser las dos cosas?",
+    "Contá algo que hiciste que fue bueno y malo al mismo tiempo.",
+    "¿Por qué el título dice «el monstruo»?"
+  ],
+  fact: "A partir de este libro se hizo «Petit», una serie animada que se emitió en el canal Pakapaka."
+},
+{
+  id: "irulana", title: "Irulana y el ogronte", author: "Graciela Montes", illus: "Claudia Legnazzi",
+  grade: "4", genre: "Cuento (de miedo)", emo: "👢", color: "#C9468A",
+  summary: "Había un pueblo que vivía con miedo de un ogronte enorme. Un día el ogronte se enoja y se come todo lo que encuentra. Solo queda una nena, Irulana, sentada en su banquito, sola en medio de la noche más oscura. Con muy poco a su alcance, Irulana encuentra una forma inesperada de enfrentarlo.",
+  ending: "Irulana grita su nombre y las letras cobran vida: atrapan al ogronte, lo hunden en un pozo profundo y una parte del nombre se convierte en luna. Al final llega gente con música para fundar un pueblo nuevo.",
+  characters: ["Irulana, una nena valiente", "El ogronte", "El narrador, que le habla al lector"],
+  themes: ["El miedo y el valor", "El poder de las palabras", "La comunidad", "Los cuentos de ogros"],
+  talk: [
+    "¿Qué tiene de especial el arma que usa Irulana?",
+    "El narrador le habla al lector todo el tiempo. ¿Te gusta que lo haga? ¿Por qué?",
+    "¿Por qué te parece que el cuento dice que es «de mucho miedo»?"
+  ],
+  fact: "Graciela Montes nació en Buenos Aires en 1947. Es una de las escritoras más importantes de la literatura infantil argentina."
+},
+{
+  id: "peter-pan", title: "Peter Pan", author: "J. M. Barrie", illus: "Según la edición",
+  grade: "5", genre: "Novela", emo: "🧚", color: "#7A5FD6",
+  summary: "Peter Pan es un chico que no quiere crecer. Una noche entra por la ventana de la familia Darling y se lleva a Wendy y a sus hermanos al País de Nunca Jamás, donde viven los Niños Perdidos, las hadas, los piratas y el temible Capitán Garfio.",
+  ending: "Después de muchas aventuras, Wendy y sus hermanos deciden volver a casa con sus padres. Peter se queda en el País de Nunca Jamás, porque no quiere crecer.",
+  characters: ["Peter Pan", "Wendy, John y Michael Darling", "Campanita", "El Capitán Garfio", "Los Niños Perdidos"],
+  themes: ["Crecer", "La aventura", "La familia", "La imaginación"],
+  talk: [
+    "¿Te gustaría no crecer nunca? ¿Qué ganarías y qué perderías?",
+    "¿En qué se diferencia el libro de las películas que conocés?",
+    "¿Por qué Wendy decide volver a casa?"
+  ],
+  fact: "La historia nació como obra de teatro en 1904 y después se publicó como novela. Hoy es de dominio público: hay muchas ediciones y adaptaciones."
+},
+{
+  id: "mil-y-una-noches", title: "Las mil y una noches", author: "Anónimo (tradición oral)", illus: "Según la edición",
+  grade: "6", genre: "Relatos enmarcados", emo: "🧞", color: "#2386B8",
+  summary: "Un sultán decide casarse cada día y castigar a su esposa al amanecer. Sherezade se casa con él y, cada noche, le cuenta una historia que deja sin terminar. Para escuchar la continuación, el sultán la deja vivir un día más. Así, durante mil y una noches, Sherezade cuenta relatos de genios, ladrones, marineros y princesas.",
+  ending: "Después de tantas noches de cuentos, el sultán cambia y perdona a Sherezade.",
+  characters: ["Sherezade", "El sultán", "Personajes de los relatos, como Alí Babá, Aladino y Simbad"],
+  themes: ["El poder de contar historias", "La astucia", "La aventura", "Oriente y sus tradiciones"],
+  talk: [
+    "¿Por qué Sherezade deja los cuentos sin terminar?",
+    "¿Qué historia de las que leíste te gustó más?",
+    "¿Conocés otras series o libros que terminen cada capítulo con suspenso?"
+  ],
+  fact: "Son relatos de origen anónimo que se contaron durante siglos en Oriente antes de reunirse por escrito."
+},
+{
+  id: "canterville", title: "El fantasma de Canterville", author: "Oscar Wilde", illus: "Según la edición",
+  grade: "7", genre: "Novela breve (terror con humor)", emo: "👻", color: "#2E8A57",
+  summary: "Una familia de Estados Unidos compra un viejo castillo inglés, aunque les advierten que hay un fantasma. Lejos de asustarse, la familia responde a cada aparición con soluciones prácticas y bromas. El fantasma, que se cree aterrador, termina desesperado.",
+  ending: "Virginia, la hija de la familia, se compadece del fantasma y lo ayuda a encontrar el descanso que buscaba desde hacía siglos.",
+  characters: ["El fantasma de sir Simon de Canterville", "La familia Otis", "Virginia Otis"],
+  themes: ["El humor que da vuelta el miedo", "La compasión", "Lo viejo y lo nuevo"],
+  talk: [
+    "¿Quién le tiene miedo a quién en esta historia?",
+    "¿Qué recursos del terror aparecen? ¿Y del humor?",
+    "¿Por qué Virginia actúa distinto que el resto de su familia?"
+  ],
+  fact: "Oscar Wilde lo publicó en 1887. Es de dominio público, así que hay muchas ediciones."
+},
+{
+  id: "antiguas-cacerias", title: "Antiguas cacerías", author: "Figura en el libro de la escuela", illus: "Según la edición",
+  grade: "7", genre: "Cuento fantástico", emo: "🌊", color: "#2E8A57",
+  summary: "En Montevideo, en 2007, dos chicos con nombres muy poco comunes se conocen en primer grado y se hacen amigos inseparables. Años después, en unas vacaciones en la costa, una noche de tormenta y una tarde en las rocas los conectan con una historia ocurrida siglos atrás, en la que sus antepasados se enfrentaron en el mar.",
+  ending: "En el presente, uno de los chicos cae en un pozo de mar y su amigo lo ayuda a salir; en el pasado, la misma escena había terminado de forma opuesta. El cuento cierra con los dos amigos agradeciéndose y admitiendo que tuvieron miedo.",
+  characters: ["Cées Vondel", "Kamba Maï", "La señorita Alicia, maestra de primer grado", "Los padres de Cées"],
+  themes: ["La amistad", "La memoria y los antepasados", "La esclavitud en la historia", "Lo fantástico"],
+  talk: [
+    "¿Qué escenas del presente se parecen a escenas del pasado?",
+    "¿El cuento explica lo que les pasa a los chicos? ¿Por qué eso lo hace fantástico?",
+    "¿Qué te parece que quiere decir el cuento sobre la amistad y la historia?"
+  ],
+  fact: "El cuento trata un tema histórico real: el comercio de personas esclavizadas entre África y América del Sur en la época colonial."
+}
+];
+if (typeof window !== "undefined") window.BOOKS = BOOKS;

@@ -204,6 +204,10 @@ nav{position:sticky;top:0;z-index:20;background:var(--paper);padding:10px 0 9px;
 .merr{font-size:14px;font-weight:700;color:var(--bdtx);margin-top:6px;display:none}
 .merr.on{display:block}
 .mbtns{display:flex;gap:8px;justify-content:flex-end;margin-top:6px}
+.booklinks{display:flex;flex-direction:column;gap:8px;margin:12px 0 0}
+.booklink{display:block;background:var(--sheet);border:1px solid var(--line);border-left:6px solid var(--tab,var(--ink));border-radius:10px;
+  padding:11px 14px;color:var(--ink);text-decoration:none;font-size:16px}
+.booklink:hover{border-color:var(--tab,var(--ink))}
 footer{text-align:center;font-size:14px;color:var(--dim);padding:22px 16px 6px}
 </style>
 </head>
@@ -395,6 +399,8 @@ function drawGrades(box){
     box.appendChild(b);
   });
   const p=document.createElement("div"); p.className="tips";
+  const lb=document.createElement("a"); lb.className="booklink"; lb.href="libro.html"; lb.style.margin="16px 0 0";
+  lb.innerHTML='📚 <b>Biblioteca:</b> fichas de los libros de lectura'; box.appendChild(lb);
   p.innerHTML='<b>¿Qué grado elijo?</b> El grado al que el chico o la chica va a entrar. Si termina 2º, elegí «Ingreso a 3º grado».';
   box.appendChild(p);
 }
@@ -458,6 +464,11 @@ function drawUnit(box){
   head.innerHTML='<div class="em">'+u.dot+'</div><div><h2>'+u.title+'</h2><p>'+u.sub+'</p></div>';
   box.appendChild(head);
 
+  if(u.books&&u.books.length){
+    const bl=document.createElement("div"); bl.className="booklinks";
+    bl.innerHTML=u.books.map(b=>'<a class="booklink" href="libro.html#'+b.id+'">📚 Ficha del libro: <b>'+b.title+'</b></a>').join("");
+    box.appendChild(bl);
+  }
   if(u.rules){
     const r=document.createElement("details"); r.className="rules"; r.open=true;
     r.innerHTML='<summary>Cómo se usa</summary>'+u.rules;

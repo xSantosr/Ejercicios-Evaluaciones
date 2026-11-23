@@ -14,7 +14,12 @@ No hace falta instalar nada ni crear una cuenta. En el celular se puede agregar 
 |---|---|---|---|
 | Ingreso a 2º | 146 | 37 | 38 |
 | Ingreso a 3º | 142 | 54 | 86 |
-| Ingreso a 4º a 7º | Próximamente | Próximamente | Próximamente |
+| Ingreso a 4º | 78 | 41 | 41 |
+| Ingreso a 5º | 77 | 42 | 41 |
+| Ingreso a 6º | 76 | 43 | 39 |
+| Ingreso a 7º | 80 | 43 | 47 |
+
+En total, 1.151 ejercicios.
 
 - **Inglés:** cubre el programa del grado anterior y el del grado al que se ingresa.
 - **Matemática y Lengua:** siguen los contenidos de ingreso de la escuela.
@@ -34,13 +39,17 @@ No hace falta instalar nada ni crear una cuenta. En el celular se puede agregar 
 
 ## Libros de lectura
 
-Las consignas sobre libros (*Vida de perros*, *Secreto de familia* y *Petit, el monstruo*, de Isol, entre otros) no reproducen los textos: se responden con el libro al lado.
+La **Biblioteca** (`libro.html`) tiene una ficha de cada libro del programa: autor, ilustrador, de qué trata, personajes, temas, preguntas para conversar y cómo termina (oculto, para el adulto). Cada módulo de Lengua que trabaja un libro tiene un vínculo a su ficha.
+
+Las fichas cuentan los libros con palabras propias. **No se reproducen textos ni ilustraciones**: los libros tienen derechos de autor y se leen en el ejemplar de la escuela o de una biblioteca.
 
 ## Para quien quiera colaborar
 
 ```
 index.html        la página y el motor de ejercicios
+libro.html        la biblioteca con las fichas de libros
 config.js         qué grados están disponibles
+libros.js         las fichas (se genera, no editar a mano)
 grados/gN.js      el contenido de cada grado (se genera, no editar a mano)
 src/              el contenido fuente: ejercicios, respuestas y explicaciones
 scripts/build.js  arma grados/gN.js a partir de src/

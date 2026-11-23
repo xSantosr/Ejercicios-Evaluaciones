@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ejercicios y evaluaciones · 3er grado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFF7EE; --card:#ffffff; --text:#2E2622; --muted:#8A7466; --line:#F0DCCB;
+  --soft:#FFFaf5; --blue:#1F6FB2; --dim:#C9A68E;
+  --okbg:#E8F7EC; --okbd:#49B06B; --oktx:#1E6B37;
+  --bdbg:#FDECEC; --bdbd:#E05B5B; --bdtx:#9B2B2B;
+  --wnbg:#FFF6E0; --wnbd:#F5D98A; --wntx:#6E5212; --wnst:#B5760A;
+  --rlbg:#F2F8FF; --rlbd:#CFE4FA; --rlrow:#ffffff; --rlln:#DCEAF8; --rltx:#4A6B85;
+  --sh:0 2px 10px rgba(90,60,40,.07);
+}
+[data-t="dark"]{
+  --bg:#14110E; --card:#211C18; --text:#EFE4D9; --muted:#9E8B7A; --line:#39302A;
+  --soft:#1A1612; --blue:#79BAF0; --dim:#7A665A;
+  --okbg:#17301F; --okbd:#3E8B5C; --oktx:#93E2AF;
+  --bdbg:#3A1C1C; --bdbd:#B85555; --bdtx:#F2A6A6;
+  --wnbg:#332913; --wnbd:#7D6630; --wntx:#E6CE92; --wnst:#F0B55C;
+  --rlbg:#15202B; --rlbd:#2A4257; --rlrow:#1C2733; --rlln:#2A3D4D; --rltx:#9FBDD6;
+  --sh:0 2px 10px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{font-family:'Nunito',ui-rounded,'Segoe UI Rounded',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.45;padding-bottom:70px;transition:background .2s}
+.wrap{max-width:720px;margin:0 auto;padding:0 14px}
+
+header{color:#fff;padding:18px 0 17px;border-radius:0 0 24px 24px}
+.hrow{display:flex;align-items:flex-start;gap:10px}
+header h1{margin:0;font-size:21px;font-weight:800;letter-spacing:-.02em}
+header p{margin:4px 0 0;font-size:13.5px;opacity:.95;font-weight:600}
+.ic{background:rgba(255,255,255,.22);border:none;color:#fff;font-family:inherit;font-weight:800;
+  font-size:17px;border-radius:999px;width:38px;height:38px;cursor:pointer;flex:0 0 auto;line-height:1}
+.back{background:rgba(255,255,255,.22);border:none;color:#fff;font-family:inherit;font-weight:800;
+  font-size:13.5px;border-radius:999px;padding:6px 13px;cursor:pointer;margin-bottom:10px}
+
+.subj{display:block;width:100%;text-align:left;border:none;font-family:inherit;color:#fff;
+  border-radius:20px;padding:16px 17px;margin:11px 0;cursor:pointer;box-shadow:var(--sh)}
+.subj .top{display:flex;align-items:center;gap:11px}
+.subj .emo{font-size:30px}
+.subj h3{margin:0;font-size:17.5px;font-weight:800}
+.subj .tag{font-size:11.5px;font-weight:800;background:rgba(255,255,255,.26);
+  border-radius:999px;padding:3px 9px;margin-left:auto;white-space:nowrap}
+.subj p{margin:8px 0 0;font-size:13.5px;font-weight:600;opacity:.95}
+.bar{height:7px;border-radius:99px;background:rgba(255,255,255,.3);margin-top:11px;overflow:hidden}
+.bar i{display:block;height:100%;background:#fff;border-radius:99px;transition:.3s}
+.subj .pg{font-size:12px;font-weight:800;opacity:.95;margin-top:6px}
+
+.tips{background:var(--card);border:2px dashed var(--wnbd);border-radius:16px;padding:12px 14px;
+  margin:14px 0 4px;font-size:13.5px;color:var(--muted)}
+.tips b{color:var(--wnst)}
+.tips ul{margin:6px 0 0;padding-left:18px}
+.tips li{margin:4px 0}
+
+nav{position:sticky;top:0;z-index:20;background:var(--bg);padding:10px 0 8px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 14px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:2px solid var(--line);background:var(--card);color:var(--muted);
+  border-radius:999px;padding:8px 14px;font-size:14px;font-weight:700;cursor:pointer;
+  font-family:inherit;white-space:nowrap}
+.chip.on{background:var(--text);border-color:var(--text);color:var(--bg)}
+.chip .dot{font-size:15px;margin-right:4px}
+.chip .mini{font-size:11px;opacity:.75;margin-left:5px}
+
+.unit-head{display:flex;align-items:center;gap:10px;margin:14px 0 2px}
+.unit-head .em{font-size:30px}
+.unit-head h2{margin:0;font-size:18.5px;font-weight:800}
+.unit-head p{margin:1px 0 0;font-size:13px;color:var(--muted);font-weight:600}
+.score{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:2px solid var(--line);
+  border-radius:999px;padding:5px 12px;font-size:13.5px;font-weight:800;color:var(--muted);margin:10px 6px 0 0}
+
+.card{background:var(--card);border-radius:18px;padding:15px 15px 13px;margin:12px 0;
+  box-shadow:var(--sh);border:1px solid var(--line)}
+.num{font-size:12px;font-weight:800;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}
+.q{font-size:16.5px;font-weight:700;margin:4px 0 2px}
+.q .en{color:var(--blue)}
+.hint{font-size:13px;color:var(--muted);font-weight:600;margin:3px 0 10px}
+.big-emoji{font-size:40px;line-height:1;margin:2px 0 6px}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;font-family:inherit;font-size:16px;font-weight:700;color:var(--text);
+  background:var(--soft);border:2px solid var(--line);border-radius:13px;padding:11px 13px;
+  cursor:pointer;display:flex;align-items:center;gap:9px}
+.opt:active{transform:scale(.985)}
+.opt .mark{margin-left:auto;font-size:17px}
+.opt.ok{background:var(--okbg);border-color:var(--okbd);color:var(--oktx)}
+.opt.bad{background:var(--bdbg);border-color:var(--bdbd);color:var(--bdtx)}
+.opt.off{opacity:.4;pointer-events:none}
+.lock{pointer-events:none}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.sh{animation:shake .32s}
+
+.match{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mcol{display:flex;flex-direction:column;gap:8px}
+.mi{font-family:inherit;font-size:15px;font-weight:700;padding:10px 8px;border-radius:12px;
+  border:2px solid var(--line);background:var(--soft);cursor:pointer;color:var(--text);text-align:center}
+.mi.en{color:var(--blue)}
+.mi.sel{border-color:var(--wnst);background:var(--wnbg)}
+.mi.ok{background:var(--okbg);border-color:var(--okbd);color:var(--oktx);pointer-events:none}
+.mi.bad{background:var(--bdbg);border-color:var(--bdbd);color:var(--bdtx);pointer-events:none}
+
+.frow{display:flex;gap:8px;align-items:center;margin:7px 0}
+.flab{font-size:14.5px;font-weight:700;color:var(--muted);flex:0 0 auto;max-width:52%}
+.fin{flex:1;min-width:70px;font-family:inherit;font-size:16.5px;font-weight:700;padding:10px 12px;
+  border:2px solid var(--line);border-radius:12px;background:var(--soft);color:var(--blue);
+  outline:none;width:100%}
+.fin:focus{border-color:var(--wnst)}
+.fin.ok{background:var(--okbg);border-color:var(--okbd);color:var(--oktx)}
+.fin.bad{background:var(--bdbg);border-color:var(--bdbd);color:var(--bdtx)}
+.go{font-family:inherit;font-size:15px;font-weight:800;color:var(--bg);background:var(--text);
+  border:none;border-radius:13px;padding:12px 18px;cursor:pointer;margin-top:9px}
+.go:disabled{opacity:.45;cursor:default}
+.go.ghost{background:var(--card);border:2px solid var(--line);color:var(--muted)}
+
+.slots{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px;min-height:42px}
+.slot{min-width:54px;text-align:center;font-size:16px;font-weight:800;padding:9px 10px;
+  border-radius:11px;border:2px dashed var(--line);color:var(--dim);background:var(--soft)}
+.slot.full{border-style:solid;color:var(--text)}
+.slot.ok{border-color:var(--okbd);background:var(--okbg);color:var(--oktx)}
+.slot.bad{border-color:var(--bdbd);background:var(--bdbg);color:var(--bdtx)}
+.pool{display:flex;flex-wrap:wrap;gap:7px}
+.pz{font-family:inherit;font-size:16px;font-weight:800;padding:10px 14px;border-radius:11px;
+  border:2px solid var(--line);background:var(--card);color:var(--text);cursor:pointer}
+.pz.used{opacity:.28;pointer-events:none}
+
+.open textarea{width:100%;font-family:inherit;font-size:15.5px;font-weight:600;padding:11px 12px;
+  border:2px solid var(--line);border-radius:13px;background:var(--soft);color:var(--text);
+  outline:none;min-height:92px;resize:vertical}
+.open textarea:focus{border-color:var(--wnst)}
+.nocorr{font-size:12px;font-weight:800;color:var(--dim);margin-top:8px}
+.paper{font-size:13px;font-weight:800;color:var(--wnst);background:var(--wnbg);border-radius:9px;
+  padding:6px 10px;display:inline-block;margin-bottom:8px}
+
+.rules{background:var(--rlbg);border:2px solid var(--rlbd);border-radius:18px;padding:13px 14px;margin:12px 0}
+.rules summary{font-weight:800;font-size:16px;cursor:pointer;color:var(--blue);list-style:none;
+  display:flex;align-items:center;gap:6px}
+.rules summary::-webkit-details-marker{display:none}
+.rules summary::after{content:"\25BE";margin-left:auto;font-size:14px;transition:.2s}
+.rules[open] summary::after{transform:rotate(180deg)}
+.rsec{margin-top:13px}
+.rsec h4{margin:0 0 6px;font-size:14.5px;font-weight:800;color:var(--text)}
+.rrow{display:flex;gap:10px;align-items:center;background:var(--rlrow);border:1px solid var(--rlln);
+  border-radius:11px;padding:8px 11px;margin:5px 0;font-size:14.5px}
+.rl{color:var(--text);font-weight:700;flex:1;min-width:0}
+.ra{color:var(--blue);font-weight:800;text-align:right;white-space:nowrap}
+.exline{font-size:14px;color:var(--rltx);font-weight:600;margin:6px 0 0;line-height:1.55}
+.warn{background:var(--wnbg);border:2px solid var(--wnbd);border-radius:13px;padding:10px 12px;
+  margin:9px 0 0;font-size:14px;font-weight:600;color:var(--wntx);line-height:1.5}
+.warn b{color:var(--wnst)}
+.yes{color:var(--okbd);font-weight:800}
+.no{color:var(--bdbd);font-weight:800}
+.steps{background:var(--card);border:2px solid var(--wnbd);border-radius:18px;padding:14px;margin:12px 0}
+.steps h3{margin:0 0 8px;font-size:16px;font-weight:800;color:var(--wnst)}
+.steps ol{margin:0;padding-left:20px;font-size:14.5px;color:var(--muted);font-weight:600}
+.steps li{margin:6px 0}
+.reset{display:block;width:100%;font-family:inherit;font-size:15px;font-weight:800;background:var(--card);
+  border:2px solid var(--line);color:var(--muted);border-radius:14px;padding:13px;margin:10px 0 6px;cursor:pointer}
+.rev{display:block;width:100%;font-family:inherit;font-size:15.5px;font-weight:800;color:#fff;
+  background:linear-gradient(135deg,#6E7BE0,#A77BE8);border:none;border-radius:14px;padding:14px;
+  margin:20px 0 4px;cursor:pointer}
+.rev:disabled{background:var(--card);border:2px solid var(--line);color:var(--dim);cursor:default}
+.rbox{background:var(--card);border:2px solid #A77BE8;border-radius:18px;padding:14px;margin:12px 0}
+.rbox h3{margin:0 0 4px;font-size:16.5px;font-weight:800;color:#8A62D0}
+.rbox .sm{font-size:13px;color:var(--muted);font-weight:600;margin:0 0 10px}
+.ritem{border-top:1px solid var(--line);padding:11px 0}
+.ritem:first-of-type{border-top:none}
+.rq{font-size:14.5px;font-weight:800;margin-bottom:5px}
+.rline{font-size:14px;font-weight:700;margin:3px 0}
+.rline span{font-weight:800}
+.rwrong{color:var(--bdtx)}
+.rright{color:var(--oktx)}
+.rexp{font-size:13.5px;font-weight:600;color:var(--muted);margin-top:5px;white-space:pre-line;line-height:1.5}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:100;display:flex;
+  align-items:center;justify-content:center;padding:18px}
+.modal{background:var(--card);color:var(--text);border-radius:20px;padding:18px;max-width:380px;width:100%;
+  box-shadow:0 10px 40px rgba(0,0,0,.35);border:1px solid var(--line)}
+.modal h3{margin:0 0 6px;font-size:17px;font-weight:800}
+.modal p{margin:0 0 12px;font-size:13.5px;color:var(--muted);font-weight:600}
+.mq{font-size:22px;font-weight:800;margin:4px 0 10px;color:var(--blue)}
+.merr{font-size:13px;font-weight:800;color:var(--bdtx);margin-top:6px;display:none}
+.merr.on{display:block}
+.mbtns{display:flex;gap:8px;justify-content:flex-end;margin-top:4px}
+footer{text-align:center;font-size:12.5px;color:var(--dim);font-weight:600;padding:18px 0 6px}
+</style>
+</head>
+<body>
+
+<header id="hd"><div class="wrap" id="hdin"></div></header>
+<nav id="nav" style="display:none"><div class="chips" id="chips"></div></nav>
+<div class="wrap" id="content"></div>
+<footer>Las respuestas se guardan solo en este dispositivo 📱</footer>
+
+<script src="data.js"></script>
+<script>
+/* ---------- tema ---------- */
+try{ if(localStorage.getItem("cuad_tema")==="dark") document.documentElement.setAttribute("data-t","dark"); }catch(e){}
+function isDark(){ return document.documentElement.getAttribute("data-t")==="dark"; }
+function toggleTheme(){
+  const d=isDark();
+  document.documentElement.setAttribute("data-t", d?"light":"dark");
+  try{ localStorage.setItem("cuad_tema", d?"light":"dark"); }catch(e){}
+  paintHeader();
+}
+
+/* ---------- almacenamiento ---------- */
+const KEY="cuadernillo_v5";
+let ST={};
+try{ ST=JSON.parse(localStorage.getItem(KEY)||"{}"); }catch(e){ ST={}; }
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(ST)); }catch(e){} }
+function kk(s,u,i){ return s+"."+u+"."+i; }
+function get(s,u,i){ return ST[kk(s,u,i)]||null; }
+function put(s,u,i,v){ ST[kk(s,u,i)]=v; save(); }
+function wipeUnit(s,u){ Object.keys(ST).forEach(x=>{ if(x.indexOf(s+"."+u+".")===0) delete ST[x]; }); save(); }
+function reviewed(s,u){ return !!ST[kk(s,u,"__rev")]; }
+
+/* ---------- utilidades ---------- */
+const GRADED={choice:1,match:1,spell:1,fill:1,order:1};
+function clean(s){
+  return String(s).toLowerCase().trim().normalize("NFD").replace(/[̀-ͯ]/g,"")
+    .replace(/[.,;:!?¡¿"'´`()]/g,"").replace(/\s+/g," ").trim();
+}
+function hit(given,exp){
+  exp=String(exp);
+  if(exp.slice(0,3)==="re:"){ try{ return new RegExp(exp.slice(3),"i").test(String(given).trim()); }catch(e){ return false; } }
+  const g=clean(given), e=clean(exp);
+  return g===e || g.replace(/\s/g,"")===e.replace(/\s/g,"");
+}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function txt(h){ const d=document.createElement("div"); d.innerHTML=h; return d.textContent||""; }
+
+function isAnswered(ex,sv){
+  if(!sv) return false;
+  if(GRADED[ex.t]) return !!sv.answered;
+  if(ex.t==="open") return ex.paper ? !!sv.done : !!(sv.v&&sv.v.trim().length);
+  return false;
+}
+/* total = TODAS las tarjetas del módulo; graded = solo las que se corrigen solas */
+function unitStats(sub,unit){
+  let total=0,done=0,graded=0,ok=0,open=0;
+  unit.ex.forEach((e,i)=>{
+    total++;
+    const sv=get(sub.id,unit.id,i);
+    if(isAnswered(e,sv)) done++;
+    if(GRADED[e.t]){ graded++; if(sv&&sv.answered&&sv.ok) ok++; }
+    else open++;
+  });
+  return {total,done,graded,ok,open,complete:total>0&&done===total};
+}
+function subjStats(sub){
+  let total=0,done=0;
+  sub.units.forEach(u=>{ const s=unitStats(sub,u); total+=s.total; done+=s.done; });
+  return {total,done};
+}
+
+/* ---------- control para el adulto (sin diálogos del navegador) ---------- */
+function adultGate(title,okText,onPass){
+  const a=12+Math.floor(Math.random()*18), b=6+Math.floor(Math.random()*4);
+  const bg=document.createElement("div"); bg.className="modal-bg";
+  bg.innerHTML='<div class="modal"><h3>👤 '+title+'</h3>'+
+    '<p>Para seguir, resolvé esta cuenta. Es para que solo pueda hacerlo un adulto.</p>'+
+    '<div class="mq">¿Cuánto es '+a+' × '+b+'?</div>'+
+    '<input class="fin" id="gin" inputmode="numeric" autocomplete="off" placeholder="…">'+
+    '<div class="merr" id="gerr">No es correcto.</div>'+
+    '<div class="mbtns"><button class="go ghost" id="gno">Cancelar</button>'+
+    '<button class="go" id="gok">'+okText+'</button></div></div>';
+  document.body.appendChild(bg);
+  const inp=bg.querySelector("#gin");
+  setTimeout(()=>inp.focus(),50);
+  function close(){ bg.remove(); }
+  function test(){
+    if(parseInt(inp.value,10)===a*b){ close(); onPass(); }
+    else{ bg.querySelector("#gerr").classList.add("on"); inp.classList.add("bad","sh"); setTimeout(()=>inp.classList.remove("sh"),340); }
+  }
+  bg.querySelector("#gno").onclick=close;
+  bg.querySelector("#gok").onclick=test;
+  inp.addEventListener("keydown",e=>{ if(e.key==="Enter") test(); });
+  bg.addEventListener("click",e=>{ if(e.target===bg) close(); });
+}
+
+/* ---------- navegación ---------- */
+let view="home", si=0, ui=0, showRev=false;
+
+function paintHeader(){
+  const hd=document.getElementById("hd"), inn=document.getElementById("hdin");
+  const icon=isDark()?"☀️":"🌙";
+  if(view==="home"){
+    hd.style.background="linear-gradient(135deg,#FF9F5A,#FF7A8A)";
+    inn.innerHTML='<div class="hrow"><div style="flex:1"><h1>Ejercicios y evaluaciones 🌟</h1>'+
+      '<p>Ingreso a 3er grado · elegí una materia</p></div>'+
+      '<button class="ic" id="th" aria-label="Cambiar tema">'+icon+'</button></div>';
+  }else{
+    const s=DATA[si];
+    hd.style.background="linear-gradient(135deg,"+s.c1+","+s.c2+")";
+    inn.innerHTML='<button class="back" id="bk">← Materias</button>'+
+      '<div class="hrow"><div style="flex:1"><h1>'+s.emo+' '+s.name+'</h1><p>'+s.desc+'</p></div>'+
+      '<button class="ic" id="th" aria-label="Cambiar tema">'+icon+'</button></div>';
+    document.getElementById("bk").onclick=()=>{ view="home"; ui=0; showRev=false; draw(); };
+  }
+  document.getElementById("th").onclick=toggleTheme;
+}
+
+function draw(){
+  paintHeader();
+  const box=document.getElementById("content"), nv=document.getElementById("nav");
+  box.innerHTML="";
+  if(view==="home"){ nv.style.display="none"; drawHome(box); }
+  else{ nv.style.display="block"; drawChips(); drawUnit(box); }
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function drawHome(box){
+  DATA.forEach((s,i)=>{
+    const st=subjStats(s);
+    const pct=st.total?Math.round(st.done/st.total*100):0;
+    const b=document.createElement("button");
+    b.className="subj";
+    b.style.background="linear-gradient(135deg,"+s.c1+","+s.c2+")";
+    b.innerHTML='<div class="top"><span class="emo">'+s.emo+'</span><h3>'+s.name+'</h3>'+
+      '<span class="tag">'+s.tag+'</span></div><p>'+s.desc+'</p>'+
+      '<div class="bar"><i style="width:'+pct+'%"></i></div>'+
+      '<div class="pg">'+st.done+' de '+st.total+' ejercicios respondidos</div>';
+    b.onclick=()=>{ si=i; ui=0; showRev=false; view="subject"; draw(); };
+    box.appendChild(b);
+  });
+  const t=document.createElement("div"); t.className="steps";
+  t.innerHTML='<h3>📌 Cómo está organizado</h3><ol>'+
+    '<li><b>Inglés 2º y 3º:</b> los dos entran en la prueba de inglés. Empezá por 2º, que es la base, y seguí con 3º.</li>'+
+    '<li><b>Matemática y Lengua:</b> cuadernillo de ingreso a 3er grado. Una parte por día, sin apurar.</li>'+
+    '<li>Cada módulo se responde <b>una sola vez</b>. Al terminarlo entero se habilita la revisión.</li></ol>';
+  box.appendChild(t);
+  const p=document.createElement("div"); p.className="tips";
+  p.innerHTML='<b>Cómo funciona:</b> pensado para que el chico o la chica responda solo y un adulto revise después.'+
+    '<ul><li><b>Un solo intento</b> por ejercicio. Si se equivoca queda en rojo y no se puede volver a contestar.</li>'+
+    '<li><b>Nunca se muestra la respuesta correcta</b> mientras resuelve.</li>'+
+    '<li>La <b>revisión</b> y el <b>reinicio</b> piden una cuenta de adulto, para que no pueda ver respuestas ni volver a empezar por su cuenta.</li>'+
+    '<li>Todo queda guardado en este dispositivo.</li></ul>';
+  box.appendChild(p);
+}
+
+function drawChips(){
+  const s=DATA[si], c=document.getElementById("chips");
+  c.innerHTML="";
+  s.units.forEach((u,i)=>{
+    const st=unitStats(s,u);
+    const b=document.createElement("button");
+    b.className="chip"+(i===ui?" on":"");
+    b.innerHTML='<span class="dot">'+u.dot+'</span>'+u.name+
+      '<span class="mini">'+st.done+'/'+st.total+'</span>';
+    b.onclick=()=>{ ui=i; showRev=false; draw(); };
+    c.appendChild(b);
+  });
+}
+
+function revLabel(st){ return st.complete?"👤 Revisión del adulto":"👤 Revisión — faltan "+(st.total-st.done); }
+function refreshScore(){
+  const s=DATA[si], u=s.units[ui], st=unitStats(s,u);
+  const a=document.getElementById("sc1");
+  if(a) a.textContent="📝 "+st.done+" de "+st.total+" respondidos";
+  const rv=document.getElementById("revbtn");
+  if(rv){ rv.disabled=!st.complete; rv.textContent=revLabel(st); }
+  drawChips();
+}
+
+function drawUnit(box){
+  const s=DATA[si], u=s.units[ui];
+  const head=document.createElement("div"); head.className="unit-head";
+  head.innerHTML='<div class="em">'+u.dot+'</div><div><h2>'+u.title+'</h2><p>'+u.sub+'</p></div>';
+  box.appendChild(head);
+
+  if(u.rules){
+    const r=document.createElement("details"); r.className="rules"; r.open=true;
+    r.innerHTML='<summary>📘 Cómo se usa</summary>'+u.rules;
+    box.appendChild(r);
+  }
+  const st=unitStats(s,u);
+  if(!st.total) return;
+
+  const row=document.createElement("div");
+  row.innerHTML='<span class="score" id="sc1">📝 '+st.done+' de '+st.total+' respondidos</span>';
+  box.appendChild(row);
+
+  if(reviewed(s.id,u.id)){
+    const lk=document.createElement("div"); lk.className="tips";
+    lk.innerHTML='<b>🔒 Módulo cerrado.</b> Ya se abrió la revisión, así que las respuestas quedaron fijas. Para volver a hacerlo, usá el reinicio de abajo.';
+    box.appendChild(lk);
+  }
+
+  u.ex.forEach((ex,i)=>box.appendChild(card(ex,i,s,u)));
+
+  const rv=document.createElement("button");
+  rv.className="rev"; rv.id="revbtn"; rv.disabled=!st.complete; rv.textContent=revLabel(st);
+  rv.onclick=()=>{
+    if(showRev){ showRev=false; draw(); return; }
+    const open=()=>{ ST[kk(s.id,u.id,"__rev")]=true; save(); showRev=true; draw();
+      setTimeout(()=>{ const r=document.getElementById("rbox"); if(r) r.scrollIntoView({behavior:"smooth"}); },80); };
+    if(reviewed(s.id,u.id)) open(); else adultGate("Revisión del adulto","Ver revisión",open);
+  };
+  box.appendChild(rv);
+  if(showRev && st.complete) box.appendChild(reviewPanel(s,u));
+
+  const r=document.createElement("button");
+  r.className="reset"; r.textContent="🔄 Reiniciar este módulo desde cero";
+  r.onclick=()=>adultGate("Reiniciar «"+u.title+"»","Borrar y reiniciar",()=>{ wipeUnit(s.id,u.id); showRev=false; draw(); });
+  box.appendChild(r);
+}
+
+/* ---------- revisión ---------- */
+function reviewPanel(s,u){
+  const st=unitStats(s,u);
+  const w=document.createElement("div"); w.className="rbox"; w.id="rbox";
+  let sub='<b>'+st.ok+' de '+st.graded+'</b> correctas en los ejercicios que se corrigen solos.';
+  if(st.open) sub+=' Además hay <b>'+st.open+'</b> consigna'+(st.open>1?'s':'')+' abierta'+(st.open>1?'s':'')+' para que revises vos.';
+  w.innerHTML='<h3>👤 Revisión del adulto</h3><p class="sm">'+sub+'</p>';
+
+  u.ex.forEach((ex,i)=>{
+    const sv=get(s.id,u.id,i)||{};
+    const d=document.createElement("div"); d.className="ritem";
+    let h='<div class="rq">'+(i+1)+'. '+txt(ex.q).slice(0,120)+'</div>';
+    if(ex.t==="choice"){
+      h+='<div class="rline '+(sv.ok?"rright":"rwrong")+'">'+(sv.ok?"✅":"❌")+' Respondió: <span>'+(sv.p!=null?txt(ex.o[sv.p]):"—")+'</span></div>';
+      if(!sv.ok) h+='<div class="rline rright">✔ Correcta: <span>'+txt(ex.o[ex.a])+'</span></div>';
+    }else if(ex.t==="fill"||ex.t==="spell"){
+      const ans=ex.t==="spell"?[ex.a]:ex.a, labs=ex.t==="spell"?[""]:(ex.labels||ans.map(()=>""));
+      ans.forEach((a,j)=>{
+        const mine=(sv.v&&sv.v[j])||"", good=hit(mine,a);
+        h+='<div class="rline '+(good?"rright":"rwrong")+'">'+(good?"✅":"❌")+' '+(labs[j]?txt(labs[j])+': ':'')+
+           '<span>'+(mine||"(vacío)")+'</span>'+
+           (good?'':' → correcta: <span>'+(String(a).slice(0,3)==="re:"?"(hay varias válidas)":a)+'</span>')+'</div>';
+      });
+    }else if(ex.t==="match"){
+      const bad=(sv.m||[]).filter(p=>p[0]!==p[1]);
+      h+='<div class="rline '+(sv.ok?"rright":"rwrong")+'">'+(sv.ok?"✅ Todos los pares bien":"❌ "+bad.length+" par"+(bad.length>1?"es":"")+" mal")+'</div>';
+      bad.forEach(p=>{ h+='<div class="rline rwrong">· Unió <span>'+ex.pairs[p[0]][0]+'</span> con <span>'+ex.pairs[p[1]][1]+'</span> → era <span>'+ex.pairs[p[0]][1]+'</span></div>'; });
+    }else if(ex.t==="order"){
+      h+='<div class="rline '+(sv.ok?"rright":"rwrong")+'">'+(sv.ok?"✅":"❌")+' Ordenó: <span>'+((sv.v||[]).join(" · ")||"—")+'</span></div>';
+      if(!sv.ok) h+='<div class="rline rright">✔ Orden correcto: <span>'+ex.a.join(" · ")+'</span></div>';
+    }else if(ex.t==="open"){
+      if(ex.paper) h+='<div class="rline">✍️ '+(sv.done?"Lo hizo en el cuaderno: revisalo ahí.":"(no lo marcó como hecho)")+'</div>';
+      else h+='<div class="rline">✍️ Escribió: <span>'+((sv.v||"").trim()||"(sin respuesta)")+'</span></div>';
+    }
+    if(ex.why && ex.t!=="open") h+='<div class="rexp">💡 '+ex.why+'</div>';
+    if(ex.model) h+='<div class="rexp">💡 Qué mirar: '+ex.model+'</div>';
+    d.innerHTML=h; w.appendChild(d);
+  });
+  return w;
+}
+
+/* ---------- tarjetas ---------- */
+function card(ex,i,s,u){
+  const c=document.createElement("div"); c.className="card";
+  let h='<div class="num">'+(i+1)+' de '+u.ex.length+'</div>';
+  if(ex.paper) h+='<div class="paper">✍️ Para hacer en el cuaderno</div>';
+  if(ex.e) h+='<div class="big-emoji">'+ex.e+'</div>';
+  h+='<div class="q">'+ex.q+'</div>';
+  if(ex.h) h+='<div class="hint">👉 '+ex.h+'</div>';
+  c.innerHTML=h;
+  const ctx={s:s.id,u:u.id,i:i,saved:get(s.id,u.id,i),ex:ex,locked:reviewed(s.id,u.id)};
+  const B={choice:bChoice,match:bMatch,order:bOrder,open:bOpen};
+  if(ex.t==="spell") c.appendChild(bFill(ctx,true));
+  else if(ex.t==="fill") c.appendChild(bFill(ctx,false));
+  else if(B[ex.t]) c.appendChild(B[ex.t](ctx));
+  return c;
+}
+
+function bChoice(ctx){
+  const ex=ctx.ex, sv=ctx.saved, answered=!!(sv&&sv.answered);
+  const opts=document.createElement("div"); opts.className="opts";
+  ex.o.forEach((t,j)=>{
+    const b=document.createElement("button"); b.className="opt";
+    b.innerHTML='<span>'+t+'</span><span class="mark"></span>';
+    if(answered){
+      if(sv.p===j){ b.classList.add(sv.ok?"ok":"bad"); b.querySelector(".mark").textContent=sv.ok?"✅":"❌"; }
+      else b.classList.add("off");
+    }
+    b.onclick=()=>{
+      if(opts.classList.contains("lock")) return;
+      const ok=(j===ex.a);
+      opts.classList.add("lock");
+      b.classList.add(ok?"ok":"bad"); b.querySelector(".mark").textContent=ok?"✅":"❌";
+      if(!ok) b.classList.add("sh");
+      [...opts.children].forEach(c=>{ if(c!==b) c.classList.add("off"); });
+      put(ctx.s,ctx.u,ctx.i,{answered:true,ok:ok,p:j}); refreshScore();
+    };
+    opts.appendChild(b);
+  });
+  if(answered||ctx.locked) opts.classList.add("lock");
+  return opts;
+}
+
+function bFill(ctx,isSpell){
+  const ex=ctx.ex, sv=ctx.saved, answered=!!(sv&&sv.answered);
+  const ans=isSpell?[ex.a]:ex.a, labs=isSpell?[""]:(ex.labels||ans.map(()=>""));
+  const vals=(sv&&sv.v)||ans.map(()=>"");
+  const w=document.createElement("div"), ins=[];
+  ans.forEach((a,j)=>{
+    const row=document.createElement("div"); row.className="frow";
+    if(labs[j]) row.innerHTML='<span class="flab">'+labs[j]+'</span>';
+    const inp=document.createElement("input");
+    inp.type="text"; inp.className="fin"; inp.autocomplete="off"; inp.spellcheck=false;
+    inp.autocapitalize="none"; inp.placeholder="…"; inp.value=vals[j]||"";
+    if(answered){ inp.disabled=true; inp.classList.add(hit(vals[j]||"",a)?"ok":"bad"); }
+    if(ctx.locked) inp.disabled=true;
+    inp.addEventListener("keydown",e=>{ if(e.key==="Enter") go(); });
+    row.appendChild(inp); ins.push(inp); w.appendChild(row);
+  });
+  const btn=document.createElement("button"); btn.className="go";
+  btn.textContent=answered?"Respondido":"Responder";
+  btn.disabled=answered||ctx.locked;
+  function go(){
+    if(btn.disabled) return;
+    const v=ins.map(x=>x.value);
+    if(v.every(x=>!x.trim())){ ins[0].classList.add("sh"); setTimeout(()=>ins[0].classList.remove("sh"),340); return; }
+    let all=true;
+    ins.forEach((inp,j)=>{
+      const good=hit(inp.value,ans[j]); if(!good) all=false;
+      inp.disabled=true; inp.classList.add(good?"ok":"bad"); if(!good) inp.classList.add("sh");
+    });
+    btn.disabled=true; btn.textContent="Respondido";
+    put(ctx.s,ctx.u,ctx.i,{answered:true,ok:all,v:v}); refreshScore();
+  }
+  btn.onclick=go; w.appendChild(btn);
+  return w;
+}
+
+function bMatch(ctx){
+  const ex=ctx.ex, sv=ctx.saved;
+  const w=document.createElement("div"); w.className="match";
+  const L=document.createElement("div"); L.className="mcol";
+  const R=document.createElement("div"); R.className="mcol";
+  const ord=(sv&&sv.ord)||{l:shuffle(ex.pairs.map((p,i)=>i)),r:shuffle(ex.pairs.map((p,i)=>i))};
+  const made=(sv&&sv.m)?sv.m.slice():[];
+  const usedL={}, usedR={};
+  made.forEach(p=>{ usedL[p[0]]=1; usedR[p[1]]=1; });
+  let sel=null;
+  const lB={}, rB={};
+  ord.l.forEach(idx=>{
+    const b=document.createElement("button"); b.className="mi en"; b.textContent=ex.pairs[idx][0]; lB[idx]=b;
+    b.onclick=()=>{ if(ctx.locked||usedL[idx]) return; if(sel) sel.el.classList.remove("sel"); sel={el:b,i:idx}; b.classList.add("sel"); };
+    L.appendChild(b);
+  });
+  ord.r.forEach(idx=>{
+    const b=document.createElement("button"); b.className="mi"; b.textContent=ex.pairs[idx][1]; rB[idx]=b;
+    b.onclick=()=>{
+      if(ctx.locked||!sel||usedR[idx]) return;
+      const li=sel.i, ok=(li===idx);
+      sel.el.classList.remove("sel"); sel.el.classList.add(ok?"ok":"bad"); b.classList.add(ok?"ok":"bad");
+      if(!ok){ sel.el.classList.add("sh"); b.classList.add("sh"); }
+      usedL[li]=1; usedR[idx]=1; sel=null; made.push([li,idx]);
+      const done=made.length===ex.pairs.length;
+      put(ctx.s,ctx.u,ctx.i,{answered:done,ok:done&&made.every(p=>p[0]===p[1]),m:made,ord:ord});
+      refreshScore();
+    };
+    R.appendChild(b);
+  });
+  made.forEach(p=>{ const ok=p[0]===p[1]; lB[p[0]].classList.add(ok?"ok":"bad"); rB[p[1]].classList.add(ok?"ok":"bad"); });
+  w.appendChild(L); w.appendChild(R);
+  return w;
+}
+
+function bOrder(ctx){
+  const ex=ctx.ex, sv=ctx.saved, answered=!!(sv&&sv.answered);
+  const w=document.createElement("div");
+  const slots=document.createElement("div"); slots.className="slots";
+  const pool=document.createElement("div"); pool.className="pool";
+  const picked=(sv&&sv.v)?sv.v.slice():[];
+  const ord=(sv&&sv.ord)||shuffle(ex.items.map((v,i)=>i));
+  const usedIx=(sv&&sv.u)?sv.u.slice():[];
+  const sl=ex.a.map((v,j)=>{
+    const d=document.createElement("div"); d.className="slot";
+    if(picked[j]!=null){ d.textContent=picked[j]; d.classList.add("full"); if(answered) d.classList.add(hit(picked[j],ex.a[j])?"ok":"bad"); }
+    else d.textContent=(j+1)+"º";
+    slots.appendChild(d); return d;
+  });
+  ord.forEach(ix=>{
+    const v=ex.items[ix];
+    const b=document.createElement("button"); b.className="pz"; b.textContent=v;
+    if(usedIx.indexOf(ix)>=0) b.classList.add("used");
+    b.onclick=()=>{
+      if(ctx.locked||answered||usedIx.indexOf(ix)>=0) return;
+      const pos=picked.length; if(pos>=ex.a.length) return;
+      picked.push(v); usedIx.push(ix); b.classList.add("used");
+      sl[pos].textContent=v; sl[pos].classList.add("full");
+      const done=picked.length===ex.a.length; let allOk=false;
+      if(done){ allOk=ex.a.every((a,j)=>hit(picked[j],a)); sl.forEach((d,j)=>d.classList.add(hit(picked[j],ex.a[j])?"ok":"bad")); }
+      put(ctx.s,ctx.u,ctx.i,{answered:done,ok:allOk,v:picked,u:usedIx,ord:ord}); refreshScore();
+    };
+    pool.appendChild(b);
+  });
+  w.appendChild(slots); w.appendChild(pool);
+  return w;
+}
+
+function bOpen(ctx){
+  const ex=ctx.ex, sv=ctx.saved||{};
+  const w=document.createElement("div"); w.className="open";
+  if(ex.paper){
+    const b=document.createElement("button");
+    b.className="go"+(sv.done?"":" ghost");
+    b.textContent=sv.done?"✔ Hecho en el cuaderno":"Marcar como hecho en el cuaderno";
+    b.disabled=ctx.locked;
+    b.onclick=()=>{
+      if(ctx.locked) return;
+      const d=!(get(ctx.s,ctx.u,ctx.i)||{}).done;
+      put(ctx.s,ctx.u,ctx.i,{done:d});
+      b.className="go"+(d?"":" ghost"); b.textContent=d?"✔ Hecho en el cuaderno":"Marcar como hecho en el cuaderno";
+      refreshScore();
+    };
+    w.appendChild(b);
+  }else{
+    const ta=document.createElement("textarea");
+    ta.placeholder="Escribí acá…"; ta.value=sv.v||""; ta.disabled=ctx.locked;
+    let t=null;
+    ta.addEventListener("input",()=>{ clearTimeout(t); t=setTimeout(()=>{ put(ctx.s,ctx.u,ctx.i,{v:ta.value}); refreshScore(); },350); });
+    w.appendChild(ta);
+  }
+  const n=document.createElement("div"); n.className="nocorr";
+  n.textContent="Esta consigna no se corrige sola: la revisa el adulto al final.";
+  w.appendChild(n);
+  return w;
+}
+
+/* ---------- arranque ---------- */
+if(typeof DATA==="undefined"){
+  document.getElementById("content").innerHTML='<div class="card"><div class="q">No se pudieron cargar los ejercicios.</div><div class="hint">Probá recargar la página.</div></div>';
+}else{ draw(); }
+
+</script>
+</body>
+</html>

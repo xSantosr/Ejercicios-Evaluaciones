@@ -14,17 +14,20 @@ No hace falta instalar nada ni crear una cuenta. En el celular se puede agregar 
 |---|---|---|---|
 | 2º grado | 146 | 45 | 38 |
 | 3º grado | 142 | 62 | 86 |
-| 4º grado | 78 | 49 | 41 |
-| 5º grado | 77 | 48 | 41 |
-| 6º grado | 76 | 48 | 39 |
-| 7º grado | 80 | 48 | 47 |
+| 4º grado | 78 | 55 | 41 |
+| 5º grado | 77 | 54 | 41 |
+| 6º grado | 76 | 63 | 39 |
+| 7º grado | 80 | 62 | 47 |
 
-En total, 1.191 ejercicios.
+En total, 1.232 ejercicios.
 
 - **Inglés:** cubre el programa del grado anterior y el del grado al que se ingresa.
 - **Matemática y Lengua:** siguen los contenidos de ingreso de la escuela, es decir, lo que hay que saber del grado anterior.
 - Cada materia está dividida en módulos cortos, y cada módulo termina con un simulacro de examen.
-- **Cuentas paradas:** Matemática tiene un módulo para resolver sumas, restas y multiplicaciones en columna, con un casillero por cifra y espacio para anotar las llevadas, como en el cuaderno.
+- **Operaciones escritas:** Matemática tiene módulos para resolver como en el cuaderno, con un casillero por cifra:
+  - **Cuentas paradas** (todos los grados): sumas, restas y multiplicaciones en columna, con espacio para anotar las llevadas y, desde 5º, productos parciales.
+  - **La casita** (desde 4º): divisiones. En 4º y 5º se completan el cociente y el resto; en 6º y 7º, también la multiplicación y la resta de cada paso, con la cifra que se baja marcada en gris.
+  - **Cuentas con coma** (6º y 7º): decimales alineados por la coma, y fracciones escritas con raya horizontal.
 - **Ilustraciones:** los ejercicios usan dibujos cuando ayudan a entender — bloques de valor posicional, rectas numéricas, cuadros de números, grupos de objetos, fracciones, relojes y triángulos.
 
 ## Cómo funciona
@@ -63,6 +66,17 @@ Para cambiar o agregar contenido, editá los archivos de `src/` y corré:
 node scripts/build.js
 ```
 
-Tipos de ejercicio: opción múltiple (`choice`), unir con flechas (`match`), completar (`fill`), ordenar (`order`), cuenta parada (`col`) y respuesta abierta (`open`).
+Tipos de ejercicio: opción múltiple (`choice`), unir con flechas (`match`), completar (`fill`), ordenar (`order`), cuenta parada (`col`), división con casita (`div`), fracciones (`frac`) y respuesta abierta (`open`).
 
-Para ilustrar un ejercicio se le agrega `viz` (o `ov`, para dibujar cada opción). Los dibujos disponibles son `base10`, `array`, `groups`, `fraction`, `numline`, `hundred`, `clock`, `triangle` y `money`. Las cuentas paradas se escriben solo con los números — `{t:"col", op:"+", n:[247,136]}` — y el script calcula el resultado, el ancho y los productos parciales.
+Para ilustrar un ejercicio se le agrega `viz` (o `ov`, para dibujar cada opción). Los dibujos disponibles son `base10`, `array`, `groups`, `fraction`, `numline`, `hundred`, `clock`, `triangle` y `money`. Las operaciones escritas se cargan solo con los números y el script calcula el resto:
+
+```js
+{t:"col",  op:"+", n:[247,136]}        // cuenta parada
+{t:"col",  op:"×", n:[123,24], parts:true}   // con productos parciales
+{t:"col",  op:"−", n:["20","13,40"]}   // con coma: se alinea sola
+{t:"div",  D:157, d:12}                // casita: cociente y resto
+{t:"div",  D:575, d:5, steps:true}     // casita paso a paso
+{t:"frac", op:"+", f:[[1,2],[1,4]]}    // fracciones con raya
+```
+
+El script calcula resultados, anchos, productos parciales, los pasos de la división y las fracciones equivalentes aceptadas, y falla si una cuenta da negativa, si el resto queda mayor que el divisor o si el resultado aparece en el enunciado.

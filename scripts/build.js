@@ -27,25 +27,90 @@ const len3 = withRules('lengua', L.LENGUA.concat(L.LENGUA2)).map(u => {
   return u;
 });
 
+/* ---- helpers de cuentas escritas ---- */
+const dec = s => { const t = String(s).replace('.', ','); const i = t.indexOf(','); return i < 0 ? 0 : t.length - i - 1; };
+const scale = (s, k) => Math.round(Number(String(s).replace(',', '.')) * Math.pow(10, k));
+const unscale = (v, k) => {
+  if (k === 0) return String(v);
+  const s = String(v).padStart(k + 1, '0');
+  return s.slice(0, s.length - k) + ',' + s.slice(s.length - k);
+};
+const gcd = (a, b) => b ? gcd(b, a % b) : a;
+
+/* división escrita: la casita */
+function expandDiv(e) {
+  const ds = String(e.D).split('').map(Number), n = ds.length;
+  if (e.D < e.d) throw new Error('Casita con cociente 0: ' + e.D + '÷' + e.d);
+  let i = 0, cur = 0;
+  while (i < n && cur < e.d) { cur = cur * 10 + ds[i]; i++; }
+  let col = i - 1, q = '', rem = 0;
+  const steps = [];
+  for (;;) {
+    const qd = Math.floor(cur / e.d), prod = qd * e.d;
+    rem = cur - prod; q += String(qd);
+    const st = { col, prod: String(prod), rem: String(rem) };
+    if (i < n) st.next = String(ds[i]);
+    steps.push(st);
+    if (i >= n) break;
+    cur = rem * 10 + ds[i]; i++; col++;
+  }
+  if (e.d * Number(q) + rem !== e.D) throw new Error('Casita mal calculada: ' + e.D + '÷' + e.d);
+  const out = Object.assign({}, e, { w: n, co: q, r: String(rem) });
+  if (e.steps) out.steps = steps; else delete out.steps;
+  if (!out.q) out.q = e.D + ' ÷ ' + e.d;
+  return out;
+}
+
+/* fracciones: resultado con denominador común y, si se puede, simplificado */
+function expandFrac(e) {
+  const f = e.f;
+  let d = f[0][1];
+  f.forEach(p => { d = d * p[1] / gcd(d, p[1]); });
+  let n = f[0][0] * (d / f[0][1]);
+  for (let i = 1; i < f.length; i++) {
+    const t = f[i][0] * (d / f[i][1]);
+    n = e.op === '+' ? n + t : n - t;
+  }
+  if (n < 0) throw new Error('Fracción negativa: ' + f.map(p => p.join('/')).join(e.op));
+  const g = gcd(n, d) || 1;
+  const ans = [[n, d]];
+  if (g > 1) ans.push([n / g, d / g]);
+  return Object.assign({}, e, { ans, q: e.q || ('¿Cuánto da?') });
+}
+
 /* expande las cuentas paradas: calcula resultado, ancho y productos parciales */
 function expandCol(e) {
   if (e.t !== 'col') return e;
-  const res = e.op === '+' ? e.n.reduce((a, b) => a + b, 0)
-            : e.op === '−' ? e.n[0] - e.n[1]
-            : e.n[0] * e.n[1];
-  if (res < 0) throw new Error('Cuenta con resultado negativo: ' + e.n.join(e.op));
-  if (e.op === '−' && e.n.length !== 2) throw new Error('La resta lleva dos números');
+  const k = Math.max(...e.n.map(dec));                 /* decimales a usar */
+  const iv = e.n.map(x => scale(x, k));
+  let resv;
+  if (e.op === '+') resv = iv.reduce((a, b) => a + b, 0);
+  else if (e.op === '−') { if (e.n.length !== 2) throw new Error('La resta lleva dos números'); resv = iv[0] - iv[1]; }
+  else { /* × : solo el primero puede llevar coma */
+    if (dec(e.n[1])) throw new Error('No se multiplica por un decimal en columna: ' + e.n.join('×'));
+    resv = scale(e.n[0], k) * Number(e.n[1]);
+  }
+  if (resv < 0) throw new Error('Cuenta con resultado negativo: ' + e.n.join(e.op));
+  const res = unscale(resv, k);
+  const rows = e.n.map((x, idx) => {
+    const t = String(x).replace('.', ',');
+    /* en la multiplicación, el multiplicador se escribe sin coma */
+    if (k === 0 || (e.op === '×' && idx > 0)) return t;
+    const i = t.indexOf(',');
+    return i < 0 ? t + ',' + '0'.repeat(k) : t + '0'.repeat(k - (t.length - i - 1));
+  });
   let parts = null;
   if (e.op === '×' && e.parts) {
+    if (k) throw new Error('Productos parciales con coma: ' + e.n.join('×'));
     parts = String(e.n[1]).split('').reverse().map((d, i) => {
       if (d === '0') throw new Error('Producto parcial con 0: ' + e.n.join('×'));
       return { d: String(e.n[0] * Number(d)), s: i };
     });
   }
-  const w = Math.max(...e.n.map(x => String(x).length), String(res).length,
+  const w = Math.max(...rows.map(x => x.length), res.length,
                      ...(parts ? parts.map(p => p.d.length + p.s) : [0]));
-  if (w > 6) throw new Error('Cuenta demasiado ancha para el celular: ' + e.n.join(e.op));
-  const out = Object.assign({}, e, { w, res: String(res) });
+  if (w > 7) throw new Error('Cuenta demasiado ancha para el celular: ' + e.n.join(e.op));
+  const out = Object.assign({}, e, { w, res: res.padStart(w, ' '), rows: rows.map(x => x.padStart(w, ' ')) });
   if (parts) out.parts = parts; else delete out.parts;
   if (!out.q) out.q = e.n.join(' ' + e.op + ' ');
   return out;
@@ -76,14 +141,15 @@ const GRADES = {
         subj('lengua', 'Lengua', '📖', '', 'Lo fantástico, mitos griegos, clásicos y gramática', L.G7.lengua)]
 };
 
-/* cuentas paradas: un módulo por grado, antes del simulacro */
+/* cuentas escritas: se insertan antes del simulacro de Matemática */
+const expandWritten = x => x.t === 'div' ? expandDiv(x) : x.t === 'frac' ? expandFrac(x) : expandCol(x);
 for (const g in GRADES) {
   const m = GRADES[g].find(s => s.id === 'mate');
-  const mod = L.CUENTAS[g];
-  if (!m || !mod) continue;
+  if (!m) continue;
+  const mods = Object.keys(L.CUENTAS).filter(k => k[0] === g).sort()
+    .map(k => Object.assign({}, L.CUENTAS[k], { ex: L.CUENTAS[k].ex.map(expandWritten) }));
   const i = m.units.findIndex(u => u.id === 'msim');
-  m.units.splice(i < 0 ? m.units.length : i, 0,
-    Object.assign({}, mod, { ex: mod.ex.map(expandCol) }));
+  m.units.splice(i < 0 ? m.units.length : i, 0, ...mods);
 }
 
 /* vínculos a las fichas de libros */

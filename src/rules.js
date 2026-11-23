@@ -227,9 +227,9 @@ El primer número dice <b>cuántos grupos hay</b>; el segundo, <b>cuánto hay en
 <div class="rsec"><h4>Antes de empezar</h4>
 <p class="exline">Leé <b>todo</b> el examen antes de escribir la primera respuesta. Resolvé primero lo que te sale seguro y dejá para el final lo que te cuesta.</p></div>
 <div class="rsec"><h4>Al terminar, revisá tres cosas</h4>
-<div class="rrow"><span class="rl">1</span><span class="rl">¿Contestaste todas las consignas?</span></div>
-<div class="rrow"><span class="rl">2</span><span class="rl">¿Copiaste bien los números del enunciado?</span></div>
-<div class="rrow"><span class="rl">3</span><span class="rl">¿La respuesta tiene sentido?</span></div>
+<div class="rrow"><span class="rl num">1</span><span class="rl">¿Contestaste todas las consignas?</span></div>
+<div class="rrow"><span class="rl num">2</span><span class="rl">¿Copiaste bien los números del enunciado?</span></div>
+<div class="rrow"><span class="rl num">3</span><span class="rl">¿La respuesta tiene sentido?</span></div>
 <div class="warn">Este módulo entra en el repaso completo: aparecen juntos los cinco días anteriores. Si algo no sale, el tema está en el día que lo trabajó.</div></div>`,
 
 "lengua.l1":`

@@ -4,9 +4,9 @@ const SRC = path.join(__dirname, '..', 'src') + '/';
 const OUT = path.join(__dirname, '..') + '/';
 
 const files = ['mate.js', 'lengua.js', 'lengua2.js', 'ing3.js', 'rules.js', 'mate3_extra.js',
-               'g2_ing1.js', 'g2_mate.js', 'g4.js', 'g5.js', 'g6.js', 'g7.js', 'libros.js'];
+               'g2_ing1.js', 'g2_mate.js', 'g4.js', 'g5.js', 'g6.js', 'g7.js', 'libros.js', 'cuentas.js'];
 const L = new Function(files.map(f => fs.readFileSync(SRC + f, 'utf8')).join('\n') +
-  '\nreturn {MATE,LENGUA,LENGUA2,ING3,RULES,RULES_L2,MATE3_EXTRA,MATE3_RULES,G2_ING1,G2_MATE,G2_LENGUA,G4,G5,G6,G7,BOOKS};')();
+  '\nreturn {MATE,LENGUA,LENGUA2,ING3,RULES,RULES_L2,MATE3_EXTRA,MATE3_RULES,G2_ING1,G2_MATE,G2_LENGUA,G4,G5,G6,G7,BOOKS,CUENTAS};')();
 const ing2 = JSON.parse(fs.readFileSync(SRC + 'ing2.json', 'utf8'));
 Object.assign(L.RULES, L.RULES_L2);
 L.ING3[0].ex.forEach(e => { if (e.q === 'Cuidado con estos dos') delete e.h; });
@@ -26,6 +26,30 @@ const len3 = withRules('lengua', L.LENGUA.concat(L.LENGUA2)).map(u => {
   if (u.id === 'l7') return Object.assign({}, u, { book: ['secreto-de-familia', 'petit'] });
   return u;
 });
+
+/* expande las cuentas paradas: calcula resultado, ancho y productos parciales */
+function expandCol(e) {
+  if (e.t !== 'col') return e;
+  const res = e.op === '+' ? e.n.reduce((a, b) => a + b, 0)
+            : e.op === '−' ? e.n[0] - e.n[1]
+            : e.n[0] * e.n[1];
+  if (res < 0) throw new Error('Cuenta con resultado negativo: ' + e.n.join(e.op));
+  if (e.op === '−' && e.n.length !== 2) throw new Error('La resta lleva dos números');
+  let parts = null;
+  if (e.op === '×' && e.parts) {
+    parts = String(e.n[1]).split('').reverse().map((d, i) => {
+      if (d === '0') throw new Error('Producto parcial con 0: ' + e.n.join('×'));
+      return { d: String(e.n[0] * Number(d)), s: i };
+    });
+  }
+  const w = Math.max(...e.n.map(x => String(x).length), String(res).length,
+                     ...(parts ? parts.map(p => p.d.length + p.s) : [0]));
+  if (w > 6) throw new Error('Cuenta demasiado ancha para el celular: ' + e.n.join(e.op));
+  const out = Object.assign({}, e, { w, res: String(res) });
+  if (parts) out.parts = parts; else delete out.parts;
+  if (!out.q) out.q = e.n.join(' ' + e.op + ' ');
+  return out;
+}
 
 const C = { ing: ['#FF9F5A', '#FF7A8A'], mate: ['#3F8FE8', '#4FB9DB'], lengua: ['#3E9E5F', '#86C252'] };
 const subj = (id, name, emo, tag, desc, units) =>
@@ -51,6 +75,16 @@ const GRADES = {
         subj('mate', 'Matemática', '🔢', '', 'División, decimales, proporcionalidad y ángulos', L.G7.mate),
         subj('lengua', 'Lengua', '📖', '', 'Lo fantástico, mitos griegos, clásicos y gramática', L.G7.lengua)]
 };
+
+/* cuentas paradas: un módulo por grado, antes del simulacro */
+for (const g in GRADES) {
+  const m = GRADES[g].find(s => s.id === 'mate');
+  const mod = L.CUENTAS[g];
+  if (!m || !mod) continue;
+  const i = m.units.findIndex(u => u.id === 'msim');
+  m.units.splice(i < 0 ? m.units.length : i, 0,
+    Object.assign({}, mod, { ex: mod.ex.map(expandCol) }));
+}
 
 /* vínculos a las fichas de libros */
 const bookById = Object.fromEntries(L.BOOKS.map(b => [b.id, b]));

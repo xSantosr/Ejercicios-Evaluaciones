@@ -11,7 +11,7 @@ rules:`
 <div class="warn">Cuando sumás 10, <b>solo cambia la cifra de adelante</b> (las decenas): 46 + 10 = <b>5</b>6. La de atrás queda igual.</div></div>`,
 ex:[
  {t:"fill",q:"Uno más y uno menos",labels:["8 + 1","15 + 1","20 − 1","43 − 1"],a:["9","16","19","42"]},
- {t:"fill",q:"Dobles",labels:["3 + 3","5 + 5","7 + 7","9 + 9"],a:["6","10","14","18"]},
+ {t:"fill",q:"Dobles",viz:{k:"array",r:2,c:5},h:"Dos filas iguales: eso es un doble",labels:["3 + 3","5 + 5","7 + 7","9 + 9"],a:["6","10","14","18"]},
  {t:"fill",q:"Completá para que dé 10",labels:["6 + __","3 + __","__ + 8","5 + __"],a:["4","7","2","5"]},
  {t:"fill",q:"Decenas más unidades",labels:["20 + 4","50 + 7","30 + 9","80 + 1"],a:["24","57","39","81"]},
  {t:"fill",q:"Sumá 10",labels:["12 + 10","35 + 10","8 + 10","60 + 10"],a:["22","45","18","70"]},
@@ -31,15 +31,15 @@ rules:`
 <div class="rsec"><h4>¿Cuál es mayor?</h4>
 <div class="warn">Mirá primero <b>la cifra de adelante</b>. El que tiene más decenas es el mayor: 31 &gt; 29. Si las decenas son iguales, mirá las unidades.</div></div>`,
 ex:[
- {t:"fill",q:"¿Qué número sigue?",labels:["29 →","59 →","99 →"],a:["30","60","100"]},
+ {t:"fill",q:"¿Qué número sigue?",viz:{k:"numline",from:25,to:35,mark:29,q:30},labels:["29 →","59 →","99 →"],a:["30","60","100"]},
  {t:"fill",q:"¿Qué número va antes?",labels:["→ 40","→ 71","→ 100"],a:["39","70","99"]},
- {t:"fill",q:"En el cuadro de números, ¿qué número está…?",labels:["abajo del 34","arriba del 57","a la derecha del 68","a la izquierda del 90"],a:["44","47","69","89"]},
+ {t:"fill",q:"En el cuadro de números, ¿qué número está…?",viz:{k:"hundred",from:31,rows:3,mark:34},labels:["abajo del 34","arriba del 57","a la derecha del 68","a la izquierda del 90"],a:["44","47","69","89"]},
  {t:"choice",q:"47 ___ 74",o:["&lt;","&gt;","="],a:0},
  {t:"choice",q:"60 ___ 59",o:["&lt;","&gt;","="],a:1},
- {t:"choice",q:"¿Cuál es el número más grande?",o:["38","83","58"],a:1},
+ {t:"choice",q:"¿Cuál es el número más grande?",o:["38","83","58"],ov:[{k:"base10",d:3,u:8},{k:"base10",d:8,u:3},{k:"base10",d:5,u:8}],a:1},
  {t:"order",q:"Ordená de menor a mayor",items:["52","25","70","7","61"],a:["7","25","52","61","70"]},
- {t:"fill",q:"El número 63 tiene…",labels:["Decenas","Unidades"],a:["6","3"]},
- {t:"fill",q:"Escribí el número que tiene 4 decenas y 8 unidades",labels:[""],a:["48"]},
+ {t:"fill",q:"El número 63 tiene…",viz:{k:"base10",d:6,u:3},labels:["Decenas","Unidades"],a:["6","3"]},
+ {t:"fill",q:"Escribí el número que tiene 4 decenas y 8 unidades",viz:{k:"base10",d:4,u:8},labels:[""],a:["48"]},
  {t:"fill",q:"Escribí con palabras",labels:["15","40"],a:["quince","cuarenta"]}
 ]},
 
@@ -51,11 +51,11 @@ rules:`
 <p class="exline">Ejemplo: "Tenía 5 autitos y me regalaron 2" &rarr; me dieron más &rarr; 5 + 2.</p>
 <div class="warn"><b>Revisá:</b> si te dieron cosas, tenés que terminar con <b>más</b> que antes. Si te sacaron, con <b>menos</b>.</div></div>`,
 ex:[
- {t:"fill",q:"Tenía <b>8</b> caramelos y me regalaron <b>5</b>. ¿Cuántos tengo ahora?",labels:["Respuesta"],a:["13"]},
- {t:"fill",q:"En el colectivo había <b>15</b> personas y bajaron <b>6</b>. ¿Cuántas quedaron?",labels:["Respuesta"],a:["9"]},
- {t:"fill",q:"En el juego estoy en el casillero <b>12</b> y avanzo <b>6</b>. ¿A qué casillero llego?",labels:["Respuesta"],a:["18"]},
+ {t:"fill",e:"🍬",q:"Tenía <b>8</b> caramelos y me regalaron <b>5</b>. ¿Cuántos tengo ahora?",labels:["Respuesta"],a:["13"]},
+ {t:"fill",e:"🚌",q:"En el colectivo había <b>15</b> personas y bajaron <b>6</b>. ¿Cuántas quedaron?",labels:["Respuesta"],a:["9"]},
+ {t:"fill",q:"En el juego estoy en el casillero <b>12</b> y avanzo <b>6</b>. ¿A qué casillero llego?",viz:{k:"numline",from:10,to:20,mark:12},labels:["Respuesta"],a:["18"]},
  {t:"fill",q:"Yo tengo <b>9</b> figuritas y mi hermano tiene <b>7</b>. ¿Cuántas tenemos entre los dos?",labels:["Respuesta"],a:["16"]},
- {t:"fill",q:"Estaba en el casillero <b>20</b> y retrocedí <b>4</b>. ¿Dónde quedé?",labels:["Respuesta"],a:["16"]},
+ {t:"fill",q:"Estaba en el casillero <b>20</b> y retrocedí <b>4</b>. ¿Dónde quedé?",viz:{k:"numline",from:14,to:24,mark:20},labels:["Respuesta"],a:["16"]},
  {t:"choice",q:"Tenía <b>14</b> globos y se volaron <b>5</b>. ¿Qué cuenta hay que hacer?",o:["14 + 5","14 − 5"],a:1},
  {t:"fill",q:"Entonces, ¿cuántos globos me quedaron?",labels:["Respuesta"],a:["9"]},
  {t:"choice",q:"¿Qué problema se resuelve con una <b>resta</b>?",o:["Tengo 6 lápices y me dan 3","Tengo 10 lápices y pierdo 2","Tengo 4 lápices rojos y 5 azules"],a:1}
@@ -70,7 +70,7 @@ rules:`
 <div class="rrow"><span class="rl"></span><span class="ra">30 + 8 = 38</span></div>
 <p class="exline">Se suman las decenas con las decenas y las unidades con las unidades. Al final se juntan.</p></div>`,
 ex:[
- {t:"fill",q:"Descomponé",labels:["36 =","58 =","71 ="],a:["30+6","50+8","70+1"]},
+ {t:"fill",q:"Descomponé",viz:{k:"base10",d:3,u:6},labels:["36 =","58 =","71 ="],a:["30+6","50+8","70+1"]},
  {t:"fill",q:"Resolvé descomponiendo",labels:["23 + 14","41 + 35","56 + 22"],a:["37","76","78"]},
  {t:"fill",q:"Restá descomponiendo",labels:["47 − 23","68 − 35"],a:["24","33"]},
  {t:"open",q:"Contá cómo hiciste la cuenta 23 + 14",model:"Lo que se busca: que separe decenas y unidades (20 + 10 y 3 + 4) y que junte los resultados. Si lo hizo de otra forma y llegó bien, también vale: pedile que lo explique."}
@@ -86,7 +86,7 @@ ex:[
  {t:"fill",q:"2. Completá para llegar a 10",labels:["4 + __","9 + __"],a:["6","1"]},
  {t:"order",q:"3. Ordená de menor a mayor",items:["43","34","40","14"],a:["14","34","40","43"]},
  {t:"choice",q:"4. 56 ___ 65",o:["&lt;","&gt;","="],a:0},
- {t:"fill",q:"5. ¿Qué número está abajo del 27 en el cuadro?",labels:[""],a:["37"]},
+ {t:"fill",q:"5. ¿Qué número está abajo del 27 en el cuadro?",viz:{k:"hundred",from:21,rows:3,mark:27,q:37},labels:[""],a:["37"]},
  {t:"fill",q:"6. Tenía <b>12</b> bolitas y gané <b>7</b>. ¿Cuántas tengo?",labels:["Respuesta"],a:["19"]},
  {t:"fill",q:"7. Había <b>18</b> pájaros y se fueron <b>9</b>. ¿Cuántos quedaron?",labels:["Respuesta"],a:["9"]},
  {t:"fill",q:"8. Descomponé",labels:["84 ="],a:["80+4"]},

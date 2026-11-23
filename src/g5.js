@@ -150,7 +150,7 @@ rules:`
 <div class="rsec"><h4>Estimar antes de dividir</h4>
 <p class="exline">Para 250 ÷ 8, probá multiplicando el divisor: 8 × 10 = 80, 8 × 30 = 240. El cociente está cerca de 30.</p></div>`,
 ex:[
- {t:"fill",q:"Resolvé 75 ÷ 4",labels:["Cociente","Resto"],a:["18","3"]},
+ {t:"fill",q:"Resolvé 75 ÷ 4",h:"Pensá cuántos grupos de 4 entran y qué sobra",labels:["Cociente","Resto"],a:["18","3"]},
  {t:"fill",q:"Resolvé 100 ÷ 7",labels:["Cociente","Resto"],a:["14","2"]},
  {t:"choice",q:"Se reparten <b>7</b> chocolates entre <b>2</b> chicos en partes iguales. ¿Se puede repartir el que sobra?",o:["Sí, partiéndolo por la mitad","No, nunca"],a:0},
  {t:"choice",q:"En una división por 6, el resto puede ser…",o:["5","6","8"],a:0},
@@ -166,13 +166,13 @@ rules:`
 <p class="exline">Si cortás cada parte por la mitad, tenés el doble de partes, pero la misma cantidad de torta. Por eso <b>1/3 = 2/6</b>.</p>
 <div class="warn">Dibujá un rectángulo y partilo: ver las partes ayuda más que la cuenta.</div></div>`,
 ex:[
- {t:"choice",q:"Una pizza se corta en 8 partes iguales. Cada parte es…",o:["1/8 (un octavo)","1/4 (un cuarto)","1/2 (un medio)"],a:0},
+ {t:"choice",viz:{k:"fraction",shape:"circle",n:1,d:8},q:"Una pizza se corta en 8 partes iguales. ¿Cuánto es la parte pintada?",o:["1/8 (un octavo)","1/4 (un cuarto)","1/2 (un medio)"],a:0},
  {t:"choice",q:"¿Cuántos cuartos forman un entero?",o:["4","2","8"],a:0},
- {t:"choice",q:"1/2 kg es lo mismo que…",o:["2/4 kg","1/4 kg","1/8 kg"],a:0},
+ {t:"choice",viz:{k:"fraction",n:1,d:2},q:"1/2 es lo mismo que…",o:["2/4","1/4","1/8"],ov:[{k:"fraction",n:2,d:4},{k:"fraction",n:1,d:4},{k:"fraction",n:1,d:8}],a:0},
  {t:"fill",q:"¿Cuántos octavos hay en un cuarto?",labels:[""],a:["2"]},
- {t:"choice",q:"¿Qué es más: 3/4 o 1/2?",o:["3/4","1/2","Son iguales"],a:0},
+ {t:"choice",q:"¿Qué es más: 3/4 o 1/2?",o:["3/4","1/2","Son iguales"],ov:[{k:"fraction",n:3,d:4},{k:"fraction",n:1,d:2},null],a:0},
  {t:"fill",q:"Compré 1/4 kg de queso y 1/4 kg de jamón. ¿Cuántos kg compré en total? (escribilo como fracción)",labels:[""],a:["re:^\\s*(1/2|2/4|medio|un medio)\\s*(kg)?\\s*$"]},
- {t:"choice",q:"¿Cuántas botellas de 1/2 litro hacen falta para llenar una jarra de 2 litros?",o:["4","2","8"],a:0}
+ {t:"choice",e:"🧃",q:"¿Cuántas botellas de 1/2 litro hacen falta para llenar una jarra de 2 litros?",o:["4","2","8"],a:0}
 ]},
 {id:"m5",dot:"📊",name:"Proporcionalidad",title:"Tablas de proporcionalidad",sub:"Si una cantidad se duplica, la otra también",
 rules:`
@@ -183,9 +183,9 @@ rules:`
 <div class="warn">Un camino seguro: averiguá primero cuánto vale <b>1</b>, y desde ahí calculá lo que pidan.</div>
 <p class="exline">No todo es proporcional: si algo no crece "al mismo ritmo" que lo otro, no se puede usar una tabla así.</p></div>`,
 ex:[
- {t:"fill",q:"Un cuaderno cuesta <b>$800</b>. Completá",labels:["2 cuadernos","5 cuadernos","10 cuadernos"],a:["1600","4000","8000"]},
+ {t:"fill",e:"📓",q:"Un cuaderno cuesta <b>$800</b>. Completá",labels:["2 cuadernos","5 cuadernos","10 cuadernos"],a:["1600","4000","8000"]},
  {t:"fill",q:"Si <b>4</b> entradas cuestan <b>$2.000</b>, ¿cuánto cuesta 1?",labels:["Respuesta"],a:["500"]},
- {t:"fill",q:"Con <b>2</b> tazas de harina salen <b>12</b> galletitas. ¿Cuántas salen con <b>6</b> tazas?",labels:["Respuesta"],a:["36"]},
+ {t:"fill",e:"🍪",q:"Con <b>2</b> tazas de harina salen <b>12</b> galletitas. ¿Cuántas salen con <b>6</b> tazas?",labels:["Respuesta"],a:["36"]},
  {t:"choice",q:"¿La edad de una persona y su altura son proporcionales?",o:["No","Sí"],a:0},
  {t:"fill",q:"Una canilla llena <b>3</b> baldes en <b>6</b> minutos. ¿Cuántos minutos tarda en llenar <b>5</b> baldes?",labels:["Respuesta"],a:["10"]},
  {t:"fill",q:"<b>3</b> paquetes traen <b>24</b> caramelos. Completá",labels:["6 paquetes","1 paquete"],a:["48","8"]}

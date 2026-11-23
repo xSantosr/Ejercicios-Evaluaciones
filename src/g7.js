@@ -169,13 +169,13 @@ rules:`
 <p class="exline">Ejemplo: si un triángulo tiene ángulos de 50° y 60°, el tercero mide 180° − 110° = 70°.</p>
 <div class="warn">Recordá: un ángulo recto mide 90°, y en un triángulo isósceles los dos ángulos de la base son iguales.</div></div>`,
 ex:[
- {t:"fill",q:"Un triángulo tiene ángulos de 40° y 75°. ¿Cuánto mide el tercero?",labels:["Grados"],a:["65"]},
- {t:"fill",q:"Un triángulo rectángulo tiene un ángulo de 35°. ¿Cuánto mide el otro ángulo agudo?",labels:["Grados"],a:["55"]},
+ {t:"fill",q:"Un triángulo tiene ángulos de 40° y 75°. ¿Cuánto mide el tercero?",viz:{k:"triangle",a:40,b:75},labels:["Grados"],a:["65"]},
+ {t:"fill",q:"Un triángulo rectángulo tiene un ángulo de 35°. ¿Cuánto mide el otro ángulo agudo?",viz:{k:"triangle",a:90,b:35},labels:["Grados"],a:["55"]},
  {t:"fill",q:"En un triángulo equilátero, ¿cuánto mide cada ángulo?",labels:["Grados"],a:["60"]},
  {t:"fill",q:"Un cuadrilátero tiene ángulos de 90°, 90° y 110°. ¿Cuánto mide el cuarto?",labels:["Grados"],a:["70"]},
  {t:"choice",q:"¿Puede un triángulo tener dos ángulos rectos?",o:["No","Sí"],a:0},
  {t:"choice",q:"La suma de los ángulos interiores de un rectángulo es…",o:["360°","180°","90°"],a:0},
- {t:"fill",q:"En un triángulo isósceles, el ángulo distinto mide 40°. ¿Cuánto mide cada uno de los otros dos?",labels:["Grados"],a:["70"]}
+ {t:"fill",q:"En un triángulo isósceles, el ángulo distinto mide 40°. ¿Cuánto mide cada uno de los otros dos?",viz:{k:"triangle",a:70,b:70,c:40},labels:["Grados"],a:["70"]}
 ]},
 {id:"m5",dot:"🧾",name:"Problemas",title:"Problemas con las cuatro operaciones",sub:"Varios pasos · orden de las operaciones",
 rules:`
@@ -189,8 +189,8 @@ rules:`
 ex:[
  {t:"fill",q:"Compré <b>3</b> cuadernos de <b>$2.400</b> y pagué con <b>$10.000</b>. ¿Cuánto me dieron de vuelto?",labels:["Respuesta"],a:["2800"]},
  {t:"fill",q:"Un micro lleva <b>45</b> pasajeros. ¿Cuántos micros hacen falta para <b>380</b> personas?",labels:["Respuesta"],a:["9"]},
- {t:"fill",q:"Ana ahorra <b>$1.500</b> por semana. ¿En cuántas semanas junta <b>$21.000</b>?",labels:["Respuesta"],a:["14"]},
- {t:"fill",q:"Un tanque de <b>1.200</b> litros pierde <b>25</b> litros por hora. ¿Cuántos litros quedan después de <b>8</b> horas?",labels:["Respuesta"],a:["1000"]},
+ {t:"fill",e:"🐷",q:"Ana ahorra <b>$1.500</b> por semana. ¿En cuántas semanas junta <b>$21.000</b>?",labels:["Respuesta"],a:["14"]},
+ {t:"fill",e:"💧",q:"Un tanque de <b>1.200</b> litros pierde <b>25</b> litros por hora. ¿Cuántos litros quedan después de <b>8</b> horas?",labels:["Respuesta"],a:["1000"]},
  {t:"fill",q:"Calculá: 6 × 25 + 100 ÷ 4",labels:[""],a:["175"]},
  {t:"fill",q:"Calculá: (48 − 18) × 3",labels:[""],a:["90"]},
  {t:"choice",q:"«Tenía $5.000, gasté $1.200 y después me regalaron $800.» ¿Qué cálculo da lo que tengo ahora?",o:["5.000 − 1.200 + 800","5.000 − (1.200 + 800)","5.000 + 1.200 − 800"],a:0}
@@ -200,7 +200,7 @@ rules:`<div class="rsec"><h4>Antes de empezar</h4><p class="exline">En los probl
 ex:[
  {t:"fill",q:"1. Resolvé 235 ÷ 9",labels:["Cociente","Resto"],a:["26","1"]},
  {t:"fill",q:"2. Calculá: 3,7 × 100",labels:[""],a:["re:^\\s*370([,.]0+)?\\s*$"]},
- {t:"fill",q:"3. Un triángulo tiene ángulos de 65° y 45°. ¿Cuánto mide el tercero?",labels:["Grados"],a:["70"]},
+ {t:"fill",q:"3. Un triángulo tiene ángulos de 65° y 45°. ¿Cuánto mide el tercero?",viz:{k:"triangle",a:65,b:45},labels:["Grados"],a:["70"]},
  {t:"fill",q:"4. Una alarma suena cada <b>4</b> minutos y otra cada <b>10</b>. Si sonaron juntas, ¿en cuántos minutos vuelven a coincidir?",labels:["Respuesta"],a:["20"]},
  {t:"fill",q:"5. <b>5</b> entradas cuestan <b>$12.500</b>. ¿Cuánto cuestan <b>7</b>?",labels:["Respuesta"],a:["17500"]},
  {t:"fill",q:"6. Un cuadrilátero tiene ángulos de 80°, 100° y 95°. ¿Cuánto mide el cuarto?",labels:["Grados"],a:["85"]},

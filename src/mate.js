@@ -15,7 +15,7 @@ rules:`
 ex:[
  {t:"fill",q:"Escribí con palabras",labels:["126","408","735","1.204"],a:["ciento veintiseis","cuatrocientos ocho","setecientos treinta y cinco","mil doscientos cuatro"]},
  {t:"fill",q:"Escribí el número en cifras",labels:["Doscientos treinta y cinco","Seiscientos ocho","Mil trescientos veinte","Novecientos noventa y nueve"],a:["235","608","1320","999"]},
- {t:"fill",q:"Descomponé el número",h:"Ejemplo: 426 = 400 + 20 + 6",labels:["583 =","709 =","1.346 =","2.080 ="],a:["500+80+3","700+9","1000+300+40+6","2000+80"],why:"Ojo con el 709: no hay decenas, así que va 700 + 9."},
+ {t:"fill",q:"Descomponé el número",viz:{k:"base10",c:1,d:2,u:6},h:"El dibujo muestra 126. Ejemplo: 426 = 400 + 20 + 6",labels:["583 =","709 =","1.346 =","2.080 ="],a:["500+80+3","700+9","1000+300+40+6","2000+80"],why:"Ojo con el 709: no hay decenas, así que va 700 + 9."},
  {t:"choice",q:"345 ___ 354",o:["&lt;","&gt;","="],a:0},
  {t:"choice",q:"809 ___ 790",o:["&lt;","&gt;","="],a:1},
  {t:"choice",q:"1.205 ___ 1.250",o:["&lt;","&gt;","="],a:0},
@@ -37,12 +37,12 @@ rules:`
 1.000 más que <b>2</b>.315 &rarr; <b>3</b>.315 &nbsp;(cambia el mil)<br><br>
 <b>Excepción:</b> cuando hay que "pasarse", cambian más cifras. Uno menos que 700 es 699, no 609.</div></div>`,
 ex:[
- {t:"fill",q:"Completá la serie: 120 – 130 – 140 – ...",labels:["","",""],a:["150","160","170"],why:"Va de 10 en 10."},
+ {t:"fill",q:"Completá la serie: 120 – 130 – 140 – ...",viz:{k:"numline",from:120,to:170,step:10,marks:[120,130,140],q:150},labels:["","",""],a:["150","160","170"],why:"Va de 10 en 10."},
  {t:"fill",q:"Completá la serie: 450 – 400 – 350 – ...",labels:["",""],a:["300","250"],why:"Esta BAJA de 50 en 50."},
  {t:"fill",q:"Completá la serie: 205 – 210 – 215 – ...",labels:["",""],a:["220","225"],why:"Va de 5 en 5."},
  {t:"fill",q:"Completá la serie: 1.000 – 2.000 – 3.000 – ...",labels:["",""],a:["4000","5000"],why:"Va de 1.000 en 1.000."},
  {t:"fill",q:"Escribí el número que corresponde",labels:["Uno más que 459","Uno menos que 700","100 más que 325","100 menos que 840","1.000 más que 2.315","1.000 menos que 4.600"],a:["460","699","425","740","3315","3600"]},
- {t:"fill",q:"¿Qué número está justo en el medio?",labels:["Entre 348 y 350","Entre 1.199 y 1.201","Entre 699 y 701"],a:["349","1200","700"]},
+ {t:"fill",q:"¿Qué número está justo en el medio?",viz:{k:"numline",from:346,to:352,marks:[348,350],q:349},labels:["Entre 348 y 350","Entre 1.199 y 1.201","Entre 699 y 701"],a:["349","1200","700"]},
  {t:"fill",q:"Escribí dos números entre 620 y 630",labels:["",""],a:["re:^62[1-9]$","re:^62[1-9]$"],why:"Cualquiera del 621 al 629 sirve."},
  {t:"fill",q:"Descubrí la regla y continuá: 7 – 14 – 21 – 28 – ...",labels:["",""],a:["35","42"],why:"Va de 7 en 7. Es la tabla del 7."}
 ]},
@@ -74,12 +74,12 @@ rules:`
 <div class="rrow"><span class="rl">se comparan: ¿cuántos más?</span><span class="ra">RESTA</span></div>
 <div class="warn"><b>La trampa más común:</b> "¿cuántas cartas MÁS tiene Tomás?" tiene la palabra <b>más</b>, pero se resuelve <b>restando</b>. La palabra suelta no decide: decide lo que pasa en la historia.</div></div>`,
 ex:[
- {t:"fill",q:"En la biblioteca había <b>238</b> libros y llegaron <b>125</b> nuevos. ¿Cuántos libros hay ahora?",labels:["Respuesta"],a:["363"],why:"Llegan más libros, así que se juntan: 238 + 125 = 363."},
- {t:"fill",q:"Martina tenía <b>350</b> figuritas y regaló <b>127</b>. ¿Cuántas le quedaron?",labels:["Respuesta"],a:["223"],why:"Regalar es quitar: 350 − 127 = 223."},
- {t:"fill",q:"Un colectivo está en la parada <b>145</b> y avanza <b>28</b> paradas. ¿A qué parada llega?",labels:["Respuesta"],a:["173"],why:"Avanzar es sumar: 145 + 28 = 173."},
+ {t:"fill",e:"📚",q:"En la biblioteca había <b>238</b> libros y llegaron <b>125</b> nuevos. ¿Cuántos libros hay ahora?",labels:["Respuesta"],a:["363"],why:"Llegan más libros, así que se juntan: 238 + 125 = 363."},
+ {t:"fill",e:"🃏",q:"Martina tenía <b>350</b> figuritas y regaló <b>127</b>. ¿Cuántas le quedaron?",labels:["Respuesta"],a:["223"],why:"Regalar es quitar: 350 − 127 = 223."},
+ {t:"fill",e:"🚌",q:"Un colectivo está en la parada <b>145</b> y avanza <b>28</b> paradas. ¿A qué parada llega?",labels:["Respuesta"],a:["173"],why:"Avanzar es sumar: 145 + 28 = 173."},
  {t:"choice",q:"Tomás tiene <b>186</b> cartas y Julia tiene <b>149</b>. ¿Cuántas cartas MÁS tiene Tomás?",h:"¿Qué cuenta hay que hacer?",o:["Sumar","Restar"],a:1,why:"Aunque diga «más», se comparan dos cantidades. Eso se resuelve restando."},
  {t:"fill",q:"Entonces, ¿cuántas cartas más tiene Tomás?",labels:["Respuesta"],a:["37"],why:"186 − 149 = 37 cartas."},
- {t:"fill",q:"Sofi tenía <b>420</b> puntos y retrocedió <b>65</b>. ¿Con cuántos puntos queda?",labels:["Respuesta"],a:["355"],why:"Retroceder es restar: 420 − 65 = 355."}
+ {t:"fill",e:"🎮",q:"Sofi tenía <b>420</b> puntos y retrocedió <b>65</b>. ¿Con cuántos puntos queda?",labels:["Respuesta"],a:["355"],why:"Retroceder es restar: 420 − 65 = 355."}
 ]},
 
 {id:"m5",dot:"✖️",name:"Día 5",title:"Día 5 · Suma repetida y reparto",sub:"La puerta de entrada a la multiplicación y la división",
@@ -94,12 +94,12 @@ El primer número dice <b>cuántos grupos</b>; el segundo, <b>cuánto hay en cad
 <div class="rrow"><span class="rl">12 lápices entre 3 chicos</span><span class="ra">4 cada uno</span></div>
 <p class="exline">A veces <b>sobra</b>: 14 caramelos entre 4 chicos &rarr; 3 cada uno y sobran 2. Ese resto no se puede repartir sin partir un caramelo.</p></div>`,
 ex:[
- {t:"fill",q:"3 platos con 4 galletitas en cada uno",labels:["Suma repetida","Total"],a:["4+4+4","12"],why:"Se repite el 4, tres veces."},
- {t:"fill",q:"5 bolsas con 2 naranjas en cada una",labels:["Suma repetida","Total"],a:["2+2+2+2+2","10"],why:"Se repite el 2, cinco veces."},
+ {t:"fill",q:"3 platos con 4 galletitas en cada uno",viz:{k:"groups",g:3,per:4},labels:["Suma repetida","Total"],a:["4+4+4","12"],why:"Se repite el 4, tres veces."},
+ {t:"fill",q:"5 bolsas con 2 naranjas en cada una",viz:{k:"groups",g:5,per:2},labels:["Suma repetida","Total"],a:["2+2+2+2+2","10"],why:"Se repite el 2, cinco veces."},
  {t:"fill",q:"Escribí la suma repetida y el total: <b>4 veces 5</b>",labels:["Suma","Total"],a:["5+5+5+5","20"]},
  {t:"fill",q:"Escribí la suma repetida y el total: <b>3 veces 6</b>",labels:["Suma","Total"],a:["6+6+6","18"]},
  {t:"fill",q:"Repartí en partes iguales. ¿Cuántos recibe cada uno?",labels:["12 lápices entre 3 chicos","20 galletitas entre 5 chicos"],a:["4","4"]},
- {t:"fill",q:"14 caramelos entre 4 chicos",labels:["Recibe cada uno","Sobran"],a:["3","2"],why:"3 para cada uno son 12, y quedan 2 sueltos."},
+ {t:"fill",q:"14 caramelos entre 4 chicos",viz:{k:"groups",g:4,per:3,left:2},labels:["Recibe cada uno","Sobran"],a:["3","2"],why:"3 para cada uno son 12, y quedan 2 sueltos."},
  {t:"open",q:"Explicá con tus palabras: ¿qué significa repartir en partes iguales?",model:"Lo que se espera: que diga que TODOS reciben la misma cantidad, que a nadie le toca más ni menos. Si lo explica con un ejemplo propio, mejor todavía."}
 ]},
 

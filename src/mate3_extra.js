@@ -1,14 +1,14 @@
 const MATE3_EXTRA = {id:"m6",dot:"🤔",name:"Día 6",title:"Día 6 · ¿Qué cuenta va?",sub:"Suma o suma repetida · separar · comparar",ex:[
- {t:"choice",q:"En un florero hay <b>7 rosas</b> y <b>5 margaritas</b>. ¿Cuántas flores hay?",h:"¿Qué cuenta resuelve el problema?",o:["7 + 5","7 + 7 + 7 + 7 + 7","5 + 5 + 5 + 5 + 5 + 5 + 5"],a:0},
- {t:"choice",q:"Hay <b>4 floreros</b> con <b>5 flores</b> en cada uno. ¿Cuántas flores hay?",h:"¿Qué cuenta resuelve el problema?",o:["4 + 5","5 + 5 + 5 + 5","4 + 4 + 4"],a:1},
+ {t:"choice",e:"💐",q:"En un florero hay <b>7 rosas</b> y <b>5 margaritas</b>. ¿Cuántas flores hay?",h:"¿Qué cuenta resuelve el problema?",o:["7 + 5","7 + 7 + 7 + 7 + 7","5 + 5 + 5 + 5 + 5 + 5 + 5"],a:0},
+ {t:"choice",q:"Hay <b>4 floreros</b> con <b>5 flores</b> en cada uno. ¿Cuántas flores hay?",viz:{k:"groups",g:4,per:5},h:"¿Qué cuenta resuelve el problema?",o:["4 + 5","5 + 5 + 5 + 5","4 + 4 + 4"],a:1},
  {t:"choice",q:"¿Cuál de estos problemas se resuelve con una <b>suma repetida</b>?",o:["Tengo 8 bolitas y me regalan 6","En cada mano tengo 5 dedos. ¿Cuántos dedos tengo en las dos manos?","Tengo 12 caramelos y como 3"],a:1},
- {t:"fill",q:"Hay <b>3 mesas</b> con <b>6 sillas</b> cada una. ¿Cuántas sillas hay?",labels:["Respuesta"],a:["18"],why:"Se repite el 6 tres veces: 6 + 6 + 6 = 18."},
+ {t:"fill",q:"Hay <b>3 mesas</b> con <b>6 sillas</b> cada una. ¿Cuántas sillas hay?",viz:{k:"groups",g:3,per:6},labels:["Respuesta"],a:["18"],why:"Se repite el 6 tres veces: 6 + 6 + 6 = 18."},
  {t:"fill",q:"Sofía tiene <b>9 figuritas</b> y Tomás tiene <b>6</b>. ¿Cuántas tienen entre los dos?",labels:["Respuesta"],a:["15"],why:"Son dos cantidades distintas que se juntan: 9 + 6 = 15."},
  {t:"choice",q:"En un grado hay <b>28 chicos</b>. <b>13</b> son varones. ¿Cuántas son nenas?",h:"¿Qué cuenta hay que hacer?",o:["Sumar","Restar"],a:1,why:"Las nenas son la otra parte del total: se separa."},
  {t:"fill",q:"Entonces, ¿cuántas nenas hay en ese grado?",labels:["Respuesta"],a:["15"]},
  {t:"fill",q:"En la granja hay <b>54 animales</b>. <b>30</b> son gallinas y el resto son patos. ¿Cuántos patos hay?",labels:["Respuesta"],a:["24"],why:"54 − 30 = 24 patos."},
  {t:"fill",q:"Lucas mide <b>125 cm</b> y su hermana mide <b>98 cm</b>. ¿Cuántos centímetros más mide Lucas?",labels:["Respuesta"],a:["27"],why:"Se comparan dos medidas: 125 − 98 = 27."},
- {t:"fill",q:"Un tren tiene <b>5 vagones</b> y en cada vagón viajan <b>10 personas</b>. ¿Cuántas personas viajan?",labels:["Respuesta"],a:["50"]}
+ {t:"fill",e:"🚃",q:"Un tren tiene <b>5 vagones</b> y en cada vagón viajan <b>10 personas</b>. ¿Cuántas personas viajan?",labels:["Respuesta"],a:["50"]}
 ]};
 const MATE3_RULES = `
 <div class="rsec"><h4>¿Suma o suma repetida?</h4>

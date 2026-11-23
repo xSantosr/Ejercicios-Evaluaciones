@@ -136,13 +136,13 @@ rules:`
 <div class="rrow"><span class="rl">distinto denominador</span><span class="ra">primero se buscan equivalentes</span></div>
 <p class="exline">1/3 + 1/6 = 2/6 + 1/6 = 3/6 (que es igual a 1/2).</p></div>`,
 ex:[
- {t:"choice",q:"Se reparten <b>3</b> chocolates entre <b>4</b> chicos en partes iguales. ¿Cuánto le toca a cada uno?",o:["3/4 de chocolate","4/3 de chocolate","1/4 de chocolate"],a:0},
- {t:"fill",q:"Completá la fracción equivalente",labels:["1/2 = __/8","2/3 = __/9","3/5 = __/10"],a:["4","6","6"]},
+ {t:"choice",e:"🍫",q:"Se reparten <b>3</b> chocolates entre <b>4</b> chicos en partes iguales. ¿Cuánto le toca a cada uno?",o:["3/4 de chocolate","4/3 de chocolate","1/4 de chocolate"],a:0},
+ {t:"fill",q:"Completá la fracción equivalente",viz:{k:"fraction",n:1,d:2},labels:["1/2 = __/8","2/3 = __/9","3/5 = __/10"],a:["4","6","6"]},
  {t:"fill",q:"Resolvé y escribí la fracción",labels:["2/7 + 3/7","5/8 − 1/8"],a:["5/7","re:^\\s*(4/8|1/2)\\s*$"]},
- {t:"fill",q:"Resolvé: 1/2 + 1/4",labels:[""],a:["3/4"]},
- {t:"choice",q:"¿Cuál es la mayor?",o:["3/4","2/3","1/2"],a:0},
+ {t:"fill",q:"Resolvé: 1/2 + 1/4",viz:{k:"fraction",n:3,d:4},h:"El dibujo muestra el resultado: ¿qué fracción es?",labels:[""],a:["3/4"]},
+ {t:"choice",q:"¿Cuál es la mayor?",o:["3/4","2/3","1/2"],ov:[{k:"fraction",n:3,d:4},{k:"fraction",n:2,d:3},{k:"fraction",n:1,d:2}],a:0},
  {t:"fill",q:"Una cinta mide 1 metro. ¿Cuántos centímetros son 3/4 de metro?",labels:[""],a:["75"]},
- {t:"choice",q:"¿Qué fracción de la hora son 15 minutos?",o:["1/4","1/2","1/15"],a:0}
+ {t:"choice",viz:{k:"clock",h:12,m:15},q:"¿Qué fracción de la hora son 15 minutos?",o:["1/4","1/2","1/15"],a:0}
 ]},
 {id:"m4",dot:"💲",name:"Decimales",title:"Decimales y dinero",sub:"Décimos y centésimos · sumar y multiplicar precios",
 rules:`
@@ -155,8 +155,8 @@ rules:`
 <div class="rsec"><h4>Comparar</h4>
 <p class="exline">Compará primero la parte entera y después cifra por cifra después de la coma: 0,8 &gt; 0,75 porque 8 décimos es más que 7 décimos.</p></div>`,
 ex:[
- {t:"choice",q:"0,5 es igual a…",o:["1/2","1/5","5"],a:0},
- {t:"choice",q:"0,25 es igual a…",o:["1/4","2/5","25"],a:0},
+ {t:"choice",viz:{k:"fraction",n:5,d:10},q:"0,5 es igual a…",o:["1/2","1/5","5"],a:0},
+ {t:"choice",viz:{k:"fraction",n:1,d:4},q:"0,25 es igual a…",o:["1/4","2/5","25"],a:0},
  {t:"fill",q:"Escribí como número decimal",labels:["3/10","7/100","45/100"],a:["re:^\\s*0[,.]30?\\s*$","re:^\\s*0[,.]07\\s*$","re:^\\s*0[,.]450?\\s*$"]},
  {t:"fill",q:"Sumá",labels:["$12,50 + $3,25","$8,75 + $1,25"],a:["re:^\\s*\\$?\\s*15[,.]75\\s*$","re:^\\s*\\$?\\s*10([,.]0+)?\\s*$"]},
  {t:"fill",q:"Un alfajor cuesta <b>$1,50</b>. ¿Cuánto cuestan 4?",labels:["Respuesta"],a:["re:^\\s*\\$?\\s*6([,.]0+)?\\s*$"]},
@@ -173,7 +173,7 @@ rules:`
 <div class="rsec"><h4>Clasificación por lados</h4>
 <p class="exline">Según cuántos lados iguales tenga: tres, dos o ninguno. Cada caso tiene su nombre.</p></div>`,
 ex:[
- {t:"choice",q:"¿Se puede construir un triángulo con lados de 4 cm, 5 cm y 12 cm?",o:["No","Sí"],a:0},
+ {t:"choice",e:"📏",q:"¿Se puede construir un triángulo con lados de 4 cm, 5 cm y 12 cm?",o:["No","Sí"],a:0},
  {t:"choice",q:"¿Y con 6 cm, 7 cm y 10 cm?",o:["Sí","No"],a:0},
  {t:"choice",q:"Un triángulo con los tres lados iguales es…",o:["equilátero","isósceles","escaleno"],a:0},
  {t:"choice",q:"Un triángulo con dos lados iguales es…",o:["isósceles","escaleno","equilátero"],a:0},

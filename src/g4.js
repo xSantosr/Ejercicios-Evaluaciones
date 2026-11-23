@@ -60,8 +60,8 @@ ex:[
  {t:"order",q:"Ordená la oración",items:["have","I","lunch at 12.","always"],a:["I","always","have","lunch at 12."]},
  {t:"choice",q:"¿Cuál está bien ordenada?",o:["He is always happy.","He always is happy."],a:0},
  {t:"choice",q:"Lo hace todos los días, sin excepción: I ___ brush my teeth.",o:["always","sometimes","never"],a:0},
- {t:"choice",e:"🕒",q:"<span class='en'>What time is it?</span>",o:["It's three o'clock.","It's half past three.","It's quarter to three."],a:0},
- {t:"choice",e:"🕦",q:"<span class='en'>What time is it?</span>",h:"Son las 11:30",o:["It's half past eleven.","It's eleven o'clock.","It's quarter past eleven."],a:0},
+ {t:"choice",viz:{k:"clock",h:3,m:0},q:"<span class='en'>What time is it?</span>",o:["It's three o'clock.","It's half past three.","It's quarter to three."],a:0},
+ {t:"choice",viz:{k:"clock",h:11,m:30},q:"<span class='en'>What time is it?</span>",o:["It's half past eleven.","It's eleven o'clock.","It's quarter past eleven."],a:0},
  {t:"choice",q:"Cenamos a la noche: We have dinner ___.",o:["at night","in night","on night"],a:0},
  {t:"choice",q:"I get up at 7 ___.",o:["in the morning","at the morning","on the morning"],a:0}
 ]},
@@ -113,7 +113,7 @@ rules:`
 <p class="exline">Para sumar 499 + 300, conviene pensar 500 + 300 = 800, y después restar el 1 que agregaste: <b>799</b>.</p></div>`,
 ex:[
  {t:"fill",q:"Descomponé",labels:["4.256 =","7.083 ="],a:["4000+200+50+6","7000+80+3"]},
- {t:"fill",q:"¿Cuánta plata es?",labels:["5 billetes de $1.000, 3 de $100 y 4 de $10","8 de $1.000 y 6 de $1"],a:["5340","8006"]},
+ {t:"fill",q:"¿Cuánta plata es?",viz:{k:"money",bills:[{v:"1.000",n:5},{v:100,n:3},{v:10,n:4}]},labels:["5 billetes de $1.000, 3 de $100 y 4 de $10","8 de $1.000 y 6 de $1"],a:["5340","8006"]},
  {t:"fill",q:"Calculá",labels:["2.500 + 1.000","3.400 + 600","5.000 − 1","6.020 − 100"],a:["3500","4000","4999","5920"]},
  {t:"fill",q:"Calculá",labels:["1.999 + 1","3.450 − 1.000","700 + 800"],a:["2000","2450","1500"]},
  {t:"order",q:"Ordená de menor a mayor",items:["3.030","3.300","3.003","3.330"],a:["3.003","3.030","3.300","3.330"]},
@@ -132,7 +132,7 @@ ex:[
  {t:"fill",q:"Calculá la mitad",labels:["60","48","500","130"],a:["30","24","250","65"]},
  {t:"fill",q:"El doble de 15 es… y el doble de ese resultado es…",labels:["Doble de 15","Doble del anterior"],a:["30","60"]},
  {t:"fill",q:"Juan tiene <b>18</b> figuritas y Ana tiene el doble. ¿Cuántas tiene Ana?",labels:["Respuesta"],a:["36"]},
- {t:"fill",q:"Una pizza tiene <b>8</b> porciones. Si comimos la mitad, ¿cuántas porciones comimos?",labels:["Respuesta"],a:["4"]},
+ {t:"fill",q:"Una pizza tiene <b>8</b> porciones. Si comimos la mitad, ¿cuántas porciones comimos?",viz:{k:"fraction",shape:"circle",n:4,d:8},labels:["Respuesta"],a:["4"]},
  {t:"choice",q:"La mitad de 50 es…",o:["25","20","100"],a:0}
 ]},
 {id:"m3",dot:"✖️",name:"Multiplicar",title:"¿Para qué sirve multiplicar?",sub:"Grupos iguales · filas y columnas · combinaciones",
@@ -143,12 +143,12 @@ rules:`
 <div class="rrow"><span class="rl">Combinaciones: 2 remeras y 3 pantalones</span><span class="ra">2 × 3 conjuntos</span></div>
 <div class="warn">En las <b>combinaciones</b>, cada opción de una cosa se junta con <b>cada</b> opción de la otra. Hacé un dibujo o una tabla para verlo.</div></div>`,
 ex:[
- {t:"fill",q:"<b>4</b> paquetes con <b>6</b> alfajores cada uno. ¿Cuántos alfajores hay?",labels:["Respuesta"],a:["24"]},
- {t:"fill",q:"Un patio tiene <b>7</b> filas de <b>5</b> baldosas. ¿Cuántas baldosas hay?",labels:["Respuesta"],a:["35"]},
+ {t:"fill",q:"<b>4</b> paquetes con <b>6</b> alfajores cada uno. ¿Cuántos alfajores hay?",viz:{k:"groups",g:4,per:6},labels:["Respuesta"],a:["24"]},
+ {t:"fill",q:"Un patio tiene <b>7</b> filas de <b>5</b> baldosas. ¿Cuántas baldosas hay?",viz:{k:"array",r:7,c:5},labels:["Respuesta"],a:["35"]},
  {t:"fill",q:"Hay <b>3</b> sabores de helado y <b>2</b> tipos de cucurucho. ¿Cuántos helados distintos se pueden armar con un sabor?",labels:["Respuesta"],a:["6"]},
  {t:"choice",q:"¿Qué cuenta resuelve: <i>6 cajas con 8 lápices cada una</i>?",o:["6 × 8","6 + 8","8 − 6"],a:0},
  {t:"choice",q:"Tengo <b>4</b> remeras y <b>3</b> shorts. ¿Cuántos conjuntos distintos puedo armar?",o:["12","7","1"],a:0},
- {t:"fill",q:"Un micro tiene <b>10</b> filas de <b>4</b> asientos. ¿Cuántos asientos hay?",labels:["Respuesta"],a:["40"]},
+ {t:"fill",q:"Un micro tiene <b>10</b> filas de <b>4</b> asientos. ¿Cuántos asientos hay?",viz:{k:"array",r:10,c:4},labels:["Respuesta"],a:["40"]},
  {t:"choice",q:"¿Cuál problema <b>NO</b> se resuelve multiplicando?",o:["Hay 5 platos con 3 galletitas cada uno","Tengo 5 galletitas y como 3","Hay 3 filas de 5 sillas"],a:1}
 ]},
 {id:"m4",dot:"🧮",name:"Tabla pitagórica",title:"La tabla pitagórica",sub:"Relaciones entre las tablas",
@@ -178,7 +178,7 @@ rules:`
 ex:[
  {t:"fill",q:"Se reparten <b>35</b> caramelos entre <b>5</b> chicos. ¿Cuántos recibe cada uno?",labels:["Respuesta"],a:["7"]},
  {t:"fill",q:"¿Cuántos sobres de <b>6</b> figuritas se arman con <b>48</b> figuritas?",labels:["Respuesta"],a:["8"]},
- {t:"fill",q:"Se reparten <b>27</b> lápices entre <b>4</b> chicos.",labels:["Recibe cada uno","Sobran"],a:["6","3"]},
+ {t:"fill",q:"Se reparten <b>27</b> lápices entre <b>4</b> chicos.",viz:{k:"groups",g:4,per:6,left:3},labels:["Recibe cada uno","Sobran"],a:["6","3"]},
  {t:"fill",q:"Hay <b>30</b> chicos y en cada mesa se sientan <b>6</b>. ¿Cuántas mesas hacen falta?",labels:["Respuesta"],a:["5"]},
  {t:"choice",q:"Hay <b>22</b> alumnos y en cada auto entran <b>4</b>. ¿Cuántos autos hacen falta para llevarlos a todos?",o:["5","6","4"],a:1},
  {t:"fill",q:"¿Cuánto es la mitad de 64?",labels:[""],a:["32"]}

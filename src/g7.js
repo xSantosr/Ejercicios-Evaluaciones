@@ -87,7 +87,7 @@ ex:[
  {t:"choice",q:"<span class='en'>Did you use to have long hair?</span>",h:"Respondé que NO",o:["No, I didn't.","No, I used not.","No, I wasn't."],a:0},
  {t:"choice",q:"You ___ eat so much sugar.",h:"consejo",o:["shouldn't","mustn't to","don't should"],a:0}
 ]},
-{id:"k5",dot:"💬",name:"Vocabulario",title:"Vocabulario de Metro 3",sub:"do / make · salud · verdad y mentira · -ion · sentidos",
+{id:"k5",dot:"💬",name:"Salud y expresiones",title:"Vocabulario de Metro 3",sub:"do / make · salud · verdad y mentira · -ion · sentidos",
 rules:`
 <div class="rsec"><h4>Do o make</h4>
 <p class="exline">No hay una regla exacta: se aprenden como frases hechas. En general, <b>make</b> se usa cuando se crea algo (make a cake) y <b>do</b> para tareas y actividades (do the shopping).</p></div>
@@ -139,7 +139,7 @@ ex:[
  {t:"fill",q:"Calculá",labels:["125 ÷ 10","36,4 ÷ 100","7 ÷ 1.000"],a:["re:^\\s*12[,.]5\\s*$","re:^\\s*0[,.]364\\s*$","re:^\\s*0[,.]007\\s*$"]},
  {t:"choice",q:"En 6,382, el 8 vale…",o:["8 centésimos","8 décimos","8 milésimos"],a:0},
  {t:"choice",q:"¿Cuál es el mayor?",o:["0,6","0,59","0,599"],a:0},
- {t:"fill",q:"Calculá",labels:["3,75 + 1,5","10 − 2,35"],a:["re:^\\s*5[,.]25\\s*$","re:^\\s*7[,.]65\\s*$"]},
+ {t:"fill",q:"Calculá mentalmente",labels:["3,75 + 1,5","10 − 2,35"],a:["re:^\\s*5[,.]25\\s*$","re:^\\s*7[,.]65\\s*$"]},
  {t:"fill",q:"Un litro de leche cuesta <b>$1.250,50</b>. ¿Cuánto cuestan 4 litros?",labels:["Respuesta"],a:["re:^\\s*\\$?\\s*5\\.?002([,.]0+)?\\s*$"]},
  {t:"order",q:"Ordená de menor a mayor",items:["0,5","0,05","0,55","0,505"],a:["0,05","0,5","0,505","0,55"]}
 ]},

@@ -13,21 +13,21 @@ No hace falta instalar nada ni crear una cuenta. En el celular se puede agregar 
 | Para entrar a | Inglés | Matemática | Lengua |
 |---|---|---|---|
 | 2º grado | 146 | 54 | 38 |
-| 3º grado | 142 | 71 | 86 |
+| 3º grado | 142 | 75 | 86 |
 | 4º grado | 78 | 55 | 41 |
-| 5º grado | 77 | 54 | 41 |
-| 6º grado | 76 | 63 | 39 |
-| 7º grado | 80 | 62 | 47 |
+| 5º grado | 77 | 51 | 41 |
+| 6º grado | 76 | 59 | 39 |
+| 7º grado | 80 | 59 | 47 |
 
-En total, 1.250 ejercicios.
+En total, 1.244 ejercicios.
 
 - **Inglés:** cubre el programa del grado anterior y el del grado al que se ingresa.
 - **Matemática y Lengua:** siguen los contenidos de ingreso de la escuela, es decir, lo que hay que saber del grado anterior.
 - Cada materia está dividida en módulos cortos, y cada módulo termina con un simulacro de examen.
-- **Operaciones escritas:** Matemática tiene módulos para resolver como en el cuaderno, con un casillero por cifra:
-  - **Cuentas paradas** (todos los grados): sumas, restas y multiplicaciones en columna, con espacio para anotar las llevadas y, desde 5º, productos parciales.
-  - **La casita** (todos los grados): divisiones, con el cociente debajo del divisor y el resto debajo del dividendo. De 2º a 5º se completan cociente y resto; en 6º y 7º, también la multiplicación y la resta de cada paso, con la cifra que se baja marcada en gris. La revisión explica qué significa el resto y muestra la comprobación.
-  - **Cuentas con coma** (6º y 7º): decimales alineados por la coma, y fracciones escritas con raya horizontal.
+- **Operaciones escritas (hasta 4º):** se resuelven como en el cuaderno, con un casillero por cifra.
+  - **Cuentas paradas:** sumas, restas y multiplicaciones en columna, con espacio para anotar las llevadas.
+  - **La casita:** divisiones, con el cociente debajo del divisor y el resto debajo del dividendo. La revisión explica qué significa el resto y muestra la comprobación.
+- **Cálculo mental (desde 5º):** en lugar de escribir la cuenta se practican las estrategias que piden los programas: descomponer, redondear y ajustar, dobles y mitades, apoyarse en un cálculo conocido y estimar. Las fracciones se escriben con raya horizontal.
 - **Ilustraciones:** los ejercicios usan dibujos cuando ayudan a entender — bloques de valor posicional, rectas numéricas, cuadros de números, grupos de objetos, fracciones, relojes y triángulos.
 
 ## Cómo funciona
@@ -74,7 +74,7 @@ Para ilustrar un ejercicio se le agrega `viz` (o `ov`, para dibujar cada opción
 {t:"col",  op:"+", n:[247,136]}        // cuenta parada
 {t:"col",  op:"×", n:[123,24], parts:true}   // con productos parciales
 {t:"col",  op:"−", n:["20","13,40"]}   // con coma: se alinea sola
-{t:"div",  D:157, d:12}                // casita: cociente y resto
+{t:"div",  D:128, d:6}                 // casita: cociente y resto
 {t:"div",  D:575, d:5, steps:true}     // casita paso a paso
 {t:"frac", op:"+", f:[[1,2],[1,4]]}    // fracciones con raya
 ```

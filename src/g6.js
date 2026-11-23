@@ -65,7 +65,7 @@ ex:[
  {t:"choice",q:"Yesterday I ___ my grandma and then I went home.",o:["visited","was visiting"],a:0},
  {t:"match",q:"Uní cada verbo del tema «crimen»",pairs:[["steal","robar (algo)"],["arrest","arrestar"],["chase","perseguir"],["catch","atrapar"],["investigate","investigar"],["break into","entrar por la fuerza"]]}
 ]},
-{id:"h5",dot:"🌎",name:"Vocabulario",title:"Dinero, trabajos, ambiente y más",sub:"Vocabulario de Metro 2",
+{id:"h5",dot:"🌎",name:"Dinero y trabajos",title:"Dinero, trabajos, ambiente y más",sub:"Vocabulario de Metro 2",
 rules:`
 <div class="rsec"><h4>Adjetivos con preposición</h4>
 <p class="exline">Muchos adjetivos de sentimientos van con una preposición fija, que conviene aprender junto con la palabra: <b>bored of</b>, <b>angry with</b>, <b>happy about</b>.</p></div>

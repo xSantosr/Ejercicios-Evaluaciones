@@ -16,12 +16,6 @@ const RULE_COL_MULT = `
 <p class="exline">Se multiplica cada cifra de arriba por la de abajo, <b>empezando por la derecha</b>. Si pasa de 9, se escribe la última cifra y te llevás la otra.</p>
 <div class="warn">Lo que te llevás en una multiplicación <b>se suma</b> después de multiplicar, no antes.</div></div>`;
 
-const RULE_COL_MULT2 = RULE_COL_MULT + `
-<div class="rsec"><h4>Cuando abajo hay dos cifras</h4>
-<p class="exline">Se hacen <b>dos multiplicaciones</b> y después se suman:</p>
-<div class="rrow"><span class="rl">primero, por las unidades de abajo</span><span class="ra">fila 1</span></div>
-<div class="rrow"><span class="rl">después, por las decenas</span><span class="ra">fila 2, corrida un lugar</span></div>
-<div class="warn"><b>&#9888; El error más común</b> es olvidarse de correr la segunda fila un lugar a la izquierda. En esta página ese lugar ya viene marcado.</div></div>`;
 
 const RULE_DIV_NUEVO = `
 <div class="rsec"><h4>Una forma nueva de anotar el reparto</h4>
@@ -47,17 +41,6 @@ const RULE_DIV_PASOS = `
 <div class="rrow"><span class="rl num">4</span><span class="rl">Repetí hasta que no queden cifras para bajar.</span></div>
 <div class="warn">En esta página, la cifra que se baja <b>ya aparece en gris</b>: vos completás las multiplicaciones y las restas.<br>
 <b>&#9888;</b> Si al restar te da un número <b>mayor o igual</b> que el divisor, el cociente de ese paso quedó corto.</div></div>`;
-
-const RULE_DEC = `
-<div class="rsec"><h4>Cuentas con coma</h4>
-<p class="exline">Se arman igual que siempre, pero con una regla más: las <b>comas van una debajo de la otra</b>. Así quedan alineados los pesos con los pesos y los centavos con los centavos.</p>
-<div class="warn">Si a un número le faltan cifras después de la coma, <b>completalo con ceros</b>: $20 es $20,00. Sin eso, la cuenta se desalinea.<br>
-En el resultado, la coma va en la misma columna que las de arriba.</div></div>`;
-
-const RULE_DEC_MULT = `
-<div class="rsec"><h4>Multiplicar un decimal por un número entero</h4>
-<p class="exline">Se multiplica <b>como si no hubiera coma</b>. Al final, el resultado lleva <b>la misma cantidad de cifras después de la coma</b> que tenía el número de arriba.</p>
-<div class="warn">$1,25 × 4: primero 125 × 4, y como arriba había dos cifras después de la coma, el resultado también lleva dos.</div></div>`;
 
 const RULE_FRAC = `
 <div class="rsec"><h4>Sumar y restar fracciones</h4>
@@ -89,11 +72,11 @@ const CUENTAS = {
  {t:"div",D:38,d:3}
 ]},
 "3": {id:"mc",dot:"✏️",name:"Cuentas paradas",title:"Cuentas paradas",sub:"Sumar, restar y multiplicar de tres cifras",rules:RULE_COL_RESTA+RULE_COL_MULT,ex:[
- {t:"col",op:"+",n:[247,136]},
- {t:"col",op:"+",n:[358,275]},
+ {t:"col",op:"+",n:[365,248]},
+ {t:"col",op:"+",n:[479,256]},
  {t:"col",op:"+",n:[125,48,230],h:"Tres sumandos"},
- {t:"col",op:"−",n:[562,238]},
- {t:"col",op:"−",n:[704,356],h:"Ojo con el cero del medio"},
+ {t:"col",op:"−",n:[843,517]},
+ {t:"col",op:"−",n:[902,647],h:"Ojo con el cero del medio"},
  {t:"col",op:"−",n:[500,164]},
  {t:"col",op:"+",n:[1204,397]},
  {t:"col",op:"−",n:[1000,625]},
@@ -127,71 +110,28 @@ const CUENTAS = {
  {t:"div",D:93,d:7},
  {t:"div",D:128,d:6}
 ]},
-"5": {id:"mc",dot:"✏️",name:"Cuentas paradas",title:"Cuentas paradas",sub:"Multiplicar por dos cifras",rules:RULE_COL_MULT2,ex:[
- {t:"col",op:"×",n:[42,13],parts:true,h:"Dos filas: primero por las unidades"},
- {t:"col",op:"×",n:[123,24],parts:true},
- {t:"col",op:"×",n:[245,32],parts:true},
- {t:"col",op:"×",n:[408,6],h:"Esta es de una sola cifra"},
- {t:"col",op:"+",n:[4567,2845]},
- {t:"col",op:"−",n:[6000,2473]}
-]},
-"5b":{id:"mcd",dot:"🏠",name:"La casita",title:"La casita",sub:"Dividir con divisores de dos cifras",rules:RULE_DIV,ex:[
- {t:"div",D:96,d:8},
- {t:"div",D:156,d:12},
- {t:"div",D:157,d:12,h:"Acá va a sobrar algo"},
- {t:"div",D:250,d:15},
- {t:"div",D:432,d:16},
- {t:"div",D:525,d:25}
-]},
-"6": {id:"mc",dot:"✏️",name:"Cuentas paradas",title:"Cuentas paradas",sub:"Números grandes",rules:RULE_COL_MULT2,ex:[
- {t:"col",op:"×",n:[134,25],parts:true},
- {t:"col",op:"×",n:[507,38],parts:true,h:"Ojo con el cero del medio"},
- {t:"col",op:"+",n:[12456,8975]},
- {t:"col",op:"−",n:[7005,3468]},
- {t:"col",op:"×",n:[1234,6]}
-]},
-"6b":{id:"mcd",dot:"🏠",name:"La casita",title:"La casita, paso a paso",sub:"Con las multiplicaciones y las restas de cada paso",rules:RULE_DIV_PASOS,ex:[
- {t:"div",D:575,d:5,steps:true,h:"Completá cada multiplicación y cada resta"},
- {t:"div",D:846,d:6,steps:true},
- {t:"div",D:1248,d:4,steps:true},
- {t:"div",D:962,d:7,steps:true},
- {t:"div",D:1375,d:11,steps:true}
-]},
-"6c":{id:"mcc",dot:"🪙",name:"Con coma",title:"Cuentas con coma y fracciones",sub:"Decimales alineados · sumar y restar fracciones",rules:RULE_DEC+RULE_DEC_MULT+RULE_FRAC,ex:[
- {t:"col",op:"+",n:["12,50","3,25"],h:"Las comas, una debajo de la otra"},
- {t:"col",op:"+",n:["8,75","1,25"]},
- {t:"col",op:"−",n:["20","13,40"],h:"$20 es $20,00"},
- {t:"col",op:"−",n:["7,05","2,8"]},
- {t:"col",op:"×",n:["1,25",4],h:"Multiplicá como si no hubiera coma"},
- {t:"col",op:"×",n:["3,40",6]},
+
+
+
+
+"6c":{id:"mcc",dot:"½",name:"Sumar fracciones",title:"Sumar y restar fracciones",sub:"Con igual y con distinto denominador",rules:RULE_FRAC,ex:[
  {t:"frac",op:"+",f:[[2,7],[3,7]],h:"Mismo denominador"},
  {t:"frac",op:"+",f:[[1,2],[1,4]],h:"Primero hay que igualar los denominadores"},
  {t:"frac",op:"−",f:[[5,8],[1,8]]},
- {t:"frac",op:"+",f:[[1,3],[1,6]]}
+ {t:"frac",op:"+",f:[[1,3],[1,6]]},
+ {t:"frac",op:"+",f:[[3,5],[1,5]]},
+ {t:"frac",op:"−",f:[[7,10],[3,10]]},
+ {t:"frac",op:"+",f:[[1,2],[1,3]]}
 ]},
-"7": {id:"mc",dot:"✏️",name:"Cuentas paradas",title:"Cuentas paradas",sub:"Repaso de las tres operaciones",rules:RULE_COL_MULT2,ex:[
- {t:"col",op:"×",n:[2345,36],parts:true},
- {t:"col",op:"×",n:[1408,27],parts:true},
- {t:"col",op:"−",n:[10000,4567]},
- {t:"col",op:"+",n:[45678,9876]},
- {t:"col",op:"×",n:[3006,9]}
-]},
-"7b":{id:"mcd",dot:"🏠",name:"La casita",title:"La casita, paso a paso",sub:"Divisores de dos cifras",rules:RULE_DIV_PASOS,ex:[
- {t:"div",D:1872,d:24,steps:true},
- {t:"div",D:4056,d:39,steps:true},
- {t:"div",D:2975,d:17,steps:true},
- {t:"div",D:8064,d:32,steps:true},
- {t:"div",D:1105,d:13,steps:true}
-]},
-"7c":{id:"mcc",dot:"🪙",name:"Con coma",title:"Cuentas con coma y fracciones",sub:"Decimales y fracciones con distinto denominador",rules:RULE_DEC+RULE_DEC_MULT+RULE_FRAC,ex:[
- {t:"col",op:"+",n:["125,40","78,65"]},
- {t:"col",op:"−",n:["200","47,85"],h:"Completá con ceros el que no tiene coma"},
- {t:"col",op:"+",n:["9,5","12,75","0,8"],h:"Tres números con distinta cantidad de decimales"},
- {t:"col",op:"×",n:["12,50",8]},
- {t:"col",op:"−",n:["50,05","19,9"]},
+
+
+"7c":{id:"mcc",dot:"½",name:"Fracciones",title:"Sumar y restar fracciones",sub:"Con distinto denominador",rules:RULE_FRAC,ex:[
  {t:"frac",op:"+",f:[[2,3],[1,4]]},
  {t:"frac",op:"−",f:[[3,4],[1,6]]},
  {t:"frac",op:"+",f:[[1,5],[3,10]]},
- {t:"frac",op:"+",f:[[1,2],[1,3],[1,6]],h:"Tres fracciones"}
+ {t:"frac",op:"+",f:[[1,2],[1,3],[1,6]],h:"Tres fracciones"},
+ {t:"frac",op:"−",f:[[5,6],[1,3]]},
+ {t:"frac",op:"+",f:[[2,5],[1,2]]},
+ {t:"frac",op:"+",f:[[3,8],[1,4]]}
 ]}
 };

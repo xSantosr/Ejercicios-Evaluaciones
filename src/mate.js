@@ -60,7 +60,10 @@ rules:`
 348 + 356 = 704 &nbsp;&#10003;</div></div>`,
 ex:[
  {t:"fill",q:"Calculá mentalmente",labels:["230 + 40","125 + 30","300 − 70","86 − 20","145 + 55","420 − 120"],a:["270","155","230","66","200","300"]},
- {t:"fill",q:"Resolvé las cuentas",h:"Podés hacerlas en papel y escribir acá el resultado",labels:["247 + 136","358 + 275","562 − 238","704 − 356"],a:["383","633","324","348"]},
+ {t:"col",op:"+",n:[247,136],h:"Acordate: las unidades debajo de las unidades"},
+ {t:"col",op:"+",n:[358,275]},
+ {t:"col",op:"−",n:[562,238]},
+ {t:"col",op:"−",n:[704,356],h:"Ojo con el cero del medio"},
  {t:"fill",q:"Resolvé por descomposición",h:"Ejemplo: 34 + 25 = (30 + 20) + (4 + 5) = 50 + 9 = 59",labels:["42 + 36","76 − 24"],a:["78","52"]},
  {t:"open",q:"Inventá una suma cuyo resultado sea 100",model:"Hay muchísimas respuestas correctas: 60 + 40, 75 + 25, 99 + 1, 50 + 50. Lo importante es que al sumar dé exactamente 100."}
 ]},
@@ -112,12 +115,13 @@ ex:[
  {t:"order",q:"1. Ordená de menor a mayor",items:["705","570","75","750","507"],a:["75","507","570","705","750"]},
  {t:"fill",q:"2. Descomponé",labels:["684 =","1.307 ="],a:["600+80+4","1000+300+7"]},
  {t:"fill",q:"3. Completá",labels:["100 más que 456","100 menos que 823","1.000 más que 2.145","Uno menos que 1.000"],a:["556","723","3145","999"]},
- {t:"fill",q:"4. Resolvé",labels:["268 + 157","603 − 278"],a:["425","325"]},
- {t:"fill",q:"5. En una escuela juntaron <b>175</b> tapitas el lunes y <b>148</b> el martes. ¿Cuántas juntaron en total?",labels:["Respuesta"],a:["323"],why:"175 + 148 = 323 tapitas."},
- {t:"fill",q:"6. En una caja había <b>320</b> lápices. Se repartieron <b>85</b>. ¿Cuántos quedaron?",labels:["Respuesta"],a:["235"],why:"320 − 85 = 235 lápices."},
- {t:"fill",q:"7. Hay <b>4 paquetes</b> con <b>5 figuritas</b> cada uno. ¿Cuántas figuritas hay?",labels:["Suma repetida","Total"],a:["5+5+5+5","20"]},
- {t:"fill",q:"8. Se reparten <b>18 marcadores</b> entre <b>3 equipos</b> en partes iguales. ¿Cuántos recibe cada equipo?",labels:["Respuesta"],a:["6"]},
- {t:"fill",q:"9. Completá la serie: 250 – 300 – 350 – ...",labels:["",""],a:["400","450"]},
- {t:"fill",q:"10. Escribí un número entre 1.498 y 1.500",labels:[""],a:["1499"]}
+ {t:"col",op:"+",n:[268,157],q:"4. Resolvé la cuenta"},
+ {t:"col",op:"−",n:[603,278],q:"5. Resolvé la cuenta"},
+ {t:"fill",q:"6. En una escuela juntaron <b>175</b> tapitas el lunes y <b>148</b> el martes. ¿Cuántas juntaron en total?",labels:["Respuesta"],a:["323"],why:"175 + 148 = 323 tapitas."},
+ {t:"fill",q:"7. En una caja había <b>320</b> lápices. Se repartieron <b>85</b>. ¿Cuántos quedaron?",labels:["Respuesta"],a:["235"],why:"320 − 85 = 235 lápices."},
+ {t:"fill",q:"8. Hay <b>4 paquetes</b> con <b>5 figuritas</b> cada uno. ¿Cuántas figuritas hay?",labels:["Suma repetida","Total"],a:["5+5+5+5","20"]},
+ {t:"fill",q:"9. Se reparten <b>18 marcadores</b> entre <b>3 equipos</b> en partes iguales. ¿Cuántos recibe cada equipo?",labels:["Respuesta"],a:["6"]},
+ {t:"fill",q:"10. Completá la serie: 250 – 300 – 350 – ...",labels:["",""],a:["400","450"]},
+ {t:"fill",q:"11. Escribí un número entre 1.498 y 1.500",labels:[""],a:["1499"]}
 ]}
 ];

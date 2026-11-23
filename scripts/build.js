@@ -4,9 +4,9 @@ const SRC = path.join(__dirname, '..', 'src') + '/';
 const OUT = path.join(__dirname, '..') + '/';
 
 const files = ['mate.js', 'lengua.js', 'lengua2.js', 'ing3.js', 'rules.js', 'mate3_extra.js',
-               'g2_ing1.js', 'g2_mate.js', 'g4.js', 'g5.js', 'g6.js', 'g7.js', 'libros.js', 'cuentas.js'];
+               'g2_ing1.js', 'g2_mate.js', 'g4.js', 'g5.js', 'g6.js', 'g7.js', 'libros.js', 'cuentas.js', 'mental.js'];
 const L = new Function(files.map(f => fs.readFileSync(SRC + f, 'utf8')).join('\n') +
-  '\nreturn {MATE,LENGUA,LENGUA2,ING3,RULES,RULES_L2,MATE3_EXTRA,MATE3_RULES,G2_ING1,G2_MATE,G2_LENGUA,G4,G5,G6,G7,BOOKS,CUENTAS};')();
+  '\nreturn {MATE,LENGUA,LENGUA2,ING3,RULES,RULES_L2,MATE3_EXTRA,MATE3_RULES,G2_ING1,G2_MATE,G2_LENGUA,G4,G5,G6,G7,BOOKS,CUENTAS,MENTAL};')();
 const ing2 = JSON.parse(fs.readFileSync(SRC + 'ing2.json', 'utf8'));
 Object.assign(L.RULES, L.RULES_L2);
 L.ING3[0].ex.forEach(e => { if (e.q === 'Cuidado con estos dos') delete e.h; });
@@ -141,13 +141,16 @@ const GRADES = {
         subj('lengua', 'Lengua', '📖', '', 'Lo fantástico, mitos griegos, clásicos y gramática', L.G7.lengua)]
 };
 
-/* cuentas escritas: se insertan antes del simulacro de Matemática */
+/* cuentas escritas: se pueden usar en cualquier módulo */
 const expandWritten = x => x.t === 'div' ? expandDiv(x) : x.t === 'frac' ? expandFrac(x) : expandCol(x);
+for (const g in GRADES) GRADES[g].forEach(s => s.units.forEach(u => { u.ex = u.ex.map(expandWritten); }));
+
 for (const g in GRADES) {
   const m = GRADES[g].find(s => s.id === 'mate');
   if (!m) continue;
   const mods = Object.keys(L.CUENTAS).filter(k => k[0] === g).sort()
     .map(k => Object.assign({}, L.CUENTAS[k], { ex: L.CUENTAS[k].ex.map(expandWritten) }));
+  if (L.MENTAL[g]) mods.unshift(L.MENTAL[g]);
   const i = m.units.findIndex(u => u.id === 'msim');
   m.units.splice(i < 0 ? m.units.length : i, 0, ...mods);
 }
@@ -164,10 +167,11 @@ for (const g in GRADES) GRADES[g].forEach(s => s.units.forEach(u => {
 
 /* validaciones */
 for (const g in GRADES) GRADES[g].forEach(s => {
-  const ids = new Set();
+  const ids = new Set(), names = new Set();
   s.units.forEach(u => {
     if (ids.has(u.id)) throw new Error('Módulo repetido en ' + g + 'º ' + s.id + ': ' + u.id);
-    ids.add(u.id);
+    if (names.has(u.name)) throw new Error('Dos módulos con el mismo nombre en ' + g + 'º ' + s.id + ': ' + u.name);
+    ids.add(u.id); names.add(u.name);
     if (!u.rules) throw new Error('Módulo sin explicación: ' + g + 'º ' + s.id + '.' + u.id);
     u.ex.forEach((e, i) => {
       const at = g + 'º ' + s.id + '.' + u.id + ' #' + (i + 1);

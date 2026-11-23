@@ -90,7 +90,7 @@ ex:[
  {t:"fill",q:"6. Tenía <b>12</b> bolitas y gané <b>7</b>. ¿Cuántas tengo?",labels:["Respuesta"],a:["19"]},
  {t:"fill",q:"7. Había <b>18</b> pájaros y se fueron <b>9</b>. ¿Cuántos quedaron?",labels:["Respuesta"],a:["9"]},
  {t:"fill",q:"8. Descomponé",labels:["84 ="],a:["80+4"]},
- {t:"fill",q:"9. Resolvé",labels:["33 + 25"],a:["58"]}
+ {t:"col",op:"+",n:[33,25],q:"9. Resolvé la cuenta"}
 ]}
 ];
 

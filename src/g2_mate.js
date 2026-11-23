@@ -146,7 +146,7 @@ ex:[
  {t:"fill",q:"Escribí la palabra completa",labels:["CA_A (donde vivimos)","SO_ (brilla en el cielo)","ME_A (para comer)"],a:["casa","sol","mesa"]},
  {t:"choice",q:"¿Con qué letra empieza <b>PELOTA</b>?",o:["P","B","T"],a:0},
  {t:"choice",q:"¿Cuántas letras tiene <b>SOL</b>?",o:["3","2","4"],a:0},
- {t:"open",q:"Escribí una lista de tus 4 juegos preferidos",model:"Una cosa por renglón. Revisá con ella que cada palabra diga lo que quiso escribir, leyéndola con el dedo."},
+ {t:"open",q:"Escribí una lista de tus 4 juegos preferidos",model:"Una cosa por renglón. Revisá juntos que cada palabra diga lo que quiso escribir, leyéndola con el dedo."},
  {t:"open",q:"Escribí la lista de los personajes de un cuento que conozcas",model:"Que nombre a todos los personajes importantes del cuento. Los nombres propios, con mayúscula."}
 ]},
 

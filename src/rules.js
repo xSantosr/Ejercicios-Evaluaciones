@@ -240,7 +240,7 @@ El primer número dice <b>cuántos grupos hay</b>; el segundo, <b>cuánto hay en
 <div class="rrow"><span class="rl">Después</span><span class="ra">contar con tus palabras</span></div></div>
 <div class="rsec"><h4>Anticipar no es adivinar</h4>
 <p class="exline">Cuando mirás la tapa y decís de qué va a tratar, tenés que poder explicar <b>en qué te basaste</b>: algo que se ve en el dibujo o que dice el título.</p>
-<div class="warn"><b>Para el adulto:</b> esta unidad casi no se corrige sola, porque las respuestas dependen del ejemplar que ella tiene delante. Lo que se evalúa no es acertar, sino que <b>sostenga lo que dice con algo del libro</b>. Tené el libro al lado.</div></div>`,
+<div class="warn"><b>Para el adulto:</b> esta unidad casi no se corrige sola, porque las respuestas dependen del ejemplar que tiene delante. Lo que se evalúa no es acertar, sino que <b>sostenga lo que dice con algo del libro</b>. Tené el libro al lado.</div></div>`,
 
 "lengua.l2":`
 <div class="rsec"><h4>La regla de oro de la comprensión</h4>

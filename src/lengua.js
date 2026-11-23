@@ -6,11 +6,11 @@ rules:`
 <div class="rrow"><span class="rl">Antes de leer</span><span class="ra">mirar la tapa y anticipar</span></div>
 <div class="rrow"><span class="rl">Durante</span><span class="ra">anotar dudas y detalles</span></div>
 <div class="rrow"><span class="rl">Después</span><span class="ra">contar con tus palabras</span></div>
-<div class="warn"><b>Para el adulto:</b> esta unidad casi no se autocorrige, porque las respuestas dependen del ejemplar que ella tiene. Us&aacute; el libro al lado y escuch&aacute; c&oacute;mo justifica. Lo que se eval&uacute;a es que <b>sostenga lo que dice con algo del libro</b>, no que acierte una respuesta.</div></div>`,
+<div class="warn"><b>Para el adulto:</b> esta unidad casi no se autocorrige, porque las respuestas dependen del ejemplar que tiene. Us&aacute; el libro al lado y escuch&aacute; c&oacute;mo justifica. Lo que se eval&uacute;a es que <b>sostenga lo que dice con algo del libro</b>, no que acierte una respuesta.</div></div>`,
 ex:[
  {t:"open",q:"Mirá la tapa. ¿Qué personajes aparecen? ¿De qué pensás que va a tratar el cuento? ¿Qué te hace pensar eso?",model:"No hay una respuesta correcta: es una hipótesis. Lo que importa es que la justifique con algo que VE en la tapa («porque el perro está arriba de la cama», «porque el nene tiene cara de…»)."},
  {t:"fill",q:"¿Cómo se llama el perro?",labels:[""],a:["clovis"]},
- {t:"open",q:"Anotá una pregunta que te haya surgido mientras leías",model:"Cualquier pregunta genuina sirve. Si no se le ocurre ninguna, releé con ella una página y preguntale qué le llamó la atención."},
+ {t:"open",q:"Anotá una pregunta que te haya surgido mientras leías",model:"Cualquier pregunta genuina sirve. Si no se le ocurre ninguna, relean juntos una página y preguntale qué le llamó la atención."},
  {t:"open",q:"Elegí una ilustración que te haya llamado la atención y contá por qué",model:"Se busca que describa lo que ve y que diga qué le produjo. Pedile que señale la página."},
  {t:"open",q:"¿Qué quiere averiguar el niño?",model:"La idea central: el nene quiere saber cómo hace su mamá para estar tan segura de que él no es un perro."},
  {t:"open",q:"¿Qué relación hay entre el niño y Clovis?",model:"Son amigos, compañeros, hacen todo juntos. Si dice «son amigos» a secas, pedile un ejemplo del libro."}

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ejercicios y evaluaciones · 3er grado</title>
+<title>Cuadernillo de práctica — ingreso a 3er grado</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -292,7 +292,7 @@ function paintHeader(){
   const icon=isDark()?"☀️":"🌙";
   if(view==="home"){
     hd.style.background="linear-gradient(135deg,#FF9F5A,#FF7A8A)";
-    inn.innerHTML='<div class="hrow"><div style="flex:1"><h1>Ejercicios y evaluaciones 🌟</h1>'+
+    inn.innerHTML='<div class="hrow"><div style="flex:1"><h1>Cuadernillo de práctica 🌟</h1>'+
       '<p>Ingreso a 3er grado · elegí una materia</p></div>'+
       '<button class="ic" id="th" aria-label="Cambiar tema">'+icon+'</button></div>';
   }else{
@@ -331,12 +331,12 @@ function drawHome(box){
   });
   const t=document.createElement("div"); t.className="steps";
   t.innerHTML='<h3>📌 Cómo está organizado</h3><ol>'+
-    '<li><b>Inglés 2º y 3º:</b> los dos entran en la prueba de inglés. Empezá por 2º, que es la base, y seguí con 3º.</li>'+
-    '<li><b>Matemática y Lengua:</b> cuadernillo de ingreso a 3er grado. Una parte por día, sin apurar.</li>'+
+    '<li><b>Inglés:</b> todo entra en la prueba. Seguí los módulos en orden: los primeros son la base de los últimos.</li>'+
+    '<li><b>Matemática y Lengua:</b> una parte por día, sin apurar.</li>'+
     '<li>Cada módulo se responde <b>una sola vez</b>. Al terminarlo entero se habilita la revisión.</li></ol>';
   box.appendChild(t);
   const p=document.createElement("div"); p.className="tips";
-  p.innerHTML='<b>Cómo funciona:</b> pensado para que el chico o la chica responda solo y un adulto revise después.'+
+  p.innerHTML='<b>Cómo funciona:</b> pensado para que ella responda sola y el adulto revise después.'+
     '<ul><li><b>Un solo intento</b> por ejercicio. Si se equivoca queda en rojo y no se puede volver a contestar.</li>'+
     '<li><b>Nunca se muestra la respuesta correcta</b> mientras resuelve.</li>'+
     '<li>La <b>revisión</b> y el <b>reinicio</b> piden una cuenta de adulto, para que no pueda ver respuestas ni volver a empezar por su cuenta.</li>'+

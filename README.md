@@ -6,10 +6,9 @@ Ejercicios autocorregibles para practicar en casa, pensados para que el chico o 
 
 | Materia | Módulos | Ejercicios |
 |---|---|---|
-| Inglés · 2º grado | 8 | 103 |
-| Inglés · 3º grado | 4 | 39 |
-| Matemática (ingreso a 3º) | 6 | 44 |
-| Lengua (ingreso a 3º) | 11 | 86 |
+| Inglés | 12 | 142 |
+| Matemática | 6 | 44 |
+| Lengua | 11 | 86 |
 
 ## Cómo funciona
 

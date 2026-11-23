@@ -10,19 +10,19 @@ No hace falta instalar nada ni crear una cuenta. En el celular se puede agregar 
 
 ## Qué hay
 
-| Grado | Inglés | Matemática | Lengua |
+| Para entrar a | Inglés | Matemática | Lengua |
 |---|---|---|---|
-| Ingreso a 2º | 146 | 37 | 38 |
-| Ingreso a 3º | 142 | 54 | 86 |
-| Ingreso a 4º | 78 | 41 | 41 |
-| Ingreso a 5º | 77 | 42 | 41 |
-| Ingreso a 6º | 76 | 43 | 39 |
-| Ingreso a 7º | 80 | 43 | 47 |
+| 2º grado | 146 | 37 | 38 |
+| 3º grado | 142 | 54 | 86 |
+| 4º grado | 78 | 41 | 41 |
+| 5º grado | 77 | 42 | 41 |
+| 6º grado | 76 | 43 | 39 |
+| 7º grado | 80 | 43 | 47 |
 
 En total, 1.151 ejercicios.
 
 - **Inglés:** cubre el programa del grado anterior y el del grado al que se ingresa.
-- **Matemática y Lengua:** siguen los contenidos de ingreso de la escuela.
+- **Matemática y Lengua:** siguen los contenidos de ingreso de la escuela, es decir, lo que hay que saber del grado anterior.
 - Cada materia está dividida en módulos cortos, y cada módulo termina con un simulacro de examen.
 
 ## Cómo funciona

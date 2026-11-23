@@ -33,23 +33,23 @@ const subj = (id, name, emo, tag, desc, units) =>
 
 const GRADES = {
   '2': [subj('ing', 'Inglés', '🇬🇧', 'Prueba de inglés', 'Programas de 1º y 2º · Open Day Starter y Open Day 1', L.G2_ING1.concat(ING2_BASE, RES)),
-        subj('mate', 'Matemática', '🔢', 'Ingreso', 'Cálculos, números hasta 100 y problemas', L.G2_MATE),
-        subj('lengua', 'Lengua', '📖', 'Ingreso', 'Nombres, calendario, cuentos, rimas y listas', L.G2_LENGUA)],
+        subj('mate', 'Matemática', '🔢', '', 'Cálculos, números hasta 100 y problemas', L.G2_MATE),
+        subj('lengua', 'Lengua', '📖', '', 'Nombres, calendario, cuentos, rimas y listas', L.G2_LENGUA)],
   '3': [subj('ing2', 'Inglés', '🇬🇧', 'Prueba de inglés', 'Programas de 2º y 3º · Open Day 1 y Brighter Ideas 2', ING2_BASE.concat(ING3U, RES)),
-        subj('mate', 'Matemática', '🔢', 'Ingreso', 'Números, series, cuentas y problemas', mate3),
-        subj('lengua', 'Lengua', '📖', 'Ingreso', 'Lectura, escritura, poesía y ortografía', len3)],
+        subj('mate', 'Matemática', '🔢', '', 'Números, series, cuentas y problemas', mate3),
+        subj('lengua', 'Lengua', '📖', '', 'Lectura, escritura, poesía y ortografía', len3)],
   '4': [subj('ing', 'Inglés', '🇬🇧', 'Prueba de inglés', 'Programas de 3º y 4º · Brighter Ideas 2 y Metro Starter', ING3U.concat(L.G4.ing)),
-        subj('mate', 'Matemática', '🔢', 'Ingreso', 'Números hasta 10.000, dobles, multiplicación y repartos', L.G4.mate),
-        subj('lengua', 'Lengua', '📖', 'Ingreso', 'Irulana y el ogronte, clásicos, instructivos y puntuación', L.G4.lengua)],
+        subj('mate', 'Matemática', '🔢', '', 'Números hasta 10.000, dobles, multiplicación y repartos', L.G4.mate),
+        subj('lengua', 'Lengua', '📖', '', 'Irulana y el ogronte, clásicos, instructivos y puntuación', L.G4.lengua)],
   '5': [subj('ing', 'Inglés', '🇬🇧', 'Prueba de inglés', 'Programas de 4º y 5º · Metro Starter y Metro 1', L.G4.ing.concat(L.G5.ing)),
-        subj('mate', 'Matemática', '🔢', 'Ingreso', 'Cálculo mental, división, fracciones y proporcionalidad', L.G5.mate),
-        subj('lengua', 'Lengua', '📖', 'Ingreso', 'Leyendas, relatos de animales, Peter Pan y tildes', L.G5.lengua)],
+        subj('mate', 'Matemática', '🔢', '', 'Cálculo mental, división, fracciones y proporcionalidad', L.G5.mate),
+        subj('lengua', 'Lengua', '📖', '', 'Leyendas, relatos de animales, Peter Pan y tildes', L.G5.lengua)],
   '6': [subj('ing', 'Inglés', '🇬🇧', 'Prueba de inglés', 'Programas de 5º y 6º · Metro 1 y Metro 2', L.G5.ing.concat(L.G6.ing)),
-        subj('mate', 'Matemática', '🔢', 'Ingreso', 'Propiedades, múltiplos, fracciones, decimales y triángulos', L.G6.mate),
-        subj('lengua', 'Lengua', '📖', 'Ingreso', 'Narrador, aventuras, humor y ortografía', L.G6.lengua)],
+        subj('mate', 'Matemática', '🔢', '', 'Propiedades, múltiplos, fracciones, decimales y triángulos', L.G6.mate),
+        subj('lengua', 'Lengua', '📖', '', 'Narrador, aventuras, humor y ortografía', L.G6.lengua)],
   '7': [subj('ing', 'Inglés', '🇬🇧', 'Prueba de inglés', 'Programas de 6º y 7º · Metro 2 y Metro 3', L.G6.ing.concat(L.G7.ing)),
-        subj('mate', 'Matemática', '🔢', 'Ingreso', 'División, decimales, proporcionalidad y ángulos', L.G7.mate),
-        subj('lengua', 'Lengua', '📖', 'Ingreso', 'Lo fantástico, mitos griegos, clásicos y gramática', L.G7.lengua)]
+        subj('mate', 'Matemática', '🔢', '', 'División, decimales, proporcionalidad y ángulos', L.G7.mate),
+        subj('lengua', 'Lengua', '📖', '', 'Lo fantástico, mitos griegos, clásicos y gramática', L.G7.lengua)]
 };
 
 /* vínculos a las fichas de libros */
@@ -89,6 +89,6 @@ fs.writeFileSync(OUT + 'config.js', 'window.EE_READY=' + JSON.stringify(Object.k
 let total = 0;
 for (const g in GRADES) {
   const line = GRADES[g].map(s => { const n = s.units.reduce((a, u) => a + u.ex.length, 0); total += n; return s.name + ' ' + n; }).join(' · ');
-  console.log('Ingreso a ' + g + 'º  ' + line);
+  console.log('Para entrar a ' + g + 'º  ' + line);
 }
 console.log('Total: ' + total + ' ejercicios · ' + L.BOOKS.length + ' fichas de libros');

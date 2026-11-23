@@ -252,7 +252,7 @@ function list(){
   const box=document.getElementById("content"); box.innerHTML="";
   ["2","3","4","5","6","7"].forEach(g=>{
     const bs=BOOKS.filter(b=>b.grade===g); if(!bs.length) return;
-    const s=document.createElement("p"); s.className="shelf"; s.textContent="Ingreso a "+g+"º grado"; box.appendChild(s);
+    const s=document.createElement("p"); s.className="shelf"; s.textContent="Para entrar a "+g+"º grado"; box.appendChild(s);
     bs.forEach(b=>{
       const a=document.createElement("a"); a.className="bk"; a.href="#"+b.id; a.style.setProperty("--tab",b.color);
       a.innerHTML='<span class="spine">'+b.emo+'</span><span><h3>'+esc(b.title)+'</h3><p>'+esc(b.author)+'</p><p>'+esc(b.genre)+'</p></span>';
@@ -268,7 +268,7 @@ function detail(b){
   const li=a=>'<ul>'+a.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul>';
   box.innerHTML=
    '<div class="cover" style="--tab:'+b.color+'"><span class="spine">'+b.emo+'</span><div><h2>'+esc(b.title)+'</h2>'+
-   '<p><b>Autor/a:</b> '+esc(b.author)+'</p><p><b>Ilustraciones:</b> '+esc(b.illus)+'</p><p>'+esc(b.genre)+' · Ingreso a '+b.grade+'º grado</p></div></div>'+
+   '<p><b>Autor/a:</b> '+esc(b.author)+'</p><p><b>Ilustraciones:</b> '+esc(b.illus)+'</p><p>'+esc(b.genre)+' · Para entrar a '+b.grade+'º grado</p></div></div>'+
    '<div class="sec"><h3>De qué trata</h3><p>'+esc(b.summary)+'</p></div>'+
    '<div class="sec"><h3>Personajes</h3>'+li(b.characters)+'</div>'+
    '<div class="sec"><h3>Temas</h3><div class="chipset">'+b.themes.map(t=>'<span>'+esc(t)+'</span>').join("")+'</div></div>'+

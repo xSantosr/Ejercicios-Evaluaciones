@@ -252,12 +252,12 @@ function wipeUnit(s,u){ const pf=G+"-"+s+"."+u+"."; Object.keys(ST).forEach(x=>{
 
 /* ---------- grados ---------- */
 const CATALOG=[
- {g:"2",label:"Ingreso a 2º grado",c1:"#E0A21B",c2:"#E0A21B"},
- {g:"3",label:"Ingreso a 3º grado",c1:"#E2643E",c2:"#E2643E"},
- {g:"4",label:"Ingreso a 4º grado",c1:"#C9468A",c2:"#C9468A"},
- {g:"5",label:"Ingreso a 5º grado",c1:"#7A5FD6",c2:"#7A5FD6"},
- {g:"6",label:"Ingreso a 6º grado",c1:"#2386B8",c2:"#2386B8"},
- {g:"7",label:"Ingreso a 7º grado",c1:"#2E8A57",c2:"#2E8A57"}
+ {g:"2",label:"2º grado",c1:"#E0A21B",c2:"#E0A21B"},
+ {g:"3",label:"3º grado",c1:"#E2643E",c2:"#E2643E"},
+ {g:"4",label:"4º grado",c1:"#C9468A",c2:"#C9468A"},
+ {g:"5",label:"5º grado",c1:"#7A5FD6",c2:"#7A5FD6"},
+ {g:"6",label:"6º grado",c1:"#2386B8",c2:"#2386B8"},
+ {g:"7",label:"7º grado",c1:"#2E8A57",c2:"#2E8A57"}
 ];
 window.GRADES=window.GRADES||{};
 function gradeInfo(g){ return CATALOG.find(x=>x.g===g); }
@@ -386,7 +386,7 @@ function draw(){
 function subjColor(s){ return s.id==="mate"?"var(--c-mat)":(s.id==="lengua"?"var(--c-len)":"var(--c-ing)"); }
 function drawGrades(box){
   const t=document.createElement("p"); t.className="score"; t.style.margin="18px 0 0";
-  t.textContent="¿A qué grado va a entrar?"; box.appendChild(t);
+  t.textContent="Elegí el grado al que va a entrar"; box.appendChild(t);
   CATALOG.forEach(gi=>{
     const ready=(window.EE_READY||[]).indexOf(gi.g)>=0;
     const b=document.createElement("button");
@@ -394,14 +394,14 @@ function drawGrades(box){
     b.style.setProperty("--tab",gi.c1);
     b.innerHTML='<span class="tab"></span><span class="body"><span class="top">'+
       '<span class="gnum">'+gi.g+'º</span><span><h3>'+gi.label+'</h3>'+
-      '<p style="margin:2px 0 0">'+(ready?"Inglés, Matemática y Lengua":"Próximamente")+'</p></span></span></span>';
+      '<p style="margin:2px 0 0">'+(ready?"Para entrar a "+gi.g+"º · Inglés, Matemática y Lengua":"Próximamente")+'</p></span></span></span>';
     if(ready) b.onclick=()=>selectGrade(gi.g); else b.disabled=true;
     box.appendChild(b);
   });
   const p=document.createElement("div"); p.className="tips";
   const lb=document.createElement("a"); lb.className="booklink"; lb.href="libro.html"; lb.style.margin="16px 0 0";
   lb.innerHTML='📚 <b>Biblioteca:</b> fichas de los libros de lectura'; box.appendChild(lb);
-  p.innerHTML='<b>¿Qué grado elijo?</b> El grado al que el chico o la chica va a entrar. Si termina 2º, elegí «Ingreso a 3º grado».';
+  p.innerHTML='<b>¿Qué grado elijo?</b> El grado al que el chico o la chica <b>va a entrar</b>, no el que está cursando. Quien termina 2º elige «3º grado».';
   box.appendChild(p);
 }
 
@@ -413,7 +413,7 @@ function drawHome(box){
     b.className="subj "+(s.id==="mate"?"grid":"lined");
     b.style.setProperty("--tab",subjColor(s));
     b.innerHTML='<span class="tab"></span><span class="body"><span class="top"><span class="emo">'+s.emo+'</span><h3>'+s.name+'</h3>'+
-      '<span class="tag">'+s.tag+'</span></span><p>'+s.desc+'</p>'+
+      (s.tag?'<span class="tag">'+s.tag+'</span>':'')+'</span><p>'+s.desc+'</p>'+
       '<span class="bar" style="display:block"><i style="width:'+pct+'%"></i></span>'+
       '<span class="pg" style="display:block">'+st.done+' de '+st.total+' respondidos</span></span>';
     b.onclick=()=>{ si=i; ui=0; showRev=false; view="subject"; draw(); };
@@ -722,12 +722,7 @@ function bOpen(ctx){
 }
 
 /* ---------- arranque ---------- */
-(function(){
-  let g=null;
-  try{ g=localStorage.getItem("ee_grado"); if(!g && localStorage.getItem("cuadernillo_v5")) g="3"; }catch(e){}
-  if(g && (window.EE_READY||[]).indexOf(g)>=0) selectGrade(g);
-  else draw();
-})();
+draw();   /* siempre arranca en la selección de grados */
 </script>
 </body>
 </html>

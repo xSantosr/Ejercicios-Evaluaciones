@@ -190,6 +190,19 @@ nav{position:sticky;top:0;z-index:20;background:var(--paper);padding:10px 0 9px;
 .fr input.bad{background:var(--bdbg);border-color:var(--bdbd);color:var(--bdtx)}
 .frop{font-size:23px;font-weight:700;color:var(--muted)}
 .divwrap{overflow-x:auto;margin:6px 0 2px}
+.filacalc{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 2px}
+.lineacalc{display:flex;align-items:center;gap:10px}
+.lineacalc .expr{font-size:23px;font-weight:700;font-variant-numeric:tabular-nums}
+.lineacalc .fin{max-width:5.2em;text-align:center}
+.lineacalc .lbl{font-size:15.5px;color:var(--muted);font-weight:700}
+.ayuda{border:1px dashed var(--line);border-radius:12px;padding:8px 12px;background:var(--field);flex:0 1 auto}
+.ayuda[open]{flex-basis:100%;padding-bottom:10px}
+.ayuda summary{font-size:15px;font-weight:700;color:var(--blue);cursor:pointer;list-style:none;display:flex;align-items:center;gap:7px}
+.ayuda summary::-webkit-details-marker{display:none}
+.ayuda summary::after{content:"\25B8";margin-left:7px;transition:.2s}
+.ayuda[open] summary::after{transform:rotate(90deg)}
+.ayuda .cuenta,.ayuda .casita{background:var(--sheet);margin-top:9px}
+.ayudanota{font-size:13px;color:var(--dim);margin:9px 0 0;line-height:1.45}
 .horiz{font-size:22px;font-weight:700;color:var(--ink);margin:1px 0 2px;font-variant-numeric:tabular-nums}
 .dosformas{border-left:3px solid var(--tab,var(--ink));padding-left:11px;margin:4px 0 2px}
 .casita{--cw:1.9em;display:flex;align-items:flex-start;background:var(--field);border:1px solid var(--line);
@@ -588,6 +601,21 @@ function reviewPanel(s,u){
       const bad=(sv.m||[]).filter(p=>p[0]!==p[1]);
       h+='<div class="rline '+(sv.ok?"rright":"rwrong")+'">'+(sv.ok?"✅ Todos los pares bien":"❌ "+bad.length+" par"+(bad.length>1?"es":"")+" mal")+'</div>';
       bad.forEach(p=>{ h+='<div class="rline rwrong">· Unió <span>'+ex.pairs[p[0]][0]+'</span> con <span>'+ex.pairs[p[1]][1]+'</span> → era <span>'+ex.pairs[p[0]][1]+'</span></div>'; });
+    }else if(ex.both){
+      const v=sv.v||{}, esDiv=ex.t==="div";
+      const corr=esDiv? ex.co+" y sobran "+ex.r : ex.res.trim();
+      const mio=esDiv? ((v.a1||"—")+" y sobran "+(v.a2||"—")) : (v.a1||"(vacío)");
+      h+='<div class="rline '+(sv.ok?"rright":"rwrong")+'">'+(sv.ok?"✅":"❌")+' '+
+         (esDiv? ex.D+" ÷ "+ex.d : ex.n.join(" "+ex.op+" "))+' → respondió <span>'+mio+'</span></div>';
+      if(!sv.ok) h+='<div class="rline rright">✔ Correcta: <span>'+corr+'</span></div>';
+      if(esDiv){
+        const r=Number(ex.r);
+        h+='<div class="rexp">💡 <b>Qué significa:</b> se reparten '+ex.D+' entre '+ex.d+'. A cada uno le tocan <b>'+ex.co+'</b> y '+
+           (r===0?'no sobra nada: el reparto es exacto.':'sobran <b>'+ex.r+'</b>, que es el <b>resto</b>.')+
+           '<br><b>Comprobación:</b> '+ex.d+' × '+ex.co+(r===0?'':' + '+ex.r)+' = '+ex.D+'. '+
+           'Y el resto siempre tiene que ser <b>menor que '+ex.d+'</b>.</div>';
+      }
+      if(v.borrador) h+='<div class="rexp">✏️ Usó la cuenta escrita como ayuda.</div>';
     }else if(ex.t==="col"){
       const mine=((sv.v&&sv.v.res)||[]).join("").replace(/^0+(?=\d)/,"")||"(vacío)";
       h+='<div class="rline '+(sv.ok?"rright":"rwrong")+'">'+(sv.ok?"✅":"❌")+' '+
@@ -636,6 +664,7 @@ function card(ex,i,s,u){
   c.innerHTML=h;
   const ctx={s:s.id,u:u.id,i:i,saved:get(s.id,u.id,i),ex:ex,locked:reviewed(s.id,u.id)};
   const B={choice:bChoice,match:bMatch,order:bOrder,open:bOpen,col:bCol,div:bDiv,frac:bFrac};
+  if(ex.both) return (c.appendChild(bLinea(ctx)),c);
   if(ex.t==="spell") c.appendChild(bFill(ctx,true));
   else if(ex.t==="fill") c.appendChild(bFill(ctx,false));
   else if(B[ex.t]) c.appendChild(B[ex.t](ctx));
@@ -934,25 +963,13 @@ function wireRightToLeft(seq){
 }
 function cellOK(v,c){ return c===" " ? (v===""||v==="0") : v===c; }
 
-/* la misma cuenta, en línea y en columna */
-function dosFormas(wrap,partes,op,comoAbajo){
-  const d=document.createElement("div"); d.className="dosformas";
-  d.innerHTML='<p class="carrylab">Así se escribe en línea:</p>'+
-    '<div class="horiz">'+partes.join(" "+op+" ")+' =</div>'+
-    '<p class="carrylab" style="margin-top:9px">Y así, '+comoAbajo+':</p>';
-  wrap.appendChild(d);
-}
-
-function bCol(ctx){
-  const ex=ctx.ex, sv=ctx.saved, answered=!!(sv&&sv.answered);
-  const W=ex.w, saved=(sv&&sv.v)||{}, locked=answered||ctx.locked;
-  const wrap=document.createElement("div");
+/* ---------- dibujo de la cuenta parada ---------- */
+function colBox(ex,saved,locked){
+  const W=ex.w, seq=[], resIn=[], partIn=[], carryIn=[];
   const box=document.createElement("div"); box.className="cuenta"; box.style.setProperty("--w",W);
-  const seq=[], resIn=[], partIn=[], carryIn=[];
   const row=()=>{ const d=document.createElement("div"); d.className="crow"; box.appendChild(d); return d; };
   const cell=(p,t,c)=>{ const s=document.createElement("span"); s.className="dg"+(c?" "+c:""); s.textContent=t==null?"":t; p.appendChild(s); };
   const line=()=>{ const r=row(); const l=document.createElement("i"); l.className="cline"; r.appendChild(l); };
-
   if(ex.carry!==false){
     const lab=document.createElement("p"); lab.className="carrylab"; lab.textContent="Me llevo…"; box.appendChild(lab);
     const r=row(); cell(r,"");
@@ -972,41 +989,215 @@ function bCol(ctx){
     for(let j=0;j<W;j++){
       if(j>=start && j<end){
         const i=digitField(r,"dgi",((saved.parts||[])[k]||[])[j-start],locked);
-        if(answered) i.classList.add(i.value===pt.d[j-start]?"ok":"bad");
         arr.push(i); seq.push(i);
       }else cell(r,"");
     }
     partIn.push(arr);
   });
   if(ex.parts&&ex.parts.length) line();
-
   const rr=row(); cell(rr,"","sign");
   for(let j=0;j<W;j++){
     const c=ex.res[j];
     if(c===","){ cell(rr,","); resIn.push(null); continue; }
     const i=digitField(rr,"dgi",(saved.res||[])[j],locked);
-    if(answered) i.classList.add(cellOK(i.value,c)?"ok":"bad");
     resIn.push(i); seq.push(i);
   }
-  wireRightToLeft(seq);
   carryIn.forEach(i=>{ if(i) i.addEventListener("input",()=>{ i.value=i.value.replace(/[^0-9]/g,"").slice(-1); }); });
+  wireRightToLeft(seq);
+  const read=()=>({res:resIn.map(x=>x?x.value:","),parts:partIn.map(a=>a.map(x=>x.value)),carry:carryIn.map(x=>x?x.value:"")});
+  const paint=()=>{
+    resIn.forEach((i,j)=>{ if(i) i.classList.add(cellOK(i.value,ex.res[j])?"ok":"bad"); });
+    partIn.forEach((a,k)=>a.forEach((i,j)=>i.classList.add(i.value===ex.parts[k].d[j]?"ok":"bad")));
+  };
+  const check=()=>resIn.every((i,j)=>!i||cellOK(i.value,ex.res[j])) &&
+                  partIn.every((a,k)=>a.every((i,j)=>i.value===ex.parts[k].d[j]));
+  const lock=()=>{ [...resIn,...partIn.flat(),...carryIn].forEach(i=>{ if(i) i.disabled=true; }); };
+  const empty=()=>resIn.every(x=>!x||!x.value);
+  const resultado=()=>resIn.map(x=>x?x.value:",").join("").replace(/^0+(?=[\d,])/,"");
+  return {box,read,paint,check,lock,empty,resultado,resIn};
+}
 
-  if(ex.both) dosFormas(wrap,ex.n.map(String),ex.op,"en columna");
-  wrap.appendChild(box);
-  const btn=document.createElement("button"); btn.className="go"; btn.style.display="block";
-  btn.textContent=answered?"Respondido":"Responder"; btn.disabled=locked;
+/* ---------- dibujo de la casita ---------- */
+function divBox(ex,saved,locked){
+  const W=ex.w, seq=[], qIn=[], stepIn=[], restIn=[];
+  const rw=String(ex.d-1).length, rstr=ex.r.padStart(rw," ");
+  const outer=document.createElement("div"); outer.className="divwrap";
+  const box=document.createElement("div"); box.className="casita"; outer.appendChild(box);
+  const left=document.createElement("div"); left.className="cleft";
+  const right=document.createElement("div"); right.className="cright";
+  box.appendChild(left); box.appendChild(right);
+  const grid=(p,cols)=>{ const d=document.createElement("div"); d.className="crow"; d.style.setProperty("--w",cols); p.appendChild(d); return d; };
+  const cell=(p,t,c)=>{ const s=document.createElement("span"); s.className="dg"+(c?" "+c:""); s.textContent=t==null?"":t; p.appendChild(s); };
+  const r0=grid(left,W); cell(r0,"","sign");
+  for(let j=0;j<W;j++) cell(r0, String(ex.D)[j]);
+  const lastStep=(ex.steps||[]).length-1;
+  (ex.steps||[]).forEach((st,k)=>{
+    const pr=grid(left,W); cell(pr,"−","sign");
+    const ps=st.prod.padStart(st.col+1," ").padEnd(W," "); const arrP=[];
+    for(let j=0;j<W;j++){
+      if(ps[j]===" "){ cell(pr,""); continue; }
+      const i=digitField(pr,"dgi",((saved.steps||[])[k]||{p:[]}).p[arrP.length],locked); arrP.push(i); seq.push(i);
+    }
+    const lr=grid(left,W); const l=document.createElement("i"); l.className="cline"; lr.appendChild(l);
+    const rr=grid(left,W); cell(rr, k===lastStep?"resto":"", k===lastStep?"lbl":"sign");
+    const rs=st.rem.padStart(st.col+1," ").padEnd(W," "); const arrR=[];
+    for(let j=0;j<W;j++){
+      if(st.next!=null && j===st.col+1){ cell(rr, st.next, "bajada"); continue; }
+      if(rs[j]===" "){ cell(rr,""); continue; }
+      const i=digitField(rr,"dgi",((saved.steps||[])[k]||{r:[]}).r[arrR.length],locked); arrR.push(i); seq.push(i);
+    }
+    stepIn.push({p:arrP,r:arrR,ps:ps.replace(/ /g,""),rs:st.rem});
+  });
+  if(!ex.steps){
+    const lr=grid(left,W); const l=document.createElement("i"); l.className="cline"; lr.appendChild(l);
+    const rr=grid(left,W); cell(rr,"resto","lbl");
+    const sv0=(saved.rest&&saved.rest.length===rw)?saved.rest:[];
+    for(let j=0;j<W;j++){
+      if(j<W-rw){ cell(rr,""); continue; }
+      const i=digitField(rr,"dgi",sv0[j-(W-rw)],locked); restIn.push(i); seq.push(i);
+    }
+  }
+  const Wq=Math.max(String(ex.d).length, ex.co.length);
+  const dr=grid(right,Wq), dstr=String(ex.d).padEnd(Wq," ");
+  for(let j=0;j<Wq;j++) cell(dr, dstr[j]===" "?"":dstr[j]);
+  const ql=document.createElement("div"); ql.className="cqline"; right.appendChild(ql);
+  const qr=grid(right,Wq), qstr=ex.co.padEnd(Wq," ");
+  for(let j=0;j<Wq;j++){
+    if(qstr[j]===" "){ cell(qr,""); qIn.push(null); continue; }
+    const i=digitField(qr,"dgi",(saved.q||[])[j],locked); qIn.push(i); seq.push(i);
+  }
+  wireRightToLeft(seq);
+  const read=()=>({q:qIn.map(x=>x?x.value:""),steps:stepIn.map(s=>({p:s.p.map(i=>i.value),r:s.r.map(i=>i.value)})),rest:restIn.map(i=>i.value)});
+  const paint=()=>{
+    qIn.forEach((i,j)=>{ if(i) i.classList.add(i.value===qstr[j]?"ok":"bad"); });
+    stepIn.forEach(s=>{ s.p.forEach((i,j)=>i.classList.add(i.value===s.ps[j]?"ok":"bad"));
+                        s.r.forEach((i,j)=>i.classList.add(i.value===s.rs[j]?"ok":"bad")); });
+    restIn.forEach((i,j)=>i.classList.add(cellOK(i.value,rstr[j])?"ok":"bad"));
+  };
+  const check=()=>qIn.every((i,j)=>!i||i.value===qstr[j]) &&
+    stepIn.every(s=>s.p.every((i,j)=>i.value===s.ps[j]) && s.r.every((i,j)=>i.value===s.rs[j])) &&
+    restIn.every((i,j)=>cellOK(i.value,rstr[j]));
+  const lock=()=>{ [...qIn,...restIn,...stepIn.flatMap(s=>[...s.p,...s.r])].forEach(i=>{ if(i) i.disabled=true; }); };
+  const empty=()=>qIn.every(x=>!x||!x.value);
+  const cociente=()=>qIn.map(x=>x?x.value:"").join("");
+  const resto=()=>restIn.map(i=>i.value).join("").replace(/^0+(?=\d)/,"");
+  return {box:outer,read,paint,check,lock,empty,cociente,resto,qIn};
+}
+
+function botonResponder(answered,locked){
+  const b=document.createElement("button"); b.className="go"; b.style.display="block";
+  b.textContent=answered?"Respondido":"Responder"; b.disabled=locked; return b;
+}
+
+/* ---------- cuenta parada corregida (desde 4º) ---------- */
+function bCol(ctx){
+  const ex=ctx.ex, sv=ctx.saved, answered=!!(sv&&sv.answered), locked=answered||ctx.locked;
+  const C=colBox(ex,(sv&&sv.v)||{},locked);
+  if(answered){ C.paint(); }
+  const wrap=document.createElement("div");
+  wrap.appendChild(C.box);
+  const btn=botonResponder(answered,locked);
   btn.onclick=()=>{
     if(btn.disabled) return;
-    const vr=resIn.map(x=>x?x.value:",");
-    if(resIn.every(x=>!x||!x.value)){ const l=seq[seq.length-1]; l.classList.add("sh"); setTimeout(()=>l.classList.remove("sh"),340); return; }
-    let all=true;
-    resIn.forEach((i,j)=>{ if(!i) return; const g=cellOK(i.value,ex.res[j]); if(!g) all=false; i.disabled=true; i.classList.add(g?"ok":"bad"); });
-    const vp=partIn.map((arr,k)=>arr.map((i,j)=>{
-      const g=i.value===ex.parts[k].d[j]; if(!g) all=false; i.disabled=true; i.classList.add(g?"ok":"bad"); return i.value;
-    }));
-    carryIn.forEach(i=>{ if(i) i.disabled=true; });
+    if(C.empty()){ const l=C.resIn.filter(Boolean).pop(); l.classList.add("sh"); setTimeout(()=>l.classList.remove("sh"),340); return; }
+    const ok=C.check(); C.paint(); C.lock();
     btn.disabled=true; btn.textContent="Respondido";
-    put(ctx.s,ctx.u,ctx.i,{answered:true,ok:all,v:{res:vr,parts:vp,carry:carryIn.map(x=>x?x.value:"")}});
+    put(ctx.s,ctx.u,ctx.i,{answered:true,ok,v:C.read()}); refreshScore();
+  };
+  wrap.appendChild(btn);
+  return wrap;
+}
+
+/* ---------- casita corregida (desde 4º) ---------- */
+function bDiv(ctx){
+  const ex=ctx.ex, sv=ctx.saved, answered=!!(sv&&sv.answered), locked=answered||ctx.locked;
+  const D=divBox(ex,(sv&&sv.v)||{},locked);
+  if(answered){ D.paint(); }
+  const wrap=document.createElement("div");
+  wrap.appendChild(D.box);
+  const btn=botonResponder(answered,locked);
+  btn.onclick=()=>{
+    if(btn.disabled) return;
+    if(D.empty()){ const f=D.qIn.filter(Boolean).pop(); f.classList.add("sh"); setTimeout(()=>f.classList.remove("sh"),340); return; }
+    const ok=D.check(); D.paint(); D.lock();
+    btn.disabled=true; btn.textContent="Respondido";
+    put(ctx.s,ctx.u,ctx.i,{answered:true,ok,v:D.read()}); refreshScore();
+  };
+  wrap.appendChild(btn);
+  return wrap;
+}
+
+/* ---------- 2º y 3º: en línea, con la cuenta escrita como ayuda ---------- */
+function bLinea(ctx){
+  const ex=ctx.ex, sv=ctx.saved, answered=!!(sv&&sv.answered), locked=answered||ctx.locked;
+  const esDiv=ex.t==="div", saved=(sv&&sv.v)||{};
+  const wrap=document.createElement("div");
+  const fila=document.createElement("div"); fila.className="filacalc";
+  const line=document.createElement("div"); line.className="lineacalc";
+  const expr=document.createElement("span"); expr.className="expr";
+  expr.textContent=(esDiv? ex.D+" ÷ "+ex.d : ex.n.join(" "+ex.op+" "))+" =";
+  line.appendChild(expr);
+  const campo=val=>{
+    const i=document.createElement("input");
+    i.className="fin"; i.type="text"; i.inputMode="numeric"; i.autocomplete="off";
+    i.value=val||""; if(locked) i.disabled=true; line.appendChild(i); return i;
+  };
+  const a1=campo(saved.a1);
+  let a2=null;
+  if(esDiv){
+    const l=document.createElement("span"); l.className="lbl"; l.textContent="y sobran"; line.appendChild(l);
+    a2=campo(saved.a2);
+  }
+  const bien=()=>{
+    const q=esDiv?ex.co:ex.res.trim().replace(/^0+(?=[\d,])/,"");
+    const v1=a1.value.trim().replace(/\./g,"").replace(/^0+(?=[\d,])/,"")===q.replace(/\./g,"");
+    return esDiv ? (v1 && a2.value.trim().replace(/^0+(?=\d)/,"")===ex.r) : v1;
+  };
+  if(answered){ const g=bien(); [a1,a2].forEach(i=>{ if(i) i.classList.add(g?"ok":"bad"); }); }
+  fila.appendChild(line);
+
+  /* la pestaña de ayuda: la misma cuenta, escrita */
+  const det=document.createElement("details"); det.className="ayuda";
+  if(saved.abierta) det.open=true;
+  const sum=document.createElement("summary");
+  sum.textContent=esDiv?"🏠 En la casita":"✏️ En columna";
+  det.appendChild(sum);
+  const B=esDiv? divBox(ex,saved.borrador||{},locked) : colBox(ex,saved.borrador||{},locked);
+  det.appendChild(B.box);
+  const nota=document.createElement("p"); nota.className="ayudanota";
+  nota.textContent="Esto es para ayudarte a pensar: no se corrige. Cuando la termines, escribí el resultado arriba.";
+  det.appendChild(nota);
+  fila.appendChild(det); wrap.appendChild(fila);
+
+  /* el borrador y lo escrito arriba se guardan solos */
+  let t=null;
+  const auto=()=>{ clearTimeout(t); t=setTimeout(()=>{
+    const cur=get(ctx.s,ctx.u,ctx.i)||{};
+    put(ctx.s,ctx.u,ctx.i,Object.assign({},cur,{v:Object.assign({},cur.v||{},
+      {a1:a1.value,a2:a2?a2.value:"",borrador:B.read(),abierta:det.open,aMano:aMano})}));
+  },400); };
+  det.addEventListener("toggle",auto);
+  /* si escribe arriba a mano, la columna deja de copiar */
+  let aMano=!!(saved.aMano);
+  [a1,a2].forEach(i=>{ if(i) i.addEventListener("input",()=>{ aMano=true; auto(); }); });
+  /* mientras no haya escrito arriba, lo que resuelve en la columna se copia */
+  B.box.addEventListener("input",()=>{
+    if(!aMano){
+      const r=esDiv?B.cociente():B.resultado();
+      if(r.trim()) a1.value=r.trim();
+      if(esDiv&&a2){ const rr=B.resto(); if(rr.trim()) a2.value=rr.trim(); }
+    }
+    auto();
+  });
+
+  const btn=botonResponder(answered,locked);
+  btn.onclick=()=>{
+    if(btn.disabled) return;
+    if(!a1.value.trim()){ a1.classList.add("sh"); setTimeout(()=>a1.classList.remove("sh"),340); return; }
+    const ok=bien();
+    [a1,a2].forEach(i=>{ if(i){ i.disabled=true; i.classList.add(ok?"ok":"bad"); } });
+    B.lock(); btn.disabled=true; btn.textContent="Respondido";
+    put(ctx.s,ctx.u,ctx.i,{answered:true,ok,v:{a1:a1.value,a2:a2?a2.value:"",borrador:B.read(),abierta:det.open,aMano:aMano}});
     refreshScore();
   };
   wrap.appendChild(btn);
@@ -1036,121 +1227,17 @@ function bFrac(ctx){
   bar.className="bar";
   out.appendChild(nI); out.appendChild(bar); out.appendChild(dI);
   box.appendChild(out); wrap.appendChild(box);
-
   const good=()=>ex.ans.some(p=>String(p[0])===nI.value.trim() && String(p[1])===dI.value.trim());
   if(answered){ const g=good(); nI.classList.add(g?"ok":"bad"); dI.classList.add(g?"ok":"bad"); }
   nI.addEventListener("input",()=>{ nI.value=nI.value.replace(/[^0-9]/g,""); if(nI.value.length>=1) dI.focus(); });
   dI.addEventListener("input",()=>{ dI.value=dI.value.replace(/[^0-9]/g,""); });
-
-  const btn=document.createElement("button"); btn.className="go"; btn.style.display="block";
-  btn.textContent=answered?"Respondido":"Responder"; btn.disabled=locked;
+  const btn=botonResponder(answered,locked);
   btn.onclick=()=>{
     if(btn.disabled||(!nI.value&&!dI.value)) return;
     const g=good();
     nI.disabled=dI.disabled=true; nI.classList.add(g?"ok":"bad"); dI.classList.add(g?"ok":"bad");
     btn.disabled=true; btn.textContent="Respondido";
     put(ctx.s,ctx.u,ctx.i,{answered:true,ok:g,v:{n:nI.value,d:dI.value}}); refreshScore();
-  };
-  wrap.appendChild(btn);
-  return wrap;
-}
-
-/* ---------- la casita (división) ---------- */
-function bDiv(ctx){
-  const ex=ctx.ex, sv=ctx.saved, answered=!!(sv&&sv.answered);
-  const W=ex.w, saved=(sv&&sv.v)||{}, locked=answered||ctx.locked;
-  const wrap=document.createElement("div");
-  const box=document.createElement("div"); box.className="casita";
-  const left=document.createElement("div"); left.className="cleft";
-  const right=document.createElement("div"); right.className="cright";
-  box.appendChild(left); box.appendChild(right);
-  const seq=[], qIn=[], stepIn=[];
-
-  const grid=(p,cols)=>{ const d=document.createElement("div"); d.className="crow"; d.style.setProperty("--w",cols); p.appendChild(d); return d; };
-  const cell=(p,t,c)=>{ const s=document.createElement("span"); s.className="dg"+(c?" "+c:""); s.textContent=t==null?"":t; p.appendChild(s); };
-
-  /* izquierda: el dividendo y los pasos */
-  const r0=grid(left,W); cell(r0,"","sign");
-  for(let j=0;j<W;j++) cell(r0, String(ex.D)[j]);
-
-  const rw=String(ex.d-1).length;            /* el resto nunca pasa de esto */
-  const lastStep=(ex.steps||[]).length-1;
-
-  (ex.steps||[]).forEach((st,k)=>{
-    const pr=grid(left,W); cell(pr,"−","sign");
-    const ps=st.prod.padStart(st.col+1," ").padEnd(W," ");
-    const arrP=[];
-    for(let j=0;j<W;j++){
-      if(ps[j]===" "){ cell(pr,""); continue; }
-      const i=digitField(pr,"dgi",((saved.steps||[])[k]||{p:[]}).p[arrP.length],locked);
-      if(answered) i.classList.add(i.value===ps[j]?"ok":"bad");
-      arrP.push(i); seq.push(i);
-    }
-    const lr=grid(left,W); const l=document.createElement("i"); l.className="cline"; lr.appendChild(l);
-    const rr=grid(left,W); cell(rr, k===lastStep?"resto":"", k===lastStep?"lbl":"sign");
-    const rs=st.rem.padStart(st.col+1," ").padEnd(W," ");
-    const arrR=[];
-    for(let j=0;j<W;j++){
-      if(st.next!=null && j===st.col+1){ cell(rr, st.next, "bajada"); continue; }
-      if(rs[j]===" "){ cell(rr,""); continue; }
-      const i=digitField(rr,"dgi",((saved.steps||[])[k]||{r:[]}).r[arrR.length],locked);
-      if(answered) i.classList.add(i.value===rs[j]?"ok":"bad");
-      arrR.push(i); seq.push(i);
-    }
-    stepIn.push({p:arrP,r:arrR,ps:ps.replace(/ /g,""),rs:st.rem});
-  });
-
-  /* sin pasos: una raya y el resto justo debajo del dividendo */
-  const restIn=[]; const rstr=ex.r.padStart(rw," ");
-  if(!ex.steps){
-    const lr=grid(left,W); const l=document.createElement("i"); l.className="cline"; lr.appendChild(l);
-    const rr=grid(left,W); cell(rr,"resto","lbl");
-    const sv0=(saved.rest&&saved.rest.length===rw)?saved.rest:[];
-    for(let j=0;j<W;j++){
-      if(j<W-rw){ cell(rr,""); continue; }
-      const i=digitField(rr,"dgi",sv0[j-(W-rw)],locked);
-      if(answered) i.classList.add(cellOK(i.value,rstr[j-(W-rw)])?"ok":"bad");
-      restIn.push(i); seq.push(i);
-    }
-  }
-
-  /* derecha: divisor arriba, cociente abajo */
-  const Wq=Math.max(String(ex.d).length, ex.co.length);
-  const dr=grid(right,Wq);
-  const dstr=String(ex.d).padEnd(Wq," ");
-  for(let j=0;j<Wq;j++) cell(dr, dstr[j]===" "?"":dstr[j]);
-  const ql=document.createElement("div"); ql.className="cqline"; right.appendChild(ql);
-  const qr=grid(right,Wq);
-  const qstr=ex.co.padEnd(Wq," ");
-  for(let j=0;j<Wq;j++){
-    if(qstr[j]===" "){ cell(qr,""); qIn.push(null); continue; }
-    const i=digitField(qr,"dgi",(saved.q||[])[j],locked);
-    if(answered) i.classList.add(i.value===qstr[j]?"ok":"bad");
-    qIn.push(i); seq.push(i);
-  }
-
-  wireRightToLeft(seq);
-  if(ex.both) dosFormas(wrap,[String(ex.D),String(ex.d)],"÷","en la casita");
-  const sc=document.createElement("div"); sc.className="divwrap"; sc.appendChild(box); wrap.appendChild(sc);
-
-  const btn=document.createElement("button"); btn.className="go"; btn.style.display="block";
-  btn.textContent=answered?"Respondido":"Responder"; btn.disabled=locked;
-  btn.onclick=()=>{
-    if(btn.disabled) return;
-    const vq=qIn.map(x=>x?x.value:"");
-    if(vq.every(x=>!x)){ const f=qIn.filter(Boolean).pop(); f.classList.add("sh"); setTimeout(()=>f.classList.remove("sh"),340); return; }
-    let all=true;
-    qIn.forEach((i,j)=>{ if(!i) return; const g=i.value===qstr[j]; if(!g) all=false; i.disabled=true; i.classList.add(g?"ok":"bad"); });
-    const vs=stepIn.map(s=>{
-      const p=s.p.map((i,j)=>{ const g=i.value===s.ps[j]; if(!g) all=false; i.disabled=true; i.classList.add(g?"ok":"bad"); return i.value; });
-      const r=s.r.map((i,j)=>{ const g=i.value===s.rs[j]; if(!g) all=false; i.disabled=true; i.classList.add(g?"ok":"bad"); return i.value; });
-      return {p,r};
-    });
-    const vrest=restIn.map((i,j)=>{ const g=cellOK(i.value,rstr[j]); if(!g) all=false;
-      i.disabled=true; i.classList.add(g?"ok":"bad"); return i.value; });
-    btn.disabled=true; btn.textContent="Respondido";
-    put(ctx.s,ctx.u,ctx.i,{answered:true,ok:all,v:{q:vq,steps:vs,rest:vrest}});
-    refreshScore();
   };
   wrap.appendChild(btn);
   return wrap;

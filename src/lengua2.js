@@ -92,10 +92,90 @@ const LENGUA2 = [
   h:"Mayúscula al empezar y punto al terminar.",
   model:"Revisá las dos palabras y que la oración tenga mayúscula al principio y punto al final."}
 ]}
+,
+
+{id:"l12",dot:"👏",name:"Sílabas",title:"Separar en sílabas",sub:"Fuera del programa de ingreso · práctica extra",
+
+ex:[
+ {t:"choice",e:"👏",q:"¿Cuántas sílabas tiene <b>CASA</b>?",viz:{k:"letras",w:"CASA"},
+  h:"Decila en voz alta y dale una palmada a cada golpe de voz.",o:["2","1","3"],a:0},
+ {t:"fill",e:"✂️",q:"Separá en sílabas",h:"Usá guiones entre cada golpe de voz.",
+  labels:["PELOTA","CAMINO"],a:["re:^pe[ /·-]+lo[ /·-]+ta$","re:^ca[ /·-]+mi[ /·-]+no$"]},
+ {t:"choice",e:"🔍",sobreTexto:true,q:"¿Cuál de estas separaciones de <b>CUENTO</b> está bien?",
+  o:["cuen-to","cu-en-to","c-uen-to"],a:0,
+  why:"La <b>ue</b> va junta: suena en un solo golpe de voz."},
+ {t:"fill",e:"🔢",q:"¿Cuántas sílabas tiene cada palabra? Escribí el número.",
+  h:"Contá las palmadas.",labels:["SOL","ÁRBOL","TELÉFONO"],a:["1","2","4"]},
+ {t:"choice",e:"1️⃣",q:"Una palabra de una sola sílaba se llama…",
+  o:["monosílaba","bisílaba","trisílaba"],a:0},
+ {t:"choice",e:"3️⃣",q:"¿Cuál de estas palabras tiene <b>3</b> sílabas?",
+  o:["ventana","mesa","pan"],a:0,h:"Probá con las palmadas, una por una."},
+ {t:"fill",e:"✂️",q:"Separá en sílabas",h:"Cuidado con las vocales que van juntas.",
+  labels:["ESCUELA","CUADERNO"],a:["re:^es[ /·-]+cue[ /·-]+la$","re:^cua[ /·-]+der[ /·-]+no$"]},
+ {t:"choice",e:"🔤",q:"Toda sílaba tiene por lo menos…",
+  o:["una vocal","una consonante","tres letras"],a:0},
+ {t:"open",e:"✍️",q:"Escribí tu nombre separado en sílabas y decí cuántas tiene.",
+  h:"Dale una palmada a cada golpe de voz.",
+  model:"Que el nombre quede partido en trozos que se puedan decir solos y que cada trozo tenga una vocal. El número tiene que coincidir con la cantidad de trozos."}
+]},
+
+{id:"l13",dot:"🏷️",name:"Clases de palabras",title:"Sustantivo, adjetivo, verbo y pronombre",sub:"Fuera del programa de ingreso · práctica extra",
+
+ex:[
+ {t:"choice",e:"🐈",sobreTexto:true,q:"En la oración «El gato negro duerme», ¿cuál es el <b>sustantivo</b>?",
+  o:["gato","negro","duerme"],a:0,why:"Es lo que <b>es</b>: la cosa de la que habla la oración."},
+ {t:"choice",e:"🎨",sobreTexto:true,q:"En esa misma oración, ¿cuál es el <b>adjetivo</b>?",
+  o:["negro","gato","duerme"],a:0,why:"Dice <b>cómo es</b>."},
+ {t:"choice",e:"🏃",sobreTexto:true,q:"Y en esa oración, ¿cuál es el <b>verbo</b>?",
+  o:["duerme","gato","negro"],a:0,why:"Dice <b>qué hace</b>."},
+ {t:"fill",e:"📖",sobreTexto:true,q:"Escribí el <b>verbo</b> de esta oración:<br><i>«La maestra lee un cuento.»</i>",
+  h:"¿Qué hace?",labels:[""],a:["lee"]},
+ {t:"choice",e:"🔠",q:"Un sustantivo propio siempre se escribe…",
+  o:["con mayúscula","con minúscula","entre comillas"],a:0},
+ {t:"choice",e:"📍",q:"¿Cuál de estas palabras es un sustantivo <b>propio</b>?",
+  o:["Mendoza","ciudad","grande"],a:0},
+ {t:"choice",e:"📏",q:"¿Cuál de estas palabras dice <b>cómo es</b> algo?",
+  o:["alto","salta","perro"],a:0},
+ {t:"fill",e:"🔁",q:"Escribí el pronombre que reemplaza a <b>María</b>.",
+  h:"Es una sola persona y es mujer.",labels:[""],a:["ella"]},
+ {t:"choice",e:"👥",q:"La palabra «nosotros» es…",
+  o:["un pronombre","un adjetivo","un verbo"],a:0,why:"Reemplaza a varios nombres a la vez."},
+ {t:"fill",e:"⚽",q:"Completá con el pronombre que corresponde:<br><i>«___ juego al fútbol.»</i>",
+  h:"¿Quién juega: la persona que habla?",labels:[""],a:["yo"]},
+ {t:"open",e:"✍️",q:"Escribí una oración que tenga un sustantivo, un adjetivo y un verbo. Después escribí al lado cuál es cada uno.",
+  h:"Por ejemplo: qué es, cómo es y qué hace.",
+  model:"Que la oración tenga las tres clases y que las identifique bien. Si le cuesta, hacele las tres preguntas: ¿qué es? ¿cómo es? ¿qué hace?"}
+]}
 ];
 
 
 const RULES_L2 = {
+"lengua.l12":`
+<div class="rsec"><h4>Una sílaba es un golpe de voz</h4>
+<p class="exline">Decí la palabra en voz alta y dale <b>una palmada por cada golpe</b>. Esa cantidad de palmadas es la cantidad de sílabas.</p>
+<div class="rrow"><span class="rl">pa · to</span><span class="ra">2 palmadas</span></div>
+<div class="rrow"><span class="rl">ma · ri · po · sa</span><span class="ra">4 palmadas</span></div></div>
+<div class="rsec"><h4>Toda sílaba lleva una vocal</h4>
+<p class="exline">Las vocales son <b>a e i o u</b>. Si un trozo quedó sin vocal, la separación está mal.</p></div>
+<div class="rsec"><h4>Según cuántas tiene</h4>
+<div class="rrow"><span class="rl">1 sílaba</span><span class="ra">monosílaba</span></div>
+<div class="rrow"><span class="rl">2 sílabas</span><span class="ra">bisílaba</span></div>
+<div class="rrow"><span class="rl">3 sílabas</span><span class="ra">trisílaba</span></div>
+<div class="rrow"><span class="rl">4 o más</span><span class="ra">polisílaba</span></div></div>
+<div class="rsec"><h4>Para separar, escribí guiones</h4>
+<div class="warn">Sirve el guion, la barra o un espacio: <b>pa-to</b>, <b>pa/to</b> o <b>pa to</b>.</div></div>`,
+"lengua.l13":`
+<div class="rsec"><h4>Tres preguntas para reconocerlas</h4>
+<div class="rrow"><span class="rl">¿Qué es?</span><span class="ra">sustantivo · <i>mesa, Buenos Aires</i></span></div>
+<div class="rrow"><span class="rl">¿Cómo es?</span><span class="ra">adjetivo · <i>grande</i></span></div>
+<div class="rrow"><span class="rl">¿Qué hace?</span><span class="ra">verbo · <i>corre</i></span></div>
+<p class="exline">En «la bicicleta roja anda», <i>bicicleta</i> es lo que es, <i>roja</i> es cómo es y <i>anda</i> es qué hace.</p></div>
+<div class="rsec"><h4>Sustantivo común y propio</h4>
+<div class="rrow"><span class="rl">común</span><span class="ra">nombra cualquiera: <i>ciudad</i></span></div>
+<div class="rrow"><span class="rl">propio</span><span class="ra">nombra a uno solo y va con mayúscula</span></div></div>
+<div class="rsec"><h4>Los pronombres reemplazan al nombre</h4>
+<p class="exline"><b>yo · vos · él · ella · nosotros · ustedes · ellos</b></p>
+<p class="exline">En vez de repetir «Martín», se dice «él».</p></div>`,
 "lengua.l7":`
 <div class="rsec"><h4>Cómo completar una ficha lectora</h4>
 <div class="rrow"><span class="rl">Título</span><span class="ra">está en la tapa</span></div>

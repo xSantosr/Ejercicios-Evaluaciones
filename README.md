@@ -23,6 +23,7 @@ En total, 1.244 ejercicios.
 
 - **Inglés:** cubre el programa del grado anterior y el del grado al que se ingresa.
 - **Matemática y Lengua:** siguen los contenidos de ingreso de la escuela, es decir, lo que hay que saber del grado anterior.
+- **Módulos marcados «práctica extra»:** no están en el programa de ingreso, pero se practican igual porque suelen pedirse. Hoy son dos, en 3º Lengua: **Sílabas** y **Clases de palabras**. El subtítulo del módulo lo dice, para no confundirlos con lo que la escuela sí pide.
 - **Lengua en 2º y 3º:** las consignas son cortas y de una sola idea. El 79% se corrige solo (elegir una opción o completar), y cada módulo deja **como mucho 2 consignas abiertas**, las que de verdad piden inventar: qué título le pondrías, cómo describirías un lugar. El build rechaza un módulo con más de dos, y también rechaza que la respuesta de un ejercicio esté escrita en el enunciado de otro del mismo módulo. Muchos traen una ayuda visual —la palabra en casilleros, los pasos numerados, el esqueleto del cuento— o una pista que dice **cómo** pensarlo sin decir la respuesta. El simulacro es la excepción: imita la prueba real, que es casi toda de escribir.
 - Cada materia está dividida en módulos cortos, y cada módulo termina con un simulacro de examen.
 - **Operaciones escritas (hasta 4º):** se resuelven como en el cuaderno, con un casillero por cifra.

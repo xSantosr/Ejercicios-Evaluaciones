@@ -318,6 +318,35 @@ let G=null, DATA=null;
 function kk(s,u,i){ return G+"-"+s+"."+u+"."+i; }
 function get(s,u,i){ return ST[kk(s,u,i)]||null; }
 function put(s,u,i,v){ ST[kk(s,u,i)]=v; save(); }
+/* Las respuestas se guardan por posición dentro del módulo. Si un módulo
+   cambió (otro tipo de ejercicio en ese lugar), lo guardado ya no le
+   corresponde: se descarta en vez de arrastrarlo a la consigna equivocada. */
+function sane(ex,sv){
+  if(!sv||typeof sv!=="object"||Array.isArray(sv)) return false;
+  const obj=x=>!!x&&typeof x==="object"&&!Array.isArray(x);
+  if(ex.both) return obj(sv.v)&&typeof sv.v.a1==="string";
+  switch(ex.t){
+    case "open":  return ex.paper ? typeof sv.done==="boolean" : typeof sv.v==="string";
+    case "choice": return typeof sv.p==="number";
+    case "fill": case "spell": case "order": return Array.isArray(sv.v);
+    case "match": return Array.isArray(sv.m);
+    case "col": case "div": case "frac": return obj(sv.v);
+  }
+  return true;
+}
+function descartarViejas(){
+  let n=0;
+  (DATA||[]).forEach(s=>s.units.forEach(u=>{
+    let toco=false;
+    u.ex.forEach((e,i)=>{
+      const k=kk(s.id,u.id,i);
+      if(ST[k]!==undefined && !sane(e,ST[k])){ delete ST[k]; toco=true; n++; }
+    });
+    if(toco) delete ST[kk(s.id,u.id,"__rev")];   /* si se vació, que no quede trabado en revisión */
+  }));
+  if(n) save();
+  return n;
+}
 function wipeUnit(s,u){ const pf=G+"-"+s+"."+u+"."; Object.keys(ST).forEach(x=>{ if(x.indexOf(pf)===0) delete ST[x]; }); save(); }
 
 /* ---------- grados ---------- */
@@ -346,6 +375,7 @@ function selectGrade(g){
       return;
     }
     G=g; DATA=GRADES[g].subjects;
+    descartarViejas();
     try{ localStorage.setItem("ee_grado",g); }catch(e){}
     view="home"; si=0; ui=0; showRev=false; draw();
   });
@@ -370,7 +400,7 @@ function txt(h){ const d=document.createElement("div"); d.innerHTML=h; return d.
 function isAnswered(ex,sv){
   if(!sv) return false;
   if(GRADED[ex.t]) return !!sv.answered;
-  if(ex.t==="open") return ex.paper ? !!sv.done : !!(sv.v&&sv.v.trim().length);
+  if(ex.t==="open") return ex.paper ? !!sv.done : (typeof sv.v==="string" && sv.v.trim().length>0);
   return false;
 }
 /* total = TODAS las tarjetas del módulo; graded = solo las que se corrigen solas */
@@ -477,6 +507,7 @@ function drawGrades(box){
 
 function drawHome(box){
   DATA.forEach((s,i)=>{
+   try{
     const st=subjStats(s);
     const pct=st.total?Math.round(st.done/st.total*100):0;
     const b=document.createElement("button");
@@ -488,6 +519,15 @@ function drawHome(box){
       '<span class="pg" style="display:block">'+st.done+' de '+st.total+' respondidos</span></span>';
     b.onclick=()=>{ si=i; ui=0; showRev=false; view="subject"; draw(); };
     box.appendChild(b);
+   }catch(err){
+    /* ninguna materia puede impedir que se vean las otras */
+    const b=document.createElement("button");
+    b.className="subj lined"; b.style.setProperty("--tab",subjColor(s));
+    b.innerHTML='<span class="tab"></span><span class="body"><span class="top"><span class="emo">'+(s.emo||"📘")+
+      '</span><h3>'+s.name+'</h3></span><p>Hubo un problema al abrir esta materia. Tocá para entrar igual.</p></span>';
+    b.onclick=()=>{ si=i; ui=0; showRev=false; view="subject"; draw(); };
+    box.appendChild(b);
+   }
   });
   const t=document.createElement("div"); t.className="steps";
   t.innerHTML='<h3>📌 Cómo está organizado</h3><ol>'+

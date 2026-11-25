@@ -95,89 +95,147 @@ ex:[
 ];
 
 const G2_LENGUA = [
-{id:"l1",dot:"📅",name:"Nombres y calendario",title:"Nombres, días y meses",sub:"Leer nombres, el calendario y carteles",
+{id:"l1",dot:"📅",name:"Nombres y calendario",title:"Nombres, días y meses",sub:"El calendario, los carteles y las mayúsculas",
 rules:`
 <div class="rsec"><h4>La semana y el año</h4>
-<p class="exline">La semana tiene <b>7 días</b> y el año tiene <b>12 meses</b>. Siempre van en el mismo orden. Recitalos en voz alta para acordarte.</p></div>
-<div class="rsec"><h4>Los nombres de las personas</h4>
-<div class="warn">Los nombres de personas, mascotas y lugares van con <b>mayúscula</b> al principio: <b>M</b>artín, <b>T</b>oby.</div></div>
-<div class="rsec"><h4>Leer palabras</h4>
-<p class="exline">Si dudás, fijate <b>con qué letra empieza</b> y <b>con cuál termina</b>. Eso ayuda a saber qué dice.</p></div>`,
+<p class="exline">La semana tiene <b>7 días</b>. El año tiene <b>12 meses</b>. Van siempre en el mismo orden.</p>
+<div class="warn">Decilos en voz alta, de principio a fin. Así se aprenden.</div></div>
+<div class="rsec"><h4>Mayúscula al empezar</h4>
+<p class="exline">Los nombres de personas, mascotas y lugares empiezan con <b>mayúscula</b>:<br><b>M</b>artín · <b>T</b>oby · <b>C</b>órdoba</p></div>
+<div class="rsec"><h4>Para leer una palabra</h4>
+<p class="exline">Mirá <b>con qué letra empieza</b> y <b>con cuál termina</b>. Eso te da la pista.</p></div>`,
 ex:[
- {t:"order",q:"Ordená los días de la semana",items:["miércoles","lunes","viernes","martes","jueves"],a:["lunes","martes","miércoles","jueves","viernes"]},
- {t:"fill",q:"Completá",labels:["Después del martes viene el…","Antes del domingo está el…"],a:["miercoles","sabado"]},
- {t:"choice",q:"¿Cuál de estas palabras es un <b>mes</b>?",o:["marzo","lunes","verano"],a:0},
- {t:"order",q:"Ordená estos meses",items:["marzo","enero","abril","febrero"],a:["enero","febrero","marzo","abril"]},
- {t:"choice",q:"¿Qué cartel le ponés a la caja de los lápices?",o:["LÁPICES","PELOTAS","LIBROS"],a:0},
- {t:"choice",q:"¿Qué palabra empieza igual que <b>MAMÁ</b>?",o:["MESA","PATO","SOL"],a:0},
- {t:"choice",q:"¿Cuál está bien escrito?",o:["Lucía","lucía"],a:0}
+ {t:"order",e:"📅",q:"Ordená los días de la semana",
+  items:["miércoles","lunes","viernes","martes","jueves"],a:["lunes","martes","miércoles","jueves","viernes"]},
+ {t:"fill",e:"➡️",q:"Completá",h:"Decí la semana en voz alta desde el lunes.",
+  labels:["Después del martes viene el…","Antes del domingo está el…"],a:["miercoles","sabado"]},
+ {t:"choice",e:"🗓️",q:"¿Cuál de estas palabras es un <b>mes</b>?",o:["marzo","lunes","verano"],a:0},
+ {t:"order",e:"🔢",q:"Ordená estos meses",items:["marzo","enero","abril","febrero"],a:["enero","febrero","marzo","abril"]},
+ {t:"choice",q:"¿Qué cartel va en la caja de los lápices?",o:["LÁPICES","PELOTAS","LIBROS"],a:0,
+  ov:[{k:"emo",c:"✏️"},{k:"emo",c:"⚽"},{k:"emo",c:"📚"}]},
+ {t:"fill",e:"🔤",q:"¿Con qué letra empieza cada palabra?",h:"Decila en voz alta y escuchá el primer sonido.",
+  labels:["MESA","PELOTA","SOL"],a:["m","p","s"]},
+ {t:"choice",e:"✒️",q:"¿Cuál está bien escrito?",o:["Lucía","lucía"],a:0,h:"Es el nombre de una persona."},
+ {t:"open",e:"✍️",q:"Escribí tu nombre y el de alguien de tu casa.",
+  h:"Acordate de la mayúscula al principio.",
+  model:"Los dos nombres con mayúscula inicial. Si se olvidó, mostrale el suyo escrito bien y que lo compare."}
 ]},
 
-{id:"l2",dot:"🐺",name:"Cuentos y poesía",title:"Cuentos tradicionales, rimas y adivinanzas",sub:"Escuchar, leer y jugar con las palabras",
+{id:"l2",dot:"🐺",name:"Cuentos y rimas",title:"Cuentos, rimas y adivinanzas",sub:"Escuchar, contar y jugar con las palabras",
 rules:`
-<div class="rsec"><h4>Cuentos tradicionales</h4>
-<p class="exline">Son cuentos que se cuentan desde hace muchísimos años. Todo cuento tiene un <b>principio</b>, algo que <b>pasa</b> y un <b>final</b>.</p></div>
-<div class="rsec"><h4>Rimas</h4>
-<p class="exline">Dos palabras riman cuando <b>terminan con el mismo sonido</b>: s<b>ol</b> y c<b>ol</b>.</p></div>
-<div class="rsec"><h4>Adivinanzas</h4>
-<p class="exline">Dan <b>pistas</b> sin decir el nombre. Ejemplo: <i>«Oro parece, plata no es»</i>. Prestá atención a cada pista.</p></div>`,
+<div class="rsec"><h4>Todo cuento tiene tres partes</h4>
+<p class="exline">Un <b>principio</b>, algo que <b>pasa</b> y un <b>final</b>.</p></div>
+<div class="rsec"><h4>Dos palabras riman…</h4>
+<p class="exline">…cuando <b>terminan con el mismo sonido</b>: s<b>ol</b> y c<b>ol</b>.</p>
+<div class="warn">Decilas en voz alta, una atrás de la otra. El oído se da cuenta solo.</div></div>
+<div class="rsec"><h4>Las adivinanzas dan pistas</h4>
+<p class="exline">No dicen el nombre: lo describen. Leé cada pista despacio y pensá qué puede ser.</p></div>`,
 ex:[
- {t:"choice",q:"En «Caperucita Roja», ¿a quién va a visitar Caperucita?",o:["A su abuela","A su tía","Al cazador"],a:0},
- {t:"choice",q:"En «Los tres chanchitos», ¿qué casa no pudo voltear el lobo?",o:["La de paja","La de madera","La de ladrillos"],a:2},
- {t:"order",q:"Ordená el cuento «Los tres chanchitos»",items:["El lobo sopla la casa de paja","Los chanchitos construyen sus casas","El lobo no puede voltear la casa de ladrillos"],a:["Los chanchitos construyen sus casas","El lobo sopla la casa de paja","El lobo no puede voltear la casa de ladrillos"]},
- {t:"choice",q:"¿Qué palabra rima con <b>GATO</b>?",o:["PATO","PERRO","MESA"],a:0},
- {t:"choice",q:"¿Qué palabra rima con <b>LUNA</b>?",o:["CUNA","SOL","LUZ"],a:0},
- {t:"choice",q:"¿Qué palabra rima con <b>CAMIÓN</b>?",o:["RATÓN","AUTO","RUEDA"],a:0},
- {t:"choice",q:"Adiviná: <i>«Blanca por dentro, verde por fuera; si quieres que te lo diga, espera.»</i>",o:["La pera","La manzana","La banana"],a:0},
- {t:"choice",q:"Adiviná: <i>«Tengo agujas y no sé coser, tengo números y no sé leer.»</i>",o:["El reloj","El libro","La tijera"],a:0},
- {t:"open",q:"Inventá una rima con tu nombre",model:"Que la palabra que elija termine con el mismo sonido que su nombre. Puede ser divertida o sin sentido: lo que importa es que rime."}
+ {t:"choice",q:"En «Caperucita Roja», ¿a quién va a visitar Caperucita?",o:["A su abuela","A su tía","Al cazador"],a:0,
+  ov:[{k:"emo",c:"👵"},{k:"emo",c:"👩"},{k:"emo",c:"🧔"}]},
+ {t:"choice",e:"🐺",q:"En «Los tres chanchitos», ¿qué casa <b>no</b> pudo voltear el lobo?",
+  o:["La de paja","La de madera","La de ladrillos"],a:2,
+  ov:[{k:"emo",c:"🌾"},{k:"emo",c:"🪵"},{k:"emo",c:"🧱"}]},
+ {t:"order",e:"🐷",q:"Ordená el cuento de los tres chanchitos",
+  items:["El lobo sopla la casa de paja","Los chanchitos construyen sus casas","El lobo no puede voltear la casa de ladrillos"],
+  a:["Los chanchitos construyen sus casas","El lobo sopla la casa de paja","El lobo no puede voltear la casa de ladrillos"]},
+ {t:"choice",q:"¿Qué palabra rima con <b>GATO</b>?",o:["PATO","PERRO","MESA"],a:0,h:"Decilas en voz alta.",
+  ov:[{k:"emo",c:"🦆"},{k:"emo",c:"🐕"},{k:"emo",c:"🪑"}]},
+ {t:"choice",q:"¿Qué palabra rima con <b>LUNA</b>?",o:["CUNA","SOL","LUZ"],a:0,
+  ov:[{k:"emo",c:"🛏️"},{k:"emo",c:"☀️"},{k:"emo",c:"💡"}]},
+ {t:"open",e:"🔊",q:"Escribí una palabra que rime con <b>SOL</b>.",
+  h:"Decí SOL en voz alta y buscá otra que termine igual.",
+  model:"Vale cualquiera que termine con el mismo sonido (col, gol, farol…). Que la diga en voz alta antes de escribirla."},
+ {t:"fill",e:"🍐",q:"Adiviná y escribí qué es:<br><i>«Blanca por dentro, verde por fuera; si querés que te lo diga, esperá.»</i>",
+  h:"La última palabra de la adivinanza es la pista.",labels:[""],a:["pera"]},
+ {t:"choice",e:"🕐",q:"Adiviná: <i>«Tengo agujas y no sé coser, tengo números y no sé leer.»</i>",
+  o:["El reloj","El libro","La tijera"],a:0},
+ {t:"open",e:"📖",q:"Pensá un cuento que conozcas. Escribí qué pasa al principio, en el medio y al final.",
+  viz:{k:"partes",t:["Principio","Qué pasa","Final"]},
+  h:"Una oración para cada parte.",
+  model:"Tres oraciones, una por parte. Si solo cuenta el principio, preguntale qué pasó después."}
 ]},
 
-{id:"l3",dot:"📝",name:"Listas y letras",title:"Escribir listas",sub:"Listas con un propósito · qué letras van",
+{id:"l3",dot:"📝",name:"Listas y letras",title:"Escribir listas",sub:"Para qué sirve una lista · qué letras van",
 rules:`
 <div class="rsec"><h4>¿Para qué sirve una lista?</h4>
-<p class="exline">Para no olvidarse de nada. Cada lista tiene un <b>tema</b>, y solo van cosas de ese tema. Ejemplo, lista del cumpleaños: globos, torta, velas.</p></div>
+<p class="exline">Para no olvidarte de nada. Cada lista tiene un <b>tema</b>, y solo van cosas de ese tema.</p>
+<div class="rrow"><span class="rl">Lista del cumpleaños</span><span class="ra">globos · torta · velas</span></div></div>
 <div class="rsec"><h4>¿Qué letras van?</h4>
-<div class="warn">Decí la palabra <b>despacio</b>, separando los sonidos, y escribí una letra por cada sonido. Después leela con el dedo para ver si dice lo que querías.</div></div>`,
+<p class="exline">Decí la palabra <b>despacio</b>, separando los sonidos. Escribí una letra por cada sonido.</p>
+<div class="warn">Después leela con el dedo, letra por letra, para ver si dice lo que querías.</div></div>`,
 ex:[
- {t:"choice",q:"¿Qué va en la lista de las compras del súper?",o:["leche","lunes","Lucía"],a:0},
- {t:"choice",q:"¿Qué <b>NO</b> va en una lista de útiles?",o:["lápiz","goma","pelota"],a:2},
- {t:"choice",q:"Para hacer una torta necesitamos…",o:["harina, huevos y azúcar","pelota, auto y muñeca","lunes, martes y jueves"],a:0},
- {t:"fill",q:"Escribí la palabra completa",labels:["CA_A (donde vivimos)","SO_ (brilla en el cielo)","ME_A (para comer)"],a:["casa","sol","mesa"]},
- {t:"choice",q:"¿Con qué letra empieza <b>PELOTA</b>?",o:["P","B","T"],a:0},
- {t:"choice",q:"¿Cuántas letras tiene <b>SOL</b>?",o:["3","2","4"],a:0},
- {t:"open",q:"Escribí una lista de tus 4 juegos preferidos",model:"Una cosa por renglón. Revisá juntos que cada palabra diga lo que quiso escribir, leyéndola con el dedo."},
- {t:"open",q:"Escribí la lista de los personajes de un cuento que conozcas",model:"Que nombre a todos los personajes importantes del cuento. Los nombres propios, con mayúscula."}
+ {t:"choice",q:"¿Qué va en la lista del súper?",o:["leche","lunes","Lucía"],a:0,
+  ov:[{k:"emo",c:"🥛"},{k:"emo",c:"📅"},{k:"emo",c:"👧"}]},
+ {t:"choice",e:"🎒",q:"Tres de estos son útiles de la escuela y uno no. ¿Cuál no es?",
+  o:["lápiz","goma","pelota"],a:2,
+  ov:[{k:"emo",c:"✏️"},{k:"emo",c:"🧽"},{k:"emo",c:"⚽"}]},
+ {t:"choice",e:"🎂",q:"Para hacer una torta necesitamos…",
+  o:["harina, huevos y azúcar","pelota, auto y muñeca","lunes, martes y jueves"],a:0},
+ {t:"fill",e:"🔡",q:"Escribí la palabra completa",h:"Decila despacio y escuchá qué letra falta.",
+  labels:["CA_A (donde vivimos)","SO_ (brilla en el cielo)","ME_A (para comer)"],a:["casa","sol","mesa"]},
+ {t:"fill",e:"🔤",q:"Escribí la <b>primera</b> y la <b>última</b> letra de PELOTA",
+  viz:{k:"letras",w:"PELOTA"},
+  labels:["Primera letra","Última letra"],a:["p","a"]},
+ {t:"choice",q:"¿Cuántas letras tiene <b>SOL</b>?",viz:{k:"letras",w:"SOL"},
+  h:"Contá los casilleros de arriba.",o:["3","2","4"],a:0},
+ {t:"open",e:"🎲",q:"Escribí una lista con 4 juegos que te gusten.",
+  h:"Uno por renglón.",
+  model:"Cuatro cosas, una por renglón. Revisá juntos que cada palabra diga lo que quiso escribir, leyéndola con el dedo."},
+ {t:"open",e:"👥",q:"Elegí un cuento que conozcas y escribí la lista de sus personajes.",
+  h:"Los nombres van con mayúscula.",
+  model:"Que nombre a los personajes importantes. Los nombres propios, con mayúscula."}
 ]},
 
-{id:"l4",dot:"🔁",name:"Escribir en orden",title:"Escribir siguiendo un orden y revisar",sub:"Primero, después, al final · separar y revisar",
+{id:"l4",dot:"🔁",name:"Escribir en orden",title:"Escribir siguiendo un orden",sub:"Primero, después, al final · revisar lo escrito",
 rules:`
 <div class="rsec"><h4>Primero, después, al final</h4>
-<p class="exline">Para contar algo que se hace en pasos, pensá qué pasa <b>primero</b>, qué <b>después</b> y qué <b>al final</b>. Ejemplo, hacer la cama: primero estiro la sábana, después la frazada, al final acomodo la almohada.</p></div>
+<p class="exline">Para contar algo que se hace en pasos, pensá qué va <b>primero</b>, qué <b>después</b> y qué <b>al final</b>.</p>
+<div class="rrow"><span class="rl">Hacer la cama</span><span class="ra">sábana → frazada → almohada</span></div></div>
 <div class="rsec"><h4>Revisar lo que escribí</h4>
-<div class="warn"><b>Señalá con el dedo</b> cada palabra mientras la leés. Así te das cuenta si <b>falta</b> una letra, si <b>sobra</b> alguna o si dos palabras quedaron pegadas.</div></div>`,
+<p class="exline">Señalá cada palabra con el dedo mientras la leés. Así te das cuenta si <b>falta</b> una letra, si <b>sobra</b> alguna o si dos palabras quedaron pegadas.</p></div>`,
 ex:[
- {t:"order",q:"Ordená los pasos para lavarse los dientes",items:["Me enjuago la boca","Pongo pasta en el cepillo","Me cepillo los dientes"],a:["Pongo pasta en el cepillo","Me cepillo los dientes","Me enjuago la boca"]},
- {t:"order",q:"Ordená los pasos para plantar una semilla",items:["Riego la tierra","Hago un pozo","Pongo la semilla"],a:["Hago un pozo","Pongo la semilla","Riego la tierra"]},
- {t:"choice",q:"¿Cuál está bien escrito?",o:["EL SOL BRILLA","ELSOLBRILLA","EL SOLBRI LLA"],a:0},
- {t:"choice",q:"Leé con el dedo: <b>MESSA</b>. ¿Qué le pasa?",o:["Le sobra una letra","Le falta una letra","Está bien"],a:0},
- {t:"choice",q:"Leé con el dedo: <b>PELTA</b>. ¿Qué le pasa?",o:["Le sobra una letra","Le falta una letra","Está bien"],a:1},
- {t:"choice",q:"La persona que escribe un libro es…",o:["el autor o la autora","el lector o la lectora","el librero"],a:0},
- {t:"open",q:"Escribí 3 oraciones sobre tu día: qué hacés primero, qué después y qué al final",model:"Tres oraciones en orden. Revisá juntos que estén separadas las palabras y que no falten letras."}
+ {t:"order",e:"🪥",q:"Ordená los pasos para lavarse los dientes",
+  items:["Me enjuago la boca","Pongo pasta en el cepillo","Me cepillo los dientes"],
+  a:["Pongo pasta en el cepillo","Me cepillo los dientes","Me enjuago la boca"]},
+ {t:"open",e:"🌱",q:"Escribí los 3 pasos para plantar una semilla.",
+  viz:{k:"pasos",n:3,cap:["Primero","Después","Al final"]},
+  h:"Uno por renglón, en orden.",
+  model:"Tres pasos en orden (hacer el pozo, poner la semilla, regar). Lo que importa es el orden, no las palabras exactas."},
+ {t:"choice",e:"☀️",q:"¿Cuál está bien escrito?",o:["EL SOL BRILLA","ELSOLBRILLA","EL SOLBRI LLA"],a:0,
+  h:"Mirá los espacios entre las palabras."},
+ {t:"choice",q:"Leé con el dedo: <b>MESSA</b>. ¿Qué le pasa?",viz:{k:"letras",w:"MESSA"},
+  o:["Le sobra una letra","Le falta una letra","Está bien"],a:0},
+ {t:"fill",e:"✏️",q:"Esta palabra está mal escrita: <b>PELTA</b>. Escribila bien.",
+  viz:{k:"letras",w:"PELTA"},h:"Decila despacio y escuchá qué letra falta.",labels:[""],a:["pelota"]},
+ {t:"choice",e:"📚",q:"La persona que escribe un libro es…",
+  o:["el autor o la autora","el lector o la lectora","el librero"],a:0},
+ {t:"open",e:"🌞",q:"Contá tu día en 3 oraciones: qué hacés primero, qué después y qué al final.",
+  viz:{k:"pasos",n:3,cap:["Primero","Después","Al final"]},
+  model:"Tres oraciones en orden. Revisá juntos que las palabras estén separadas y que no falten letras."}
 ]},
 
 {id:"lsim",dot:"📝",name:"Simulacro",title:"Simulacro de Lengua",sub:"Todo junto",
 rules:`
 <div class="rsec"><h4>Antes de empezar</h4>
-<p class="exline">Leé cada pregunta despacio. Si no estás segura o seguro, volvé a leerla.</p>
+<p class="exline">Leé cada consigna despacio. Si no estás segura o seguro, leela otra vez.</p>
 <div class="warn">Al terminar, leé con el dedo lo que escribiste.</div></div>`,
 ex:[
- {t:"choice",q:"1. ¿Qué día viene después del jueves?",o:["viernes","miércoles","sábado"],a:0},
- {t:"choice",q:"2. ¿Qué palabra rima con <b>FLOR</b>?",o:["COLOR","FLORES","ROSA"],a:0},
- {t:"fill",q:"3. Escribí la palabra completa",labels:["PA_O (un ave que nada)"],a:["pato"]},
- {t:"choice",q:"4. ¿Qué <b>NO</b> va en una lista de frutas?",o:["manzana","pera","zapato"],a:2},
- {t:"order",q:"5. Ordená los pasos para ponerse las zapatillas",items:["Me ato los cordones","Me pongo las medias","Me pongo las zapatillas"],a:["Me pongo las medias","Me pongo las zapatillas","Me ato los cordones"]},
- {t:"choice",q:"6. ¿Cuál está bien escrito?",o:["Ana juega en el patio.","anajuegaenelpatio","ana juega en el patio"],a:0},
- {t:"open",q:"7. Escribí una adivinanza sobre un animal",model:"Que dé pistas sin decir el nombre del animal."}
+ {t:"choice",e:"📅",q:"1. ¿Qué día viene después del jueves?",o:["viernes","miércoles","sábado"],a:0},
+ {t:"choice",q:"2. ¿Qué palabra rima con <b>FLOR</b>?",o:["COLOR","FLORES","ROSA"],a:0,h:"Decilas en voz alta."},
+ {t:"fill",e:"🦆",q:"3. Escribí la palabra completa",viz:{k:"letras",w:"PA_O"},
+  labels:["PA_O (un ave que nada)"],a:["pato"]},
+ {t:"choice",e:"🍎",q:"4. Tres de estos son frutas y uno no. ¿Cuál no es?",o:["manzana","pera","zapato"],a:2},
+ {t:"order",e:"👟",q:"5. Ordená los pasos para ponerse las zapatillas",
+  items:["Me ato los cordones","Me pongo las medias","Me pongo las zapatillas"],
+  a:["Me pongo las medias","Me pongo las zapatillas","Me ato los cordones"]},
+ {t:"choice",q:"6. ¿Cuál está bien escrito?",o:["Ana juega en el patio.","anajuegaenelpatio","ana juega en el patio"],a:0,
+  h:"Mirá la mayúscula, los espacios y el punto."},
+ {t:"fill",e:"🔤",q:"7. Escribí la palabra completa",h:"Decila despacio y escuchá qué letra falta.",
+  labels:["CA_A (donde vivimos)","LU_A (se ve de noche)"],a:["casa","luna"]},
+ {t:"open",e:"🐾",q:"8. Escribí una adivinanza sobre un animal.",
+  h:"Dá pistas, pero no digas su nombre.",
+  model:"Que dé pistas sin nombrar al animal. Dos o tres pistas alcanzan."}
 ]}
 ];
+

@@ -51,3 +51,30 @@ for(const g of ['2','3','4','5','6','7']){
 }
 console.log(malos? malos+' para revisar a mano ('+revisados+' respuestas revisadas)'
                  : 'Ninguna guía repite el ejercicio que evalúa ('+revisados+' respuestas revisadas)');
+
+/* Segunda pasada: una pista (h) ayuda a pensar, nunca contiene la respuesta. */
+let fugas=0, pistas=0;
+for(const g of ['2','3','4','5','6','7']){
+  const f=path.join(R,'grados','g'+g+'.js');
+  if(!fs.existsSync(f)) continue;
+  eval(fs.readFileSync(f,'utf8').replace('window.GRADES=window.GRADES||{};','var GRADES={};'));
+  GRADES[g].subjects.forEach(s=>s.units.forEach(u=>u.ex.forEach((ex,i)=>{
+    if(!ex.h) return;
+    pistas++;
+    const pista=' '+strip(ex.h)+' ';
+    let resp=[];
+    if(ex.t==='choice') resp=[ex.o[ex.a]];
+    else if(ex.t==='fill'||ex.t==='spell') resp=[].concat(ex.a).filter(x=>!String(x).startsWith('re:'));
+    else return;
+    resp.forEach(r=>{
+      const n=strip(r);
+      if(n.length>2 && pista.includes(' '+n+' ')){
+        fugas++;
+        console.log('⚠ '+g+'º '+s.name+' · '+u.name+' · ej '+(i+1)+': la pista contiene «'+r+'»');
+      }
+    });
+  })));
+}
+console.log(fugas? fugas+' pistas filtran su respuesta'
+                 : 'Ninguna de las '+pistas+' pistas contiene su respuesta');
+if(fugas) process.exit(1);

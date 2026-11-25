@@ -176,6 +176,8 @@ nav{position:sticky;top:0;z-index:20;background:var(--paper);padding:10px 0 9px;
 .vz .hole{fill:var(--sheet);stroke:var(--line);stroke-width:1.5}
 .vz .tx{fill:var(--ink);font-family:'Andika',sans-serif;font-size:14px;font-weight:700}
 .vz .tx.sm{font-size:11px;fill:var(--muted);font-weight:400}
+.vz .tx.num{fill:var(--sheet);font-size:17px}
+.vzemo{font-size:30px;line-height:1;display:block}
 .opt .vz{margin:0}
 .opt.vzopt{flex-direction:column;align-items:flex-start;gap:6px}
 .frcalc{display:flex;align-items:center;gap:11px;flex-wrap:wrap;background:var(--field);
@@ -933,6 +935,51 @@ V.hundred=o=>{
   return svg(cols*cw, rows*ch+2, s);
 };
 /* billetes */
+/* ---------- ayudas para Lengua ---------- */
+/* la palabra, una letra por casillero: para contarlas o mirar cómo empieza */
+V.letras=o=>{
+  const L=String(o.w||"").split(""), b=30, g=5, pad=3;
+  let s="";
+  L.forEach((c,i)=>{
+    const x=pad+i*(b+g);
+    s+=R(x,4,b,b,"bg",6);
+    s+=T(x+b/2,26,c==="_"?"":c);
+  });
+  return svg(pad*2+L.length*(b+g)-g, 40, s);
+};
+/* tres casilleros numerados: primero, después, al final */
+V.pasos=o=>{
+  const n=o.n||3, b=58, g=16, pad=4, cap=o.cap||[];
+  let s="";
+  for(let i=0;i<n;i++){
+    const x=pad+i*(b+g);
+    s+=R(x,10,b,b,"bg",10);
+    s+='<circle cx="'+(x+b/2)+'" cy="'+(10+b/2-4)+'" r="15" class="fg"/>';
+    s+='<text x="'+(x+b/2)+'" y="'+(10+b/2+2)+'" text-anchor="middle" class="tx num">'+(i+1)+'</text>';
+    if(cap[i]) s+=T(x+b/2,10+b+14,cap[i],"sm");
+    if(i<n-1){
+      const ax=x+b+2, ay=10+b/2-4;
+      s+='<path d="M'+ax+' '+ay+' h'+(g-6)+'" class="ln"/>';
+      s+='<path d="M'+(ax+g-9)+' '+(ay-4)+' l4 4 -4 4" class="ln"/>';
+    }
+  }
+  return svg(pad*2+n*(b+g)-g, cap.length?92:78, s);
+};
+/* el esqueleto de un cuento: comienzo · qué pasa · final */
+V.partes=o=>{
+  const t=o.t||["Comienzo","Qué pasa","Final"], b=92, hh=54, g=10, pad=4;
+  let s="";
+  t.forEach((c,i)=>{
+    const x=pad+i*(b+g);
+    s+=R(x,6,b,hh,"bg",10);
+    s+=T(x+b/2,28,c);
+    if(o.sub&&o.sub[i]) s+=T(x+b/2,46,o.sub[i],"sm");
+  });
+  return svg(pad*2+t.length*(b+g)-g, hh+14, s);
+};
+/* un emoji grande, para ilustrar cada opción */
+V.emo=o=>'<span class="vzemo">'+(o.c||"")+'</span>';
+
 V.money=o=>{
   let x=2, s="";
   (o.bills||[]).forEach(b=>{ for(let i=0;i<b.n;i++){

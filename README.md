@@ -23,6 +23,7 @@ En total, 1.244 ejercicios.
 
 - **Inglés:** cubre el programa del grado anterior y el del grado al que se ingresa.
 - **Matemática y Lengua:** siguen los contenidos de ingreso de la escuela, es decir, lo que hay que saber del grado anterior.
+- **Lengua en 2º y 3º:** las consignas son cortas y de una sola idea, y cada módulo mezcla ejercicios de elegir una opción con ejercicios de escribir, más o menos por mitades. Muchos traen una ayuda visual —la palabra en casilleros, los pasos numerados, el esqueleto del cuento— o una pista que dice **cómo** pensarlo sin decir la respuesta. El simulacro es la excepción: imita la prueba real, que es casi toda de escribir.
 - Cada materia está dividida en módulos cortos, y cada módulo termina con un simulacro de examen.
 - **Operaciones escritas (hasta 4º):** se resuelven como en el cuaderno, con un casillero por cifra.
   - En **2º y 3º** la cuenta se pregunta en línea (`23 + 45 =`) con un solo casillero, y al lado hay una **pestaña** que abre la misma cuenta en columna. El alumno puede resolverla de memoria o apoyarse en la columna; lo que escriba ahí es borrador, no se corrige, y al completarla el resultado sube solo al casillero de arriba. Se corrige la respuesta en línea.
@@ -71,7 +72,7 @@ node scripts/build.js
 
 Tipos de ejercicio: opción múltiple (`choice`), unir con flechas (`match`), completar (`fill`), ordenar (`order`), cuenta parada (`col`), división con casita (`div`), fracciones (`frac`) y respuesta abierta (`open`).
 
-Para ilustrar un ejercicio se le agrega `viz` (o `ov`, para dibujar cada opción). Los dibujos disponibles son `base10`, `array`, `groups`, `fraction`, `numline`, `hundred`, `clock`, `triangle` y `money`. Las operaciones escritas se cargan solo con los números y el script calcula el resto:
+Para ilustrar un ejercicio se le agrega `viz` (o `ov`, para dibujar cada opción). Los dibujos disponibles son `base10`, `array`, `groups`, `fraction`, `numline`, `hundred`, `clock`, `triangle` y `money` para Matemática, y `letras` (la palabra, una letra por casillero), `pasos` (1 → 2 → 3), `partes` (comienzo · qué pasa · final) y `emo` (un emoji, para `ov`) para Lengua. Las operaciones escritas se cargan solo con los números y el script calcula el resto:
 
 ```js
 {t:"col",  op:"+", n:[247,136]}        // cuenta parada

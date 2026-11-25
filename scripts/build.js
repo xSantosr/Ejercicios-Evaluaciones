@@ -187,6 +187,36 @@ for (const g in GRADES) GRADES[g].forEach(s => {
       if (e.t === 'fill' && e.labels && e.labels.length !== e.a.length) throw new Error('Etiquetas y respuestas no coinciden: ' + at);
       if (e.t === 'order' && e.items.slice().sort().join('|') !== e.a.slice().sort().join('|')) throw new Error('Orden con elementos distintos: ' + at);
     });
+
+    /* Como máximo dos consignas por módulo quedan sin autocorrección:
+       el resto se corrige solo, así el chico sabe al instante cómo le fue. */
+    const abiertas = u.ex.filter(e => e.t === 'open').length;
+    if (abiertas > 2) throw new Error('Más de dos consignas abiertas en ' + g + 'º ' + s.id + '.' + u.id + ': ' + abiertas);
+
+    /* La respuesta de un ejercicio no puede estar escrita en el enunciado
+       de otro del mismo módulo: se contestarían sola una a la otra. */
+    if (s.id === 'lengua') {
+      const pelar = x => String(x).replace(/<[^>]+>/g, ' ').toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+      u.ex.forEach((e, i) => {
+        let resp = [];
+        if (e.t === 'choice') resp = [e.o[e.a]];
+        else if (e.t === 'fill' || e.t === 'spell') resp = [].concat(e.a).filter(x => !String(x).startsWith('re:'));
+        else return;
+        if (e.sobreTexto) return;   /* la respuesta se busca en un texto citado: es la destreza */
+        resp.forEach(r => {
+          const v = pelar(r);
+          if (v.length < 5 || v.indexOf(' ') >= 0) return;   /* solo palabras de contenido */
+          u.ex.forEach((o, j) => {
+            if (i === j || o.sobreTexto) return;
+            if ((' ' + pelar(o.q) + ' ').indexOf(' ' + v + ' ') >= 0)
+              throw new Error('La respuesta de ' + g + 'º ' + u.id + ' #' + (i + 1) + ' («' + r +
+                              '») está escrita en el enunciado de #' + (j + 1));
+          });
+        });
+      });
+    }
   });
 });
 

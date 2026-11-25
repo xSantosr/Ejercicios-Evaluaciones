@@ -241,11 +241,11 @@ rules:`
 <p class="exline">En los mitos griegos, los dioses viven en el monte Olimpo e intervienen en la vida de los humanos: los ayudan, los castigan o los ponen a prueba.</p></div>`,
 ex:[
  {t:"choice",q:"¿Quién venció al Minotauro?",o:["Teseo","Perseo","Hércules"],a:0},
- {t:"choice",q:"¿Qué usó Teseo para salir del laberinto?",o:["Un ovillo de hilo que le dio Ariadna","Un mapa","Unas alas de cera"],a:0},
+ {t:"choice",q:"¿Qué usó el héroe para salir del laberinto?",o:["Un ovillo de hilo que le dio Ariadna","Un mapa","Unas alas de cera"],a:0},
  {t:"choice",q:"¿Por qué cayó Ícaro al mar?",o:["Voló demasiado cerca del sol y se derritió la cera de sus alas","Se cansó de volar","Lo empujó un dios"],a:0},
  {t:"choice",q:"Medusa convertía en piedra a quien…",o:["la miraba","la tocaba","le hablaba"],a:0},
  {t:"choice",q:"¿Quién es el rey de los dioses del Olimpo?",o:["Zeus","Poseidón","Hades"],a:0},
- {t:"choice",q:"Cuando Teseo decide viajar a Creta para enfrentar al Minotauro, ¿qué etapa del camino del héroe es?",o:["El llamado a la aventura","El regreso","El desafío final"],a:0},
+ {t:"choice",q:"Cuando el héroe decide viajar a Creta para enfrentar al Minotauro, ¿qué etapa del camino es?",o:["El llamado a la aventura","El regreso","El desafío final"],a:0},
  {t:"open",q:"Escribí el comienzo de un relato mitológico con tu propio héroe o heroína: ¿cuál es su llamado a la aventura?",model:"Que presente al personaje, el lugar y algo que lo obligue a salir de su mundo conocido."}
 ]},
 {id:"l3",dot:"👻",name:"Novelas breves",title:"Novelas breves clásicas",sub:"El fantasma de Canterville · El diablo en la botella",book:["canterville"],

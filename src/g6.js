@@ -210,7 +210,7 @@ ex:[
  {t:"choice",q:"«Lucía caminaba sin saber que su hermano la seguía, y él tenía miedo de que lo descubriera.» ¿Qué narrador es?",o:["Omnisciente","Protagonista","Testigo"],a:0},
  {t:"choice",q:"«Vi cómo mi amigo Tomás se subía al árbol y se caía.» ¿Qué narrador es?",o:["Testigo","Protagonista","Omnisciente"],a:0},
  {t:"choice",q:"En los diálogos, ¿qué signo indica que habla un personaje?",o:["La raya (—)","El punto y coma","Los dos puntos"],a:0},
- {t:"open",q:"Reescribí este fragmento con narrador protagonista (en primera persona):<br><b>Martín abrió la puerta despacio. Tenía miedo de lo que iba a encontrar.</b>",model:"«Abrí la puerta despacio. Tenía miedo de lo que iba a encontrar.» Que cambien los verbos y los pronombres a la primera persona."}
+ {t:"open",q:"Reescribí este fragmento en primera persona, como si lo contara quien lo vive:<br><b>Martín abrió la puerta despacio. Tenía miedo de lo que iba a encontrar.</b>",model:"«Abrí la puerta despacio. Tenía miedo de lo que iba a encontrar.» Que cambien los verbos y los pronombres a la primera persona."}
 ]},
 {id:"l2",dot:"🧞",name:"Aventuras",title:"Las mil y una noches y novelas de aventuras",sub:"Relatos de tradición oral · Robin Hood · Huckleberry Finn",book:["mil-y-una-noches"],
 rules:`
@@ -220,7 +220,7 @@ rules:`
 <p class="exline">Tienen un héroe o heroína que viaja, enfrenta peligros y se pone a prueba. Muchas son clásicas y se leen en <b>versiones adaptadas</b>.</p></div>`,
 ex:[
  {t:"choice",q:"En «Las mil y una noches», ¿quién cuenta las historias cada noche?",o:["Sherezade","Aladino","Simbad"],a:0},
- {t:"choice",q:"¿Por qué Sherezade cuenta un cuento cada noche?",o:["Para que el sultán quiera escuchar la continuación y no la mate","Para dormirse","Porque es maestra"],a:0},
+ {t:"choice",q:"¿Por qué la narradora cuenta un cuento cada noche?",o:["Para que el sultán quiera escuchar la continuación y no la mate","Para dormirse","Porque es maestra"],a:0},
  {t:"choice",q:"¿Cuál de estos personajes aparece en «Las mil y una noches»?",o:["Alí Babá","Peter Pan","Robin Hood"],a:0},
  {t:"choice",q:"Robin Hood les robaba a los ricos para…",o:["dárselo a los pobres","hacerse rico","comprar un castillo"],a:0},
  {t:"choice",q:"¿En qué bosque vivía Robin Hood?",o:["Sherwood","el Amazonas","la Selva Negra"],a:0},

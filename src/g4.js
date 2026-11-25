@@ -225,7 +225,7 @@ rules:`
 ex:[
  {t:"choice",q:"En las fábulas, el zorro suele ser…",o:["astuto","tonto","lento"],a:0},
  {t:"choice",q:"¿Quién escribió «El patito feo»?",o:["Hans Christian Andersen","Graciela Montes","Isol"],a:0},
- {t:"choice",q:"¿De qué país era Andersen?",o:["Dinamarca","Argentina","España"],a:0},
+ {t:"choice",q:"¿De qué país era el autor de «La sirenita»?",o:["Dinamarca","Argentina","España"],a:0},
  {t:"choice",q:"En «El patito feo», al final el patito descubre que es…",o:["un cisne","un pato","un ganso"],a:0},
  {t:"choice",q:"Dos versiones de un mismo cuento…",o:["tienen la misma historia básica con algunos cambios","son cuentos completamente distintos","tienen siempre el mismo final"],a:0},
  {t:"choice",q:"«El soldadito de plomo» también es de…",o:["Andersen","los hermanos Grimm","Charles Perrault"],a:0},
